@@ -55,16 +55,14 @@ const Landing = () => {
                       Sign in
                     </Button>
                     <Modal
-                      size="xl"
+                      size="sm"
                       initialFocusRef={initialRef}
                       finalFocusRef={finalRef}
                       isOpen={signInModal}
                       onClose={() => setSignInModal(false)}
                     >
                       {/* Sign in modal */}
-                      <SignIn_Information
-                        closeForm={() => setSignInModal(false)}
-                      />
+                      <SignIn_Information />
                     </Modal>
                     <br></br>
                     <br></br>
@@ -86,9 +84,7 @@ const Landing = () => {
                       onClose={() => setSignUpModal(false)}
                     >
                       {/* sign out modal */}
-                      <SignUp_Information
-                        closeForm={() => setSignUpModal(false)}
-                      />
+                      <SignUp_Information />
                     </Modal>
                   </DrawerBody>
                 </DrawerContent>
