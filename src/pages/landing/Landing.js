@@ -1,8 +1,10 @@
-import { React, useState, useRef } from 'react';
+import { React, useState, useRef } from "react";
 import {
+  Text,
   Center,
   Grid,
   GridItem,
+  Spacer,
   Divider,
   Button,
   Drawer,
@@ -12,10 +14,10 @@ import {
   DrawerContent,
   useDisclosure,
   Modal,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 //components
-import SignIn from '../../components/signin/SignIn';
-import SignUp from '../../components/signup/SignUp';
+import SignIn from "../../components/signin/SignIn";
+import SignUp from "../../components/signup/SignUp";
 const Landing = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [signInModal, setSignInModal] = useState(false);
@@ -25,35 +27,38 @@ const Landing = () => {
   return (
     <>
       <Grid
-        h='00px'
-        templateRows='repeat(3, 1fr)'
-        templateColumns='repeat(3, 1fr)'
-        gap={4}
-        bg='blue'
+        h="00px"
+        templateRows="repeat(5, 1fr)"
+        templateColumns="repeat(5, 1fr)"
+        gap={40}
       >
-        <GridItem colSpan={1} rowSpan={1} rowStart={2} colStart={2}>
-          <Center h='100px' color='white'>
-            <Button colorScheme='teal' variant='ghost' onClick={onOpen}>
-              Sungmin market
+        <GridItem colStart={3} rowStart={4}>
+          <Center h="100px" color="white">
+            <Button colorScheme="teal" variant="ghost" onClick={onOpen}>
+              <Text fontSize="2xl" as="samp">
+                Sungmin Market
+              </Text>
             </Button>
-            <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
+            <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
               <DrawerOverlay>
                 <DrawerContent>
-                  <DrawerHeader borderBottomWidth='1px'>
-                    Sungmin Market
+                  <DrawerHeader borderBottomWidth="1px">
+                    <Text fontSize="2xl" as="samp">
+                      Sungmin Market
+                    </Text>
                   </DrawerHeader>
                   <DrawerBody>
                     <br></br>
                     <Button
-                      colorScheme='green'
-                      variant='link'
+                      colorScheme="green"
+                      variant="link"
                       onClick={() => setSignInModal(true)}
-                      size='lg'
+                      size="lg"
                     >
                       Sign in
                     </Button>
                     <Modal
-                      size='sm'
+                      size="sm"
                       initialFocusRef={initialRef}
                       finalFocusRef={finalRef}
                       isOpen={signInModal}
@@ -67,15 +72,15 @@ const Landing = () => {
                     <Divider />
                     <br></br>
                     <Button
-                      colorScheme='green'
-                      variant='link'
+                      colorScheme="green"
+                      variant="link"
                       onClick={() => setSignUpModal(true)}
-                      size='lg'
+                      size="lg"
                     >
                       Sign up
                     </Button>
                     <Modal
-                      size='xl'
+                      size="xl"
                       initialFocusRef={initialRef}
                       finalFocusRef={finalRef}
                       isOpen={signUpModal}
