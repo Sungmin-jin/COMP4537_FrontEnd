@@ -23,7 +23,6 @@ export const loadUser = () => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    console.log(err);
     dispatch({
       type: AUTH_ERROR,
     });
@@ -60,7 +59,6 @@ export const login = ({ email, password }) => async (dispatch) => {
     },
   };
   const formData = JSON.stringify({ email, password });
-  console.log(formData);
   try {
     const res = await axios.post('/api/auth', formData, config);
     dispatch({
