@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   token: localStorage.getItem('token'),
-  isAuthenticated: null,
+  isAuthenticated: false,
   loading: true,
   user: null,
 };
@@ -34,6 +34,8 @@ export default function authReducer(state = initialState, action) {
       return {
         ...state,
         token: null,
+        isAuthenticated: false,
+        loading: false,
       };
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:

@@ -6,6 +6,10 @@ import { ChakraProvider } from '@chakra-ui/react';
 
 // pages
 import Landing from './pages/landing/Landing';
+import Dashboard from './pages/dashboard/Dashboard';
+
+//Autenticated route
+import AuthRoute from './components/authRoute/AuthRoute';
 
 //Redux
 import { Provider } from 'react-redux';
@@ -25,7 +29,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path='/' component={Landing} />
-            <Route exact path='/home' component={Dashboard} />
+            <AuthRoute path='/home' component={Dashboard} />
           </Switch>
         </Router>
       </ChakraProvider>

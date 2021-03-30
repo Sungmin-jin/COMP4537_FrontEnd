@@ -1,4 +1,5 @@
-import { React, useState, useRef } from "react";
+import { React, useState, useRef } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   Text,
   Center,
@@ -14,51 +15,59 @@ import {
   DrawerContent,
   useDisclosure,
   Modal,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 //components
-import SignIn from "../../components/signin/SignIn";
-import SignUp from "../../components/signup/SignUp";
-const Landing = () => {
+import SignIn from '../../components/signin/SignIn';
+import SignUp from '../../components/signup/SignUp';
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
+const Landing = ({ isAuthenticated }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [signInModal, setSignInModal] = useState(false);
   const [signUpModal, setSignUpModal] = useState(false);
   const initialRef = useRef();
   const finalRef = useRef();
+  if (isAuthenticated) {
+    return <Redirect to='/home' />;
+  }
+
   return (
     <>
       <Grid
-        h="00px"
-        templateRows="repeat(5, 1fr)"
-        templateColumns="repeat(5, 1fr)"
+        h='00px'
+        templateRows='repeat(5, 1fr)'
+        templateColumns='repeat(5, 1fr)'
         gap={40}
       >
         <GridItem colStart={3} rowStart={4}>
-          <Center h="100px" color="white">
-            <Button colorScheme="teal" variant="ghost" onClick={onOpen}>
-              <Text fontSize="2xl" as="samp">
+          <Center h='100px' color='white'>
+            <Button colorScheme='teal' variant='ghost' onClick={onOpen}>
+              <Text fontSize='2xl' as='samp'>
                 Sungmin Market
               </Text>
             </Button>
-            <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+            <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
               <DrawerOverlay>
                 <DrawerContent>
-                  <DrawerHeader borderBottomWidth="1px">
-                    <Text fontSize="2xl" as="samp">
+                  <DrawerHeader borderBottomWidth='1px'>
+                    <Text fontSize='2xl' as='samp'>
                       Sungmin Market
                     </Text>
                   </DrawerHeader>
                   <DrawerBody>
                     <br></br>
                     <Button
-                      colorScheme="green"
-                      variant="link"
+                      colorScheme='green'
+                      variant='link'
                       onClick={() => setSignInModal(true)}
-                      size="lg"
+                      size='lg'
                     >
                       Sign in
                     </Button>
                     <Modal
-                      size="sm"
+                      size='sm'
                       initialFocusRef={initialRef}
                       finalFocusRef={finalRef}
                       isOpen={signInModal}
@@ -72,15 +81,15 @@ const Landing = () => {
                     <Divider />
                     <br></br>
                     <Button
-                      colorScheme="green"
-                      variant="link"
+                      colorScheme='green'
+                      variant='link'
                       onClick={() => setSignUpModal(true)}
-                      size="lg"
+                      size='lg'
                     >
                       Sign up
                     </Button>
                     <Modal
-                      size="xl"
+                      size='xl'
                       initialFocusRef={initialRef}
                       finalFocusRef={finalRef}
                       isOpen={signUpModal}
@@ -100,4 +109,11 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+Landing.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+export default connect(mapStateToProps)(Landing);
