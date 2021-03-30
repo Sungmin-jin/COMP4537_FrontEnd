@@ -25,6 +25,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path='/' component={Landing} />
+            <Route exact path='/home' component={Dashboard} />
           </Switch>
         </Router>
       </ChakraProvider>
