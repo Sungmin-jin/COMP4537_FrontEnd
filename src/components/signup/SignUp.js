@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../redux/action/auth';
@@ -7,6 +7,7 @@ import {
   Input,
   Stack,
   Button,
+  Center,
   ModalOverlay,
   ModalContent,
   ModalHeader,
@@ -15,7 +16,6 @@ import {
   ModalCloseButton,
   SimpleGrid,
   FormControl,
-  FormLabel,
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
@@ -27,11 +27,11 @@ const SignUp = ({ register }) => {
     email: '',
     password: '',
   });
-
   const onSubmit = (e) => {
     e.preventDefault();
     register(formData);
   };
+
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -40,15 +40,16 @@ const SignUp = ({ register }) => {
       <ModalOverlay />
       <ModalContent>
         <form onSubmit={(e) => onSubmit(e)}>
-          <ModalHeader>Sign Up</ModalHeader>
+          <ModalHeader>
+            <Center>Sign Up</Center>
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody pb={6}></ModalBody>
           <SimpleGrid columns={1} spacing={10}>
             <Box w='100%' p={4}>
               <Stack spacing={3}>
                 <FormControl id='username'>
-                  <FormLabel>Username</FormLabel>
                   <Input
+                    placeholder='Enter Username'
                     name='name'
                     type='username'
                     variant='flushed'
@@ -58,8 +59,8 @@ const SignUp = ({ register }) => {
                 </FormControl>
                 <br></br>
                 <FormControl id='email'>
-                  <FormLabel>Email</FormLabel>
                   <Input
+                    placeholder='Enter Email'
                     name='email'
                     type='email'
                     variant='flushed'
@@ -69,9 +70,9 @@ const SignUp = ({ register }) => {
                 </FormControl>
                 <br></br>
                 <FormControl id='password'>
-                  <FormLabel>Password</FormLabel>
                   <InputGroup size='md'>
                     <Input
+                      placeholder='Enter Password'
                       name='password'
                       variant='flushed'
                       onChange={onChange}
@@ -95,7 +96,7 @@ const SignUp = ({ register }) => {
             </Box>
           </SimpleGrid>
           <ModalFooter>
-            <Button colorScheme='teal' variant='outline' mr={3} type='submit'>
+            <Button colorScheme='teal' variant='ghost' mr={3} type='submit'>
               Register
             </Button>
           </ModalFooter>
@@ -108,3 +109,4 @@ SignUp.propTypes = {
   register: PropTypes.func.isRequired,
 };
 export default connect(null, { register })(SignUp);
+// mapstate, dispatch

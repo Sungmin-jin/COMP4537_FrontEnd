@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../../redux/action/auth';
@@ -6,6 +6,7 @@ import {
   Box,
   Input,
   Stack,
+  Center,
   Button,
   ModalOverlay,
   ModalContent,
@@ -15,7 +16,6 @@ import {
   ModalBody,
   ModalCloseButton,
   FormControl,
-  FormLabel,
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
@@ -41,16 +41,16 @@ const SignIn = ({ login }) => {
       <ModalOverlay />
       <ModalContent>
         <form onSubmit={(e) => onSubmit(e)}>
-          <ModalHeader>Sign In </ModalHeader>
+          <ModalHeader>
+            <Center>Sign In</Center>
+          </ModalHeader>
           <ModalCloseButton />
-          <ModalBody pb={6}></ModalBody>
-
           <SimpleGrid columns={1} spacing={10}>
             <Box w='100%' p={4}>
               <Stack spacing={3}>
                 <FormControl id='email'>
-                  <FormLabel>Email</FormLabel>
                   <Input
+                    placeholder='Enter Email'
                     name='email'
                     type='email'
                     variant='flushed'
@@ -60,9 +60,9 @@ const SignIn = ({ login }) => {
                 </FormControl>
                 <br></br>
                 <FormControl id='password'>
-                  <FormLabel>Password</FormLabel>
                   <InputGroup size='md'>
                     <Input
+                      placeholder='Enter Password'
                       name='password'
                       variant='flushed'
                       onChange={onChange}
@@ -86,7 +86,7 @@ const SignIn = ({ login }) => {
             </Box>
           </SimpleGrid>
           <ModalFooter>
-            <Button colorScheme='teal' variant='outline' mr={3} type='submit'>
+            <Button colorScheme='teal' variant='ghost' mr={3} type='submit'>
               Sign In
             </Button>
           </ModalFooter>

@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   FormControl,
   FormLabel,
@@ -60,20 +60,12 @@ const PostForm = () => {
     );
     console.log(res);
   };
-  const [newsrc, setNew] = useState();
-
-  useEffect(async () => {
-    const res = await axios.get('http://localhost:5000/api/posts/image');
-    console.log(res);
-    setNew(URL.createObjectURL(res.data));
-  }, []);
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
     <>
-      <img src={newsrc} alt='' />
       <form onSubmit={onSubmit}>
         <FormControl>
           <FormLabel>Title</FormLabel>

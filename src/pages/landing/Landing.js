@@ -3,8 +3,6 @@ import { Redirect } from 'react-router-dom';
 import {
   Text,
   Center,
-  Grid,
-  GridItem,
   Divider,
   Button,
   Drawer,
@@ -14,7 +12,6 @@ import {
   DrawerContent,
   useDisclosure,
   Modal,
-  Box,
 } from '@chakra-ui/react';
 //components
 import SignIn from '../../components/signin/SignIn';
@@ -63,7 +60,9 @@ const Landing = ({ isAuthenticated }) => {
                 onClick={() => setSignInModal(true)}
                 size='lg'
               >
-                Sign in
+                <Text isTruncated as='em' fontSize='lg' color='teal'>
+                  Sign in
+                </Text>
               </Button>
               <Modal
                 size='sm'
@@ -85,10 +84,12 @@ const Landing = ({ isAuthenticated }) => {
                 onClick={() => setSignUpModal(true)}
                 size='lg'
               >
-                Sign up
+                <Text isTruncated as='em' fontSize='lg' color='teal'>
+                  Sign up
+                </Text>
               </Button>
               <Modal
-                size='xl'
+                size='sm'
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
                 isOpen={signUpModal}
