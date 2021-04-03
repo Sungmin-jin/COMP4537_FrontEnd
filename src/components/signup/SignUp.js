@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { register } from "../../redux/action/auth";
@@ -16,11 +16,9 @@ import {
   ModalCloseButton,
   SimpleGrid,
   FormControl,
-  FormLabel,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";
-import { toast, ToastContainer } from "react-toastify";
 const SignUp = ({ register }) => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -40,7 +38,6 @@ const SignUp = ({ register }) => {
   return (
     <>
       <ModalOverlay />
-      <ToastContainer />
       <ModalContent>
         <form onSubmit={(e) => onSubmit(e)}>
           <ModalHeader>

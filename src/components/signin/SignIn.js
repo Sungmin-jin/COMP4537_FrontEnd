@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { login } from "../../redux/action/auth";
@@ -16,7 +16,6 @@ import {
   ModalBody,
   ModalCloseButton,
   FormControl,
-  FormLabel,
   InputGroup,
   InputRightElement,
 } from "@chakra-ui/react";

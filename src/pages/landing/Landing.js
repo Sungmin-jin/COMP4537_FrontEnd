@@ -3,8 +3,6 @@ import { Redirect } from "react-router-dom";
 import {
   Text,
   Center,
-  Grid,
-  GridItem,
   Divider,
   Button,
   Drawer,
@@ -14,7 +12,6 @@ import {
   DrawerContent,
   useDisclosure,
   Modal,
-  Box,
 } from "@chakra-ui/react";
 //components
 import SignIn from "../../components/signin/SignIn";

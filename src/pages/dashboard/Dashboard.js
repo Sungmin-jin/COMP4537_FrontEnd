@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { logout } from "../../redux/action/auth";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -8,17 +8,8 @@ import {
   Grid,
   GridItem,
   Center,
-  Button,
   Stack,
-  Box,
-  Flex,
-  Spacer,
-  AddIcon,
-  ExternalLinkIcon,
-  EditIcon,
-  RepeatIcon,
   Container,
-  Heading,
 } from "@chakra-ui/react";
 
 const Dashboard = ({ logout, isAuthenticated }) => {
@@ -29,7 +20,6 @@ const Dashboard = ({ logout, isAuthenticated }) => {
   });
   const onSubmit = async (e) => {
     e.preventDefault();
-
     logout();
   };
   return (
