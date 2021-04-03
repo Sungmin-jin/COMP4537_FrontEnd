@@ -7,6 +7,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 // pages
 import Landing from './pages/landing/Landing';
 import Dashboard from './pages/dashboard/Dashboard';
+import PostForm from './pages/postForm/PostForm';
+import Admin from './pages/admin/Admin';
 
 //Autenticated route
 import AuthRoute from './components/authRoute/AuthRoute';
@@ -30,6 +32,8 @@ function App() {
           <Switch>
             <Route exact path='/' component={Landing} />
             <AuthRoute path='/home' component={Dashboard} />
+            <AuthRoute path='/postForm' component={PostForm} />
+            <Route path='/admin' component={Admin} />
           </Switch>
         </Router>
       </ChakraProvider>
