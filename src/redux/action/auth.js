@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   AUTH_ERROR,
   REGISTER_SUCCESS,
@@ -7,9 +7,9 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   USER_LOADED,
-} from "./types";
+} from './types';
 
-import setAuthToken from "../../utils/setAuthToken";
+import setAuthToken from '../../utils/setAuthToken';
 
 //load user
 export const loadUser = () => async (dispatch) => {
@@ -17,7 +17,7 @@ export const loadUser = () => async (dispatch) => {
     setAuthToken(localStorage.token);
   }
   try {
-    const res = await axios.get("/api/v1/auth");
+    const res = await axios.get('/api/v1/auth');
     dispatch({
       type: USER_LOADED,
       payload: res.data,
@@ -33,12 +33,12 @@ export const loadUser = () => async (dispatch) => {
 export const register = ({ name, email, password }) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
   const formData = JSON.stringify({ name, email, password });
   try {
-    const res = await axios.post("/api/v1/user", formData, config);
+    const res = await axios.post('/api/v1/user', formData, config);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
@@ -55,12 +55,12 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 export const login = ({ email, password }) => async (dispatch) => {
   const config = {
     headers: {
-      "Content-type": "application/json",
+      'Content-type': 'application/json',
     },
   };
   const formData = JSON.stringify({ email, password });
   try {
-    const res = await axios.post("/api/v1/auth", formData, config);
+    const res = await axios.post('/api/v1/auth', formData, config);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,

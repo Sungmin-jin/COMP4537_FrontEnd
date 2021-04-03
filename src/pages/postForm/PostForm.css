@@ -1,0 +1,123 @@
+.whole-thing * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.whole-thing {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  place-items: center;
+  text-align: center;
+}
+
+#post-form {
+  width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  form {
+    width: 80%;
+  }
+}
+
+.fileContainer {
+  display: grid;
+  height: 100%;
+  place-items: center;
+  text-align: center;
+}
+
+.fileContainer .wrapper {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px dashed #2e797b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wrapper .active {
+  border: none;
+}
+
+.wrapper {
+  margin-top: 1rem;
+}
+
+.wrapper .active :hover #cancel-btn {
+  display: block;
+}
+
+.wrapper .image {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper .image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.wrapper .icon {
+  font-size: 100px;
+  color: #008080;
+}
+
+.wrapper .text {
+  font-size: 20px;
+  font-weight: 500;
+  color: #008080;
+}
+
+.wrapper #cancel-btn {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 20px;
+  cursor: pointer;
+  /* display: none; */
+}
+
+.fileContainer #default-btn {
+  margin-top: 30px;
+  width: 100%;
+  height: 50px;
+  display: block;
+  border: none;
+  outline: none;
+  background-color: #329795;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.fileContainer #custom-btn {
+  margin-top: 30px;
+  width: 100%;
+  height: 50px;
+  display: block;
+  border: none;
+  outline: none;
+  background-color: #329795;
+  border-radius: 15px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
