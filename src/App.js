@@ -1,21 +1,22 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Chakra ui
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from "@chakra-ui/react";
 
 // pages
-import Landing from './pages/landing/Landing';
-import Dashboard from './pages/dashboard/Dashboard';
+import Landing from "./pages/landing/Landing";
+import Dashboard from "./pages/dashboard/Dashboard";
 
 //Autenticated route
-import AuthRoute from './components/authRoute/AuthRoute';
+import AuthRoute from "./components/authRoute/AuthRoute";
 
 //Redux
-import { Provider } from 'react-redux';
-import store from './store';
-import setAuthToken from './utils/setAuthToken';
-import { loadUser } from './redux/action/auth';
+import { Provider } from "react-redux";
+import store from "./store";
+import setAuthToken from "./utils/setAuthToken";
+import { loadUser } from "./redux/action/auth";
+import Admin from "./pages/admin/admin";
 
 function App() {
   useEffect(() => {
@@ -28,8 +29,9 @@ function App() {
       <ChakraProvider>
         <Router>
           <Switch>
-            <Route exact path='/' component={Landing} />
-            <AuthRoute path='/home' component={Dashboard} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/admin" component={Admin} />
+            <AuthRoute path="/home" component={Dashboard} />
           </Switch>
         </Router>
       </ChakraProvider>
