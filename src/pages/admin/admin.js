@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { Table, Thead, Tbody, Tr, Th, TableCaption } from "@chakra-ui/react";
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  TableCaption,
+  Container,
+} from '@chakra-ui/react';
 
 const Admin = () => {
   const [requests, setRequests] = useState();
 
   useEffect(() => {
-    axios.get("/api/v1/admin").then((res) => {
+    axios.get('/api/v1/admin').then((res) => {
       setRequests(res.data);
     });
   }, []);
@@ -26,8 +34,8 @@ const Admin = () => {
     }
   }
   return (
-    <div>
-      <Table variant="simple">
+    <Container>
+      <Table variant='simple'>
         <TableCaption>Admin Page requests</TableCaption>
         <Thead>
           <Tr>
@@ -38,7 +46,7 @@ const Admin = () => {
         </Thead>
         <Tbody>{rows}</Tbody>
       </Table>
-    </div>
+    </Container>
   );
 };
 
