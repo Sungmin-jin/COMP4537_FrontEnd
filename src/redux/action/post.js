@@ -7,7 +7,7 @@ import {
   GET_POSTS,
   POST_ERROR,
 } from './types';
-
+import defaultUrl from '../../config/defaultUrl.json';
 import firebase from '../../config/firebase';
 
 export const uploadPost = ({ title, text, price, file }) => async (
@@ -28,7 +28,7 @@ export const uploadPost = ({ title, text, price, file }) => async (
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    const res = await axios.post('/api/v1/posts', formData, config);
+    const res = await axios.post(`'${defaultUrl.url}/posts`, formData, config);
     console.log(res);
   } catch (error) {
     console.log(error);

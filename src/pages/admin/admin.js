@@ -9,19 +9,19 @@ import {
   TableCaption,
   Container,
 } from '@chakra-ui/react';
+import defaultUrl from '../../config/defaultUrl.json';
 
 const Admin = () => {
   const [requests, setRequests] = useState();
 
   useEffect(() => {
-    axios.get('/api/v1/admin').then((res) => {
+    axios.get(`${defaultUrl.url}/admin`).then((res) => {
       setRequests(res.data);
     });
   }, []);
 
   const rows = [];
   if (requests) {
-    console.log(requests);
     for (const [Requests, URIs] of Object.entries(requests)) {
       for (const [URI, numberOfRequest] of Object.entries(URIs)) {
         rows.push(
