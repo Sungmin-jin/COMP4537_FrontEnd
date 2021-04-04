@@ -11,3 +11,7 @@ export const EDIT_POST = 'EDIT_POST';
 export const GET_POST = 'GET_POST';
 export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
+export const UPLOAD_COMMENT = 'UPLAOD_COMMENT';
+export const GET_COMMENTS = 'GET_COMMENTS';
+export const DELETE_COMMENT = 'DELETE_COMMENTS';
+export const EDIT_COMMENT = 'EDIT_COMMENT';

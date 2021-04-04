@@ -9,7 +9,7 @@ import {
 
 const initialState = {
   posts: [],
-  post: null,
+  post: {},
   loading: true,
 };
 
@@ -32,6 +32,12 @@ export default function postReducer(state = initialState, action) {
       return {
         ...state,
         error: payload,
+        loading: false,
+      };
+    case GET_POST:
+      return {
+        ...state,
+        post: payload,
         loading: false,
       };
     default:
