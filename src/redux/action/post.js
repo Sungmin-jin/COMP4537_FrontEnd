@@ -28,8 +28,24 @@ export const uploadPost = ({ title, text, price, file }) => async (
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    const res = await axios.post(`'${defaultUrl.url}/posts`, formData, config);
+    const res = await axios.post(`${defaultUrl.url}/posts`, formData, config);
     console.log(res);
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: POST_ERROR,
+      payload: { error },
+    });
+  }
+};
+
+export const getPosts = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${defaultUrl.url}/posts`);
+    dispatch({
+      type: GET_POSTS,
+      payload: res.data,
+    });
   } catch (error) {
     console.log(error);
   }

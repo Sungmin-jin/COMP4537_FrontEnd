@@ -4,6 +4,7 @@ import {
   EDIT_POST,
   GET_POST,
   GET_POSTS,
+  POST_ERROR,
 } from '../action/types';
 
 const initialState = {
@@ -25,6 +26,12 @@ export default function postReducer(state = initialState, action) {
       return {
         ...state,
         posts: [payload, ...state.posts],
+        loading: false,
+      };
+    case POST_ERROR:
+      return {
+        ...state,
+        error: payload,
         loading: false,
       };
     default:
