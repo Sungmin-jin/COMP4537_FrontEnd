@@ -21,6 +21,7 @@ const Admin = () => {
 
   const rows = [];
   if (requests) {
+    console.log(requests);
     for (const [Requests, URIs] of Object.entries(requests)) {
       for (const [URI, numberOfRequest] of Object.entries(URIs)) {
         rows.push(
