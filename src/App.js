@@ -9,6 +9,7 @@ import Landing from './pages/landing/Landing';
 import Dashboard from './pages/dashboard/Dashboard';
 import PostForm from './pages/postForm/PostForm';
 import Posts from './pages/posts/Posts';
+import Post from './pages/post/Post';
 
 //Autenticated route
 import AuthRoute from './components/authRoute/AuthRoute';
@@ -37,6 +38,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route exact path='/admin' component={Admin} />
+            <Route path='/post/:id' component={Post} />
             <AuthRoute path='/home' component={Dashboard} />
             <AuthRoute path='/postform' component={PostForm} />
             <AuthRoute paht='/posts' component={Posts} />

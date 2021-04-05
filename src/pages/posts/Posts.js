@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { getPosts } from '../../redux/action/post';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import {
   Container,
   SimpleGrid,
@@ -29,9 +29,11 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
     <Container>
       <SimpleGrid columns={{ sm: 2, md: 4 }}>
         {posts.map((post) => (
-          <Box w='100%' h='80px' key={post.postId}>
-            <Image src={post.img} />
-          </Box>
+          <Link to={`/post/${post.postId}`}>
+            <Box w='100%' h='80px' key={post.postId}>
+              <Image src={post.img} />
+            </Box>
+          </Link>
         ))}
       </SimpleGrid>
     </Container>
