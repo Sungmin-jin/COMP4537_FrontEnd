@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPost } from '../../redux/action/post';
 import './Post.css';
-
+import Comment from '../../components/comment/Comment';
 import { Spinner, Center, Grid, GridItem, Container } from '@chakra-ui/react';
 
 const Post = ({ getPost, match, user, post, loading }) => {
@@ -39,10 +39,11 @@ const Post = ({ getPost, match, user, post, loading }) => {
               />
             </Center>
           </GridItem>
-          <GridItem rowspan={1} colSpan={2} bg='tomato' />
-          <GridItem rowspan={1} colSpan={2} bg='papayawhip' />
-          <GridItem rowspan={1} colSpan={2} bg='tomato' />
+          <GridItem rowSpan={1} colSpan={2} bg='tomato' />
+          <GridItem rowSpan={1} colSpan={2} bg='papayawhip' />
+          <GridItem rowSpan={1} colSpan={2} bg='tomato' />
         </Grid>
+        <Comment id={match.params.id} />
       </Container>
     </div>
   );
