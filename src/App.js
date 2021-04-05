@@ -38,7 +38,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route exact path='/admin' component={Admin} />
-            <Route path='/post/:id' component={Post} />
+            <AuthRoute path='/post/:id' component={Post} />
             <AuthRoute path='/home' component={Dashboard} />
             <AuthRoute path='/postform' component={PostForm} />
             <AuthRoute paht='/posts' component={Posts} />
