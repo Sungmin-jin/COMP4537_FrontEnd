@@ -3,21 +3,25 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPost } from "../../redux/action/post";
 import "./Post.css";
-
+import theme from "../../utils/theme";
 import {
   Text,
   Button,
   Spinner,
   Center,
+  Stack,
   Grid,
+  Divider,
   Heading,
   GridItem,
+  extendTheme,
   Container,
   useDisclosure,
 } from "@chakra-ui/react";
 
 const Post = ({ getPost, match, user, post, loading }) => {
   const { onToggle } = useDisclosure();
+
   useEffect(() => {
     getPost(match.params.id);
   }, []);
@@ -50,12 +54,12 @@ const Post = ({ getPost, match, user, post, loading }) => {
       </Center>
 
       <Grid
-        templateRows="repeat(5, 1fr)"
+        templateRows="repeat(4, 1fr)"
         templateColumns="repeat(5, 1fr)"
         gap={4}
       >
         <GridItem
-          rowSpan={{ base: 2, sm: 2, lg: 3 }}
+          rowSpan={{ base: 1, sm: 1, lg: 3 }}
           colSpan={{ base: 5, sm: 5, lg: 3 }}
         >
           <Center>
@@ -68,21 +72,28 @@ const Post = ({ getPost, match, user, post, loading }) => {
           </Center>
         </GridItem>
         <GridItem rowSpan={1} colSpan={{ base: 5, sm: 5, lg: 2 }} bg="tomato">
-          <Heading size="xl" as="samp" colorScheme="teal">
+          <Heading size="2xl" as="samp" colorScheme="teal">
             {post.title}
           </Heading>
           <br></br>
-          <Text fontSize="2xl" as="samp" colorScheme="teal">
-            {post.text}
-          </Text>
-          <br></br>
-          <Text fontSize="2xl" as="samp" colorScheme="teal">
-            {post.date}
-          </Text>
+          <Stack>
+            <Text fontSize="lg" as="samp" colorScheme="teal">
+              {post.date}
+            </Text>
+            <Divider orientation="horizontal" colorScheme="teal" />
+            <Text fontSize="lg" as="samp" colorScheme="teal">
+              {post.name}
+            </Text>
+          </Stack>
+
           <br></br>
           <Text fontSize="2xl" as="samp" colorScheme="teal">
             {post.price}
           </Text>
+
+          {/* <Text fontSize="2xl" as="samp" colorScheme="teal">
+            {post.text}
+          </Text> */}
         </GridItem>
         <GridItem
           rowSpan={1}
