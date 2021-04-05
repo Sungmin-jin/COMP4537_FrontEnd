@@ -5,7 +5,9 @@ import {
   Center,
   Divider,
   Button,
+  Stack,
   Drawer,
+  Feature,
   DrawerBody,
   DrawerHeader,
   DrawerOverlay,
@@ -48,22 +50,35 @@ const Landing = ({ isAuthenticated }) => {
         <DrawerOverlay>
           <DrawerContent>
             <DrawerHeader borderBottomWidth="1px">
-              <Text fontSize="2xl" as="samp">
-                Sungmin Market
-              </Text>
+              <Center>
+                <Text fontSize="2xl" as="samp">
+                  Sungmin Market
+                </Text>
+              </Center>
             </DrawerHeader>
             <DrawerBody>
-              <br></br>
-              <Button
-                colorScheme="green"
-                variant="link"
-                onClick={() => setSignInModal(true)}
-                size="lg"
-              >
-                <Text isTruncated as="em" fontSize="lg" color="teal">
-                  Sign in
-                </Text>
-              </Button>
+              <Stack spacing={8}>
+                <Button
+                  colorScheme="green"
+                  variant="link"
+                  onClick={() => setSignInModal(true)}
+                  size="lg"
+                >
+                  <Text isTruncated as="samp" fontSize="xl" color="teal">
+                    Sign in
+                  </Text>
+                </Button>
+                <Button
+                  colorScheme="green"
+                  variant="link"
+                  onClick={() => setSignUpModal(true)}
+                  size="lg"
+                >
+                  <Text isTruncated as="samp" fontSize="xl" color="teal">
+                    Sign up
+                  </Text>
+                </Button>
+              </Stack>
               <Modal
                 size="sm"
                 initialFocusRef={initialRef}
@@ -74,20 +89,6 @@ const Landing = ({ isAuthenticated }) => {
                 {/* Sign in modal */}
                 <SignIn />
               </Modal>
-              <br></br>
-              <br></br>
-              <Divider />
-              <br></br>
-              <Button
-                colorScheme="green"
-                variant="link"
-                onClick={() => setSignUpModal(true)}
-                size="lg"
-              >
-                <Text isTruncated as="em" fontSize="lg" color="teal">
-                  Sign up
-                </Text>
-              </Button>
               <Modal
                 size="sm"
                 initialFocusRef={initialRef}
