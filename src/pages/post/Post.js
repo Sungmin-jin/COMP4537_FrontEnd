@@ -53,7 +53,7 @@ const Post = ({ getPost, match, user, post, loading }) => {
       </Center>
 
       <Grid
-        templateRows="repeat(4, 1fr)"
+        templateRows="repeat(3, 1fr)"
         templateColumns="repeat(5, 1fr)"
         gap={4}
       >
@@ -70,13 +70,8 @@ const Post = ({ getPost, match, user, post, loading }) => {
             />
           </Center>
         </GridItem>
-        <GridItem rowSpan={1} colSpan={{ base: 5, sm: 5, lg: 2 }}>
+        <GridItem rowSpan={2} colSpan={{ base: 5, sm: 5, lg: 2 }}>
           <Grid h="100%" templateRows="repeat(5, 1fr)" gap={4}>
-            <GridItem rowSpan={1} bg="tomato">
-              <Text fontSize="lg" as="samp" colorScheme="teal">
-                {post.name}
-              </Text>
-            </GridItem>
             <GridItem colSpan={4} bg="tomato">
               <Heading size="2xl" as="samp" colorScheme="teal">
                 {post.title}
@@ -109,11 +104,6 @@ const Post = ({ getPost, match, user, post, loading }) => {
             {post.text}
           </Text> */}
         </GridItem>
-        <GridItem
-          rowSpan={1}
-          colSpan={{ base: 5, sm: 5, lg: 2 }}
-          bg="papayawhip"
-        />
         <GridItem rowSpan={1} colSpan={{ base: 5, sm: 5, lg: 2 }} bg="tomato" />
       </Grid>
     </Container>
