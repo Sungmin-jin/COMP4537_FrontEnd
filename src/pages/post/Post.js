@@ -14,7 +14,6 @@ import {
   Divider,
   Heading,
   GridItem,
-  extendTheme,
   Container,
   useDisclosure,
 } from "@chakra-ui/react";
@@ -71,16 +70,31 @@ const Post = ({ getPost, match, user, post, loading }) => {
             />
           </Center>
         </GridItem>
-        <GridItem rowSpan={1} colSpan={{ base: 5, sm: 5, lg: 2 }} bg="tomato">
-          <Heading size="2xl" as="samp" colorScheme="teal">
-            {post.title}
-          </Heading>
-          <br></br>
+        <GridItem rowSpan={1} colSpan={{ base: 5, sm: 5, lg: 2 }}>
+          <Grid h="100%" templateRows="repeat(5, 1fr)" gap={4}>
+            <GridItem rowSpan={1} bg="tomato">
+              <Text fontSize="lg" as="samp" colorScheme="teal">
+                {post.name}
+              </Text>
+            </GridItem>
+            <GridItem colSpan={4} bg="tomato">
+              <Heading size="2xl" as="samp" colorScheme="teal">
+                {post.title}
+              </Heading>
+            </GridItem>
+            <GridItem colSpan={4} bg="tomato">
+              <Stack>
+                <Text fontSize="lg" as="samp" colorScheme="teal">
+                  {post.date}
+                </Text>
+              </Stack>
+            </GridItem>
+            <GridItem colSpan={4} bg="tomato" />
+          </Grid>
+          {/* 
           <Stack>
-            <Text fontSize="lg" as="samp" colorScheme="teal">
-              {post.date}
-            </Text>
-            <Divider orientation="horizontal" colorScheme="teal" />
+            
+            <Divider orientation="horizontal" colorScheme="teal" size="v1" />
             <Text fontSize="lg" as="samp" colorScheme="teal">
               {post.name}
             </Text>
@@ -89,7 +103,7 @@ const Post = ({ getPost, match, user, post, loading }) => {
           <br></br>
           <Text fontSize="2xl" as="samp" colorScheme="teal">
             {post.price}
-          </Text>
+          </Text> */}
 
           {/* <Text fontSize="2xl" as="samp" colorScheme="teal">
             {post.text}

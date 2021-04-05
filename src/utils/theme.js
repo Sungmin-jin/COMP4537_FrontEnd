@@ -7,11 +7,6 @@ const theme = extendTheme({
         fontWeight: "bold",
       },
       sizes: {
-        xl: {
-          h: "56px",
-          fontSize: "lg",
-          px: "32px",
-        },
         v1: {
           px: "5px",
         },
