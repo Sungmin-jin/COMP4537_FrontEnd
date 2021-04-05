@@ -12,7 +12,6 @@ import {
   Box,
   Text,
   Image,
-  VStack,
   Spinner,
   Center,
   Wrap,
