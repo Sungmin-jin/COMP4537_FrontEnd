@@ -31,6 +31,7 @@ export const uploadComment = (formData) => async (dispatch) => {
       formData,
       config
     );
+    console.log(res);
   } catch (error) {
     console.log(error);
   }
