@@ -7,7 +7,7 @@ import {
   Button,
   Icon,
 } from '@chakra-ui/react';
-
+import { useHistory } from 'react-router-dom';
 import { FiFile } from 'react-icons/fi';
 import { AiOutlineClose } from 'react-icons/ai';
 import './PostForm.css';
@@ -16,6 +16,7 @@ import { connect } from 'react-redux';
 import { uploadPost } from '../../redux/action/post';
 
 const PostForm = ({ uploadPost }) => {
+  const history = useHistory();
   const defaultBtn = useRef(null);
   const wrapperRef = useRef(null);
   const cancelBtn = useRef(null);
@@ -49,6 +50,7 @@ const PostForm = ({ uploadPost }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     uploadPost(formData);
+    history.push('/posts');
   };
 
   const onChange = (e) => {

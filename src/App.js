@@ -20,7 +20,11 @@ import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './redux/action/auth';
 import Admin from './pages/admin/admin';
 
-function App() {
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
   useEffect(() => {
     setAuthToken(localStorage.token);
     store.dispatch(loadUser());
@@ -41,6 +45,6 @@ function App() {
       </ChakraProvider>
     </Provider>
   );
-}
+};
 
 export default App;

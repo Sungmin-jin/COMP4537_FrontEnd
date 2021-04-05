@@ -3,20 +3,48 @@ import { getPosts } from '../../redux/action/post';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const Posts = ({ getPosts }) => {
+import {
+  Container,
+  SimpleGrid,
+  Box,
+  Image,
+  Spinner,
+  Center,
+} from '@chakra-ui/react';
+const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
-    console.log('hello');
     getPosts();
   }, []);
-  return (
-    <div>
-      <div>post</div>
-    </div>
+  return loading ? (
+    <Center height='100%'>
+      <Spinner
+        size='xl'
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='blue.500'
+      />
+    </Center>
+  ) : (
+    <Container>
+      <SimpleGrid columns={{ sm: 2, md: 4 }}>
+        {posts.map((post) => (
+          <Box w='100%' h='80px' key={post.postId}>
+            <Image src={post.img} />
+          </Box>
+        ))}
+      </SimpleGrid>
+    </Container>
   );
 };
 
 Posts.propTypes = {
   getPosts: PropTypes.func.isRequired,
+  post: PropTypes.object.isRequired,
 };
 
-export default connect(null, { getPosts })(Posts);
+const mapStateToProps = (state) => ({
+  post: state.post,
+});
+
+export default connect(mapStateToProps, { getPosts })(Posts);

@@ -42,6 +42,7 @@ export const uploadPost = ({ title, text, price, file }) => async (
 export const getPosts = () => async (dispatch) => {
   try {
     const res = await axios.get(`${defaultUrl.url}/posts`);
+    console.log(res);
     dispatch({
       type: GET_POSTS,
       payload: res.data,
