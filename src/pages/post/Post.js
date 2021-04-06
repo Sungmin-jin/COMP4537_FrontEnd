@@ -90,13 +90,7 @@ const Post = ({ getPost, match, user, post, loading }) => {
             </GridItem>
             <GridItem overflowy="scroll" pl={5} pt={3} pb={10}>
               <Text fontSize="lg" as="samp" colorScheme="teal">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est
-                neque, vestibulum a odio ac, ullamcorper imperdiet risus.
-                Integer augue dui, scelerisque vitae feugiat et, mollis nec
-                massa. Pellentesque iaculis enim non sem imperdiet aliquet.
-                Curabitur viverra nisl non justo sollicitudin, non molestie eros
-                iaculis. Nulla facilisi. Cras posuere vitae enim fermentum
-                rutrum. Duis lacinia neque quis finibus ullamcorper.
+                {post.text}
               </Text>
             </GridItem>
           </Grid>

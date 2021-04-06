@@ -20,6 +20,7 @@ import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./redux/action/auth";
 import Admin from "./pages/admin/Admin";
+import User from "./pages/user/User";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -38,6 +39,7 @@ const App = () => {
           <Switch>
             <Route exact path="/" component={Landing} />
             <Route exact path="/admin" component={Admin} />
+            <Route exact path="/user" component={User} />
             <AuthRoute path="/post/:id" component={Post} />
             <AuthRoute path="/home" component={Dashboard} />
             <AuthRoute path="/postform" component={PostForm} />
