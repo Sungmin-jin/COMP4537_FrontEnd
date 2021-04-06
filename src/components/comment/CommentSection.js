@@ -66,7 +66,6 @@ const CommentSection = ({
     editComment(formData, id);
     onCloseEdit();
   };
-  console.log(user);
 
   return (
     <>
