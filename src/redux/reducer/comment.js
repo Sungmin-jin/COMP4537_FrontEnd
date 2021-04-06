@@ -1,9 +1,4 @@
-import {
-  UPLOAD_COMMENT,
-  GET_COMMENTS,
-  DELETE_COMMENT,
-  EDIT_COMMENT,
-} from '../action/types';
+import { GET_COMMENTS, DELETE_COMMENT } from '../action/types';
 
 const initialState = {
   comments: [],
