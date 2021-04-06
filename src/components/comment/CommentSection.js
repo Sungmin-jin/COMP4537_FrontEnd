@@ -7,9 +7,9 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Comment.css';
-import { Modal, ModalOverlay, ModalContent } from '@chakra-ui/react';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import moment from 'moment';
+import { Box, Text, Grid, GridItem } from '@chakra-ui/react';
 
 const CommentSection = ({
   id,
@@ -29,33 +29,42 @@ const CommentSection = ({
   const [show, setShow] = useState(false);
 
   return (
-    <>
-      <div id='commentSection'>
-        {comments &&
-          comments.map((comment) => (
-            <div key={comment.commentId} className='commentSection'>
-              <div>{comment.name}</div>
-              <div className='commentText'>{comment.commentText}</div>
-              <div className='commentBottom'>
-                <span>
-                  {moment(
-                    moment(comment.commentDate).add(-7, 'hour').format()
-                  ).fromNow()}
-                </span>
-                <EditIcon color='teal' mr='1' />
-                <DeleteIcon color='teal' onClick={(e) => setShow(true)} />
-              </div>
-            </div>
-          ))}
-      </div>
-      <Modal isOpen={show} onClose={(e) => setShow(false)}>
-        <ModalOverlay />
-        <ModalContent>
-          <Button color='da'>Delete</Button>
-          <Button>Cancel</Button>
-        </ModalContent>
-      </Modal>
-    </>
+    <div id='commentSection'>
+      {comments &&
+        comments.map((comment) => (
+          <div key={comment.commentId}>
+            <Box p={2} shadow='sm' borderWidth='1px'>
+              <Grid
+                templateRows='repeat(1, 1fr)'
+                templateColumns='repeat(5, 1fr)'
+                gap={1}
+              >
+                <GridItem colSpan={4} rowSpan={2} pl={2} pt={3}>
+                  <Text fontSize='md' as='samp' colorScheme='teal'>
+                    {comment.commentText}
+                  </Text>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <Text fontSize={10} as='samp' colorScheme='teal'>
+                    {moment(
+                      moment(comment.commentDate).add(-7, 'hour').format()
+                    ).fromNow()}
+                  </Text>
+                </GridItem>
+                <GridItem colSpan={1}>
+                  <EditIcon color='teal' mr='7' />
+                  <DeleteIcon
+                    color='teal'
+                    onClick={(e) => onDeleteClick(comment.commentId)}
+                  />
+                </GridItem>
+              </Grid>
+            </Box>
+            {/* <div className="commentText">{comment.commentText}</div>
+            <div className="commentBottom"></div> */}
+          </div>
+        ))}
+    </div>
   );
 };
 
