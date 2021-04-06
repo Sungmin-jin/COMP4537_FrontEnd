@@ -30,7 +30,7 @@ const CommentSection = ({
   getComments,
   deleteComment,
   editComment,
-  userId,
+  user,
 }) => {
   useEffect(() => {
     getComments(id);
@@ -66,6 +66,7 @@ const CommentSection = ({
     editComment(formData, id);
     onCloseEdit();
   };
+  console.log(user);
 
   return (
     <>
@@ -91,28 +92,30 @@ const CommentSection = ({
                       ).fromNow()}
                     </Text>
                   </GridItem>
-                  {comment.userId === userId && (
-                    <GridItem colSpan={1}>
-                      <EditIcon
-                        color='teal'
-                        mr='7'
-                        onClick={(e) => {
-                          onOpenEdit();
-                          setFormData({
-                            text: comment.commentText,
-                            id: comment.commentId,
-                          });
-                        }}
-                      />
-                      <DeleteIcon
-                        color='teal'
-                        onClick={(e) => {
-                          onOpenDelete();
-                          setCommentId(comment.commentId);
-                        }}
-                      />
-                    </GridItem>
-                  )}
+                  <GridItem colSpan={1}>
+                    {user.userId === comment.userId && (
+                      <>
+                        <EditIcon
+                          color='teal'
+                          mr='7'
+                          onClick={(e) => {
+                            onOpenEdit();
+                            setFormData({
+                              text: comment.commentText,
+                              id: comment.commentId,
+                            });
+                          }}
+                        />
+                        <DeleteIcon
+                          color='teal'
+                          onClick={(e) => {
+                            onOpenDelete();
+                            setCommentId(comment.commentId);
+                          }}
+                        />
+                      </>
+                    )}
+                  </GridItem>
                 </Grid>
               </Box>
             </div>
@@ -162,10 +165,12 @@ CommentSection.propTypes = {
   getComments: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   comments: state.comments.comments,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, {

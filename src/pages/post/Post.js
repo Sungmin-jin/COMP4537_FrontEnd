@@ -21,12 +21,13 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 
-const Post = ({ getPost, match, user, post, loading }) => {
+const Post = ({ getPost, match, post, loading }) => {
   const { onToggle } = useDisclosure();
 
   useEffect(() => {
     getPost(match.params.id);
   }, []);
+
   return loading ? (
     <Center height='100%'>
       <Spinner
@@ -71,7 +72,7 @@ const Post = ({ getPost, match, user, post, loading }) => {
             />
           </Center>
         </GridItem>
-        <GridItem rowSpan={2} colSpan={{ base: 5, sm: 5, lg: 2 }}>
+        <GridItem rowSpan={3} colSpan={{ base: 5, sm: 5, lg: 2 }}>
           <Grid>
             <GridItem pl={5} pt={10} pb={20}>
               <Heading size='xl' as='samp' colorScheme='teal'>
@@ -90,38 +91,27 @@ const Post = ({ getPost, match, user, post, loading }) => {
             </GridItem>
             <GridItem overflowy='scroll' pl={5} pt={3} pb={10}>
               <Text fontSize='lg' as='samp' colorScheme='teal'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed est
-                neque, vestibulum a odio ac, ullamcorper imperdiet risus.
-                Integer augue dui, scelerisque vitae feugiat et, mollis nec
-                massa. Pellentesque iaculis enim non sem imperdiet aliquet.
-                Curabitur viverra nisl non justo sollicitudin, non molestie eros
-                iaculis. Nulla facilisi. Cras posuere vitae enim fermentum
-                rutrum. Duis lacinia neque quis finibus ullamcorper.
+                {post.text}
               </Text>
             </GridItem>
           </Grid>
-        </GridItem>
-        <GridItem
-          rowSpan={1}
-          colSpan={{ base: 5, sm: 5, lg: 2 }}
-          overflowy='scroll'
-        >
-          {user && <CommentSection id={match.params.id} userId={user.userId} />}
+          <CommentSection id={match.params.id} />
+
+          <CommentForm id={match.params.id} />
         </GridItem>
       </Grid>
-      <CommentForm id={match.params.id} />
     </Container>
   );
 };
 
 Post.propTypes = {
   getPost: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   post: state.post.post,
   loading: state.post.loading,
-  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { getPost })(Post);
