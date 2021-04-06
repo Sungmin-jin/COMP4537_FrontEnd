@@ -51,6 +51,18 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
+export const getMyPosts = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${defaultUrl.url}/posts/user`);
+    dispatch({
+      type: GET_POSTS,
+      payload: res.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export const getPost = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`${defaultUrl.url}/posts/${id}`);
