@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-  UPLOAD_COMMENT,
-  GET_COMMENTS,
-  DELETE_COMMENT,
-  EDIT_COMMENT,
-} from './types';
+import { GET_COMMENTS, DELETE_COMMENT } from './types';
 import defaultUrl from '../../config/defaultUrl.json';
 
 export const getComments = (postId) => async (dispatch) => {
@@ -52,7 +47,7 @@ export const deleteComment = (id) => async (dispatch) => {
   }
 };
 
-export const editComment = (formData) => async (dispatch) => {
+export const editComment = (formData, postId) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -60,6 +55,7 @@ export const editComment = (formData) => async (dispatch) => {
   };
   try {
     const res = await axios.put(`${defaultUrl.url}/comments`, formData, config);
+    dispatch(getComments(postId));
   } catch (error) {
     console.log(error);
   }
