@@ -54,7 +54,6 @@ export const getPosts = () => async (dispatch) => {
 export const getPost = (id) => async (dispatch) => {
   try {
     const res = await axios.get(`${defaultUrl.url}/posts/${id}`);
-    console.log(res);
     dispatch({
       type: GET_POST,
       payload: res.data,
@@ -65,7 +64,7 @@ export const getPost = (id) => async (dispatch) => {
 };
 
 //todo send dispatch pass id
-export const deletePost = ({ id }) => async (dispatch) => {
+export const deletePost = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`${defaultUrl.url}/posts${id}`);
     console.log(res);
