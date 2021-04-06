@@ -71,7 +71,7 @@ const Post = ({ getPost, match, user, post, loading }) => {
             />
           </Center>
         </GridItem>
-        <GridItem rowSpan={2} colSpan={{ base: 5, sm: 5, lg: 2 }}>
+        <GridItem rowSpan={3} colSpan={{ base: 5, sm: 5, lg: 2 }}>
           <Grid>
             <GridItem pl={5} pt={10} pb={20}>
               <Heading size="xl" as="samp" colorScheme="teal">
@@ -94,16 +94,11 @@ const Post = ({ getPost, match, user, post, loading }) => {
               </Text>
             </GridItem>
           </Grid>
-        </GridItem>
-        <GridItem
-          rowSpan={1}
-          colSpan={{ base: 5, sm: 5, lg: 2 }}
-          overflowy="scroll"
-        >
           <CommentSection id={match.params.id} />
+
+          <CommentForm id={match.params.id} />
         </GridItem>
       </Grid>
-      <CommentForm id={match.params.id} />
     </Container>
   );
 };
