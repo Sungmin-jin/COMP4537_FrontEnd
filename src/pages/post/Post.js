@@ -104,8 +104,12 @@ const Post = ({ getPost, match, user, post, loading }) => {
             {post.text}
           </Text> */}
         </GridItem>
-        <GridItem rowSpan={1} colSpan={{ base: 5, sm: 5, lg: 2 }}>
-          {/* <CommentSection id={match.params.id} /> */}
+        <GridItem
+          rowSpan={1}
+          colSpan={{ base: 5, sm: 5, lg: 2 }}
+          overflowy='scroll'
+        >
+          <CommentSection id={match.params.id} />
         </GridItem>
       </Grid>
       <CommentForm id={match.params.id} />

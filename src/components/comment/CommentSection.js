@@ -1,18 +1,23 @@
 import React, { useEffect } from 'react';
-import { getComments } from '../../redux/action/comment';
+import {
+  getComments,
+  deleteComment,
+  editComment,
+} from '../../redux/action/comment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Comment.css';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import momentTimeZone from 'moment-timezone';
 import moment from 'moment';
 
-const CommentSection = ({ id, comments, getComments }) => {
+const CommentSection = ({ id, comments, getComments, deleteComment }) => {
   useEffect(() => {
     getComments(id);
   }, []);
 
-  //   const toPST ()
+  const onDeleteClick = (id) => {
+    deleteComment(id);
+  };
 
   return (
     <div id='commentSection'>
@@ -28,7 +33,10 @@ const CommentSection = ({ id, comments, getComments }) => {
                 ).fromNow()}
               </span>
               <EditIcon color='teal' mr='1' />
-              <DeleteIcon color='teal' />
+              <DeleteIcon
+                color='teal'
+                onClick={(e) => onDeleteClick(comment.commentId)}
+              />
             </div>
           </div>
         ))}
@@ -38,10 +46,16 @@ const CommentSection = ({ id, comments, getComments }) => {
 
 CommentSection.propTypes = {
   getComments: PropTypes.func.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  editComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   comments: state.comments.comments,
 });
 
-export default connect(mapStateToProps, { getComments })(CommentSection);
+export default connect(mapStateToProps, {
+  getComments,
+  deleteComment,
+  editComment,
+})(CommentSection);

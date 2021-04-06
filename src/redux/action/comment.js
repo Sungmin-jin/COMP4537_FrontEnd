@@ -31,24 +31,22 @@ export const uploadComment = (formData) => async (dispatch) => {
       formData,
       config
     );
-    console.log(res);
+    dispatch(getComments(formData.postId));
   } catch (error) {
     console.log(error);
   }
 };
 
 export const deleteComment = (id) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
   try {
-    const res = await axios.delete(
-      `${defaultUrl.url}/comments`,
-      { id },
-      config
-    );
+    const res = await axios.delete(`${defaultUrl.url}/comments/${id}`);
+    console.log(res);
+    if (res.data.affectedRows > 0) {
+      dispatch({
+        type: DELETE_COMMENT,
+        payload: id,
+      });
+    }
   } catch (error) {
     console.log(error);
   }

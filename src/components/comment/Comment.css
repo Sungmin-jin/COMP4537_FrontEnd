@@ -52,10 +52,11 @@
 #commentSubmitBtn {
   background-color: #008080;
 }
-/* 
+
 #commentSection {
+  height: 300px;
   overflow-y: scroll;
-} */
+}
 
 .commentSection {
   border-bottom: 2px solid #008080;
