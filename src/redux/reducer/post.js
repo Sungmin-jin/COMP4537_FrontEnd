@@ -1,7 +1,6 @@
 import {
   UPLOAD_POST,
   DELETE_POST,
-  EDIT_POST,
   GET_POST,
   GET_POSTS,
   POST_ERROR,
@@ -27,6 +26,11 @@ export default function postReducer(state = initialState, action) {
         ...state,
         posts: [payload, ...state.posts],
         loading: false,
+      };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.postId != payload),
       };
     case POST_ERROR:
       return {

@@ -30,6 +30,7 @@ const CommentSection = ({
   getComments,
   deleteComment,
   editComment,
+  userId,
 }) => {
   useEffect(() => {
     getComments(id);
@@ -90,26 +91,28 @@ const CommentSection = ({
                       ).fromNow()}
                     </Text>
                   </GridItem>
-                  <GridItem colSpan={1}>
-                    <EditIcon
-                      color='teal'
-                      mr='7'
-                      onClick={(e) => {
-                        onOpenEdit();
-                        setFormData({
-                          text: comment.commentText,
-                          id: comment.commentId,
-                        });
-                      }}
-                    />
-                    <DeleteIcon
-                      color='teal'
-                      onClick={(e) => {
-                        onOpenDelete();
-                        setCommentId(comment.commentId);
-                      }}
-                    />
-                  </GridItem>
+                  {comment.userId === userId && (
+                    <GridItem colSpan={1}>
+                      <EditIcon
+                        color='teal'
+                        mr='7'
+                        onClick={(e) => {
+                          onOpenEdit();
+                          setFormData({
+                            text: comment.commentText,
+                            id: comment.commentId,
+                          });
+                        }}
+                      />
+                      <DeleteIcon
+                        color='teal'
+                        onClick={(e) => {
+                          onOpenDelete();
+                          setCommentId(comment.commentId);
+                        }}
+                      />
+                    </GridItem>
+                  )}
                 </Grid>
               </Box>
             </div>
