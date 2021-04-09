@@ -89,7 +89,7 @@ const EditPost = ({ onClose, editPost, post }) => {
               size='lg'
               colorScheme='teal'
               mx='5'
-              value={formData.isSold}
+              defaultChecked={formData.isSold}
               onChange={(e) =>
                 setFormData({ ...formData, isSold: e.target.checked })
               }
