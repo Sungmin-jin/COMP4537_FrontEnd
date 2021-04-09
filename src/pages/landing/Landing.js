@@ -1,26 +1,24 @@
-import { React, useState, useRef } from "react";
-import { Redirect } from "react-router-dom";
+import { React, useState, useRef } from 'react';
+import { Redirect } from 'react-router-dom';
 import {
   Text,
   Center,
-  Divider,
   Button,
   Stack,
   Drawer,
-  Feature,
   DrawerBody,
   DrawerHeader,
   DrawerOverlay,
   DrawerContent,
   useDisclosure,
   Modal,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 //components
-import SignIn from "../../components/signin/SignIn";
-import SignUp from "../../components/signup/SignUp";
+import SignIn from '../../components/signin/SignIn';
+import SignUp from '../../components/signup/SignUp';
 
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 const Landing = ({ isAuthenticated }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -29,29 +27,29 @@ const Landing = ({ isAuthenticated }) => {
   const initialRef = useRef();
   const finalRef = useRef();
   if (isAuthenticated) {
-    return <Redirect to="/home" />;
+    return <Redirect to='/home' />;
   }
 
   return (
     <>
-      <Center margin="auto" style={{ height: "100%" }}>
+      <Center margin='auto' style={{ height: '100%' }}>
         <Button
-          colorScheme="teal"
-          variant="ghost"
+          colorScheme='teal'
+          variant='ghost'
           onClick={onOpen}
-          margin="auto"
+          margin='auto'
         >
-          <Text fontSize="2xl" as="samp">
+          <Text fontSize='2xl' as='samp'>
             Sungmin Market
           </Text>
         </Button>
       </Center>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
+      <Drawer placement='left' onClose={onClose} isOpen={isOpen}>
         <DrawerOverlay>
           <DrawerContent>
-            <DrawerHeader borderBottomWidth="1px">
+            <DrawerHeader borderBottomWidth='1px'>
               <Center>
-                <Text fontSize="2xl" as="samp">
+                <Text fontSize='2xl' as='samp'>
                   Sungmin Market
                 </Text>
               </Center>
@@ -59,28 +57,28 @@ const Landing = ({ isAuthenticated }) => {
             <DrawerBody>
               <Stack spacing={8}>
                 <Button
-                  colorScheme="green"
-                  variant="link"
+                  colorScheme='green'
+                  variant='link'
                   onClick={() => setSignInModal(true)}
-                  size="lg"
+                  size='lg'
                 >
-                  <Text isTruncated as="samp" fontSize="xl" color="teal">
+                  <Text isTruncated as='samp' fontSize='xl' color='teal'>
                     Sign in
                   </Text>
                 </Button>
                 <Button
-                  colorScheme="green"
-                  variant="link"
+                  colorScheme='green'
+                  variant='link'
                   onClick={() => setSignUpModal(true)}
-                  size="lg"
+                  size='lg'
                 >
-                  <Text isTruncated as="samp" fontSize="xl" color="teal">
+                  <Text isTruncated as='samp' fontSize='xl' color='teal'>
                     Sign up
                   </Text>
                 </Button>
               </Stack>
               <Modal
-                size="sm"
+                size='sm'
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
                 isOpen={signInModal}
@@ -90,7 +88,7 @@ const Landing = ({ isAuthenticated }) => {
                 <SignIn />
               </Modal>
               <Modal
-                size="sm"
+                size='sm'
                 initialFocusRef={initialRef}
                 finalFocusRef={finalRef}
                 isOpen={signUpModal}

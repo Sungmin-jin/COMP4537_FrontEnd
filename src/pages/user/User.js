@@ -1,9 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { getMyPosts } from "../../redux/action/post";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { deletePost } from "../../redux/action/post";
 import "../post/Post.css";
+import EditPost from "../../components/editPost/EditPost";
 
 import moment from "moment-timezone";
 import {
@@ -11,27 +13,30 @@ import {
   Center,
   Button,
   Grid,
-  Wrap,
   Flex,
-  WrapItem,
   GridItem,
   Text,
   Image,
   Box,
   Divider,
-  Heading,
   Spacer,
   SimpleGrid,
   Stack,
+  Modal,
 } from "@chakra-ui/react";
-const User = ({ getMyPosts, user, post: { posts } }) => {
+const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedPost, setSelectedPost] = useState(null);
+
+  const onClose = () => setIsOpen(false);
+  const onOpen = () => setIsOpen(true);
+
   useEffect(() => {
     getMyPosts();
   }, []);
 
   return (
     <>
-      {console.log(posts)}
       <Container maxW="container.xl" margin="auto" style={{ height: "100%" }}>
         <Grid
           h="100%"
@@ -65,7 +70,7 @@ const User = ({ getMyPosts, user, post: { posts } }) => {
           <GridItem rowSpan={2} colSpan={5} bg="white">
             <SimpleGrid columns={{ sm: 1, md: 1, lg: 2 }} pt={5}>
               {posts.map((post) => (
-                <Center>
+                <Center mb="10" key={post.postId}>
                   <Stack>
                     <Flex>
                       <Text fontSize="lg" as="samp" colorScheme="teal">
@@ -91,7 +96,15 @@ const User = ({ getMyPosts, user, post: { posts } }) => {
                         variant="ghost"
                         margin="auto"
                       >
-                        <Text fontSize="lg" as="samp" colorScheme="teal">
+                        <Text
+                          fontSize="lg"
+                          as="samp"
+                          colorScheme="teal"
+                          onClick={(e) => {
+                            onOpen();
+                            setSelectedPost(post);
+                          }}
+                        >
                           EDIT
                         </Text>
                       </Button>
@@ -101,7 +114,11 @@ const User = ({ getMyPosts, user, post: { posts } }) => {
                         variant="ghost"
                         margin="auto"
                       >
-                        <Text fontSize="lg" as="samp">
+                        <Text
+                          fontSize="lg"
+                          as="samp"
+                          onClick={(e) => deletePost(post.postId, post.img)}
+                        >
                           DELETE
                         </Text>
                       </Button>
@@ -113,14 +130,17 @@ const User = ({ getMyPosts, user, post: { posts } }) => {
             </SimpleGrid>
           </GridItem>
         </Grid>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <EditPost onClose={onClose} post={selectedPost} />
+        </Modal>
       </Container>
-      {console.log(posts)}
     </>
   );
 };
 
 User.propTypes = {
   getMyPosts: PropTypes.func.isRequired,
+  deletePost: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
 
@@ -128,4 +148,4 @@ const mapStateToProps = (state) => ({
   user: state.auth.user,
   post: state.post,
 });
-export default connect(mapStateToProps, { getMyPosts })(User);
+export default connect(mapStateToProps, { getMyPosts, deletePost })(User);
