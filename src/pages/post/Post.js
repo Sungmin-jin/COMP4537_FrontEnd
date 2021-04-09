@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPost } from '../../redux/action/post';
 import './Post.css';
-import theme from '../../utils/theme';
 import moment from 'moment-timezone';
 import CommentForm from '../../components/comment/CommentForm';
 import CommentSection from '../../components/comment/CommentSection';
@@ -14,7 +13,6 @@ import {
   Center,
   Heading,
   Grid,
-  Stack,
   Divider,
   GridItem,
   Container,

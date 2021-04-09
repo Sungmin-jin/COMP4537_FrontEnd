@@ -21,11 +21,7 @@ export const uploadComment = (formData) => async (dispatch) => {
     },
   };
   try {
-    const res = await axios.post(
-      `${defaultUrl.url}/comments`,
-      formData,
-      config
-    );
+    await axios.post(`${defaultUrl.url}/comments`, formData, config);
     dispatch(getComments(formData.postId));
   } catch (error) {
     console.log(error);
@@ -54,7 +50,7 @@ export const editComment = (formData, postId) => async (dispatch) => {
     },
   };
   try {
-    const res = await axios.put(`${defaultUrl.url}/comments`, formData, config);
+    await axios.put(`${defaultUrl.url}/comments`, formData, config);
     dispatch(getComments(postId));
   } catch (error) {
     console.log(error);

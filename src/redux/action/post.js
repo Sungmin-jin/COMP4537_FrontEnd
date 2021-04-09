@@ -2,6 +2,7 @@ import axios from 'axios';
 import { DELETE_POST, GET_POST, GET_POSTS, POST_ERROR } from './types';
 import defaultUrl from '../../config/defaultUrl.json';
 import firebase from '../../config/firebase';
+import { v4 as uuidv4 } from 'uuid';
 
 export const uploadPost = ({ title, text, price, file }) => async (
   dispatch
@@ -16,12 +17,12 @@ export const uploadPost = ({ title, text, price, file }) => async (
     const formData = { title, text, price, image: null };
     if (file) {
       const storageRef = firebase.storage().ref('media');
-      const fileRef = storageRef.child(file.name);
+      const fileRef = storageRef.child(uuidv4() + '');
       await fileRef.put(file);
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    const res = await axios.post(`${defaultUrl.url}/posts`, formData, config);
+    await axios.post(`${defaultUrl.url}/posts`, formData, config);
     dispatch(getPosts());
   } catch (error) {
     console.log(error);
@@ -73,15 +74,18 @@ export const deletePost = (id, url) => async (dispatch) => {
   try {
     const imageRef = firebase.storage().refFromURL(url);
     imageRef.delete();
-    const res = await axios.delete(`${defaultUrl.url}/posts${id}`);
-    console.log(res);
+    await axios.delete(`${defaultUrl.url}/posts/${id}`);
+    dispatch({
+      type: DELETE_POST,
+      payload: id,
+    });
   } catch (error) {
     console.log(error);
   }
 };
 
 //todo send dispatch getposts or something
-export const editPost = (formData, id, url, file) => async (dispatch) => {
+export const editPost = (formData, id, file) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
@@ -89,20 +93,24 @@ export const editPost = (formData, id, url, file) => async (dispatch) => {
   };
   try {
     if (file) {
+      const imageRef = firebase.storage().refFromURL(formData.image);
+      await imageRef.delete();
+
       const storageRef = firebase.storage().ref('media');
-      const fileRef = storageRef.child(file.name);
+      const fileRef = storageRef.child(uuidv4() + '');
       await fileRef.put(file);
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    const imageRef = firebase.storage().refFromURL(url);
-    imageRef.delete();
+    console.log('edit post');
+
     const res = await axios.put(
       `${defaultUrl.url}/posts/${id}`,
       formData,
       config
     );
     console.log(res);
+    dispatch(getMyPosts());
   } catch (error) {
     console.log(error);
   }
