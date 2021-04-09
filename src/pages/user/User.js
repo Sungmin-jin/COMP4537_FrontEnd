@@ -28,8 +28,10 @@ const User = ({ getMyPosts, user, post: { posts } }) => {
   useEffect(() => {
     getMyPosts();
   }, []);
+
   return (
     <>
+      {console.log(posts)}
       <Container maxW="container.xl" margin="auto" style={{ height: "100%" }}>
         <Grid
           h="100%"
