@@ -25,12 +25,19 @@ const Dashboard = ({ logout, isAuthenticated }) => {
   };
   return (
     <>
-      <form onSubmit={(e) => onSubmit(e)} style={{ height: "100%" }}>
-        <div
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <form
+          onSubmit={(e) => onSubmit(e)}
           style={{
             height: "100%",
-            width: "100%",
-            display: "flex",
             justifyContent: "center",
             alignItems: "center",
           }}
@@ -38,82 +45,92 @@ const Dashboard = ({ logout, isAuthenticated }) => {
           <div
             style={{
               height: "100%",
-              width: "80%",
+              width: "100%",
               display: "flex",
               justifyContent: "center",
               alignItems: "center",
             }}
           >
-            <div>
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <div>
-                <Center>
-                  <Link to="/home">
-                    <Text fontSize="3xl" as="samp" color="teal">
-                      <span style={{ fontWeight: "bold" }}>Krēamin</span>
-                    </Text>
-                  </Link>
-                </Center>
-              </div>
-              <div>
-                <Center>
-                  <Text fontSize="5xl" as="em">
-                    Welcome
-                  </Text>
-                </Center>
-              </div>
-              <div>
-                <Center>
-                  <Text color="gray.500" as="i" isTruncated>
-                    to Krēamin!
-                  </Text>
-                </Center>
-              </div>
-              <div>
-                <div style={{ float: "left" }}>
-                  <Link
-                    color="teal.500"
-                    href="#"
-                    mr="1"
-                    as={ReachLink}
-                    to="/posts"
-                  >
-                    <Text isTruncated as="samp" fontSize="lg">
-                      <span style={{ fontWeight: "bold" }}>View</span>
-                    </Text>
-                  </Link>
+                <div>
+                  <Center>
+                    <Link to="/home">
+                      <Text fontSize="3xl" as="samp" color="teal">
+                        <span style={{ fontWeight: "bold" }}>Krēamin</span>
+                      </Text>
+                    </Link>
+                  </Center>
                 </div>
-                <div style={{ float: "right" }}>
-                  <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
-                    <Text isTruncated as="samp" fontSize="lg">
-                      <span style={{ fontWeight: "bold" }}>Create</span>
+                <div>
+                  <Center>
+                    <Text fontSize="5xl" as="em">
+                      Welcome
                     </Text>
-                  </Link>
+                  </Center>
                 </div>
-              </div>
+                <div>
+                  <Center>
+                    <Text color="gray.500" as="i" isTruncated>
+                      to Krēamin!
+                    </Text>
+                  </Center>
+                </div>
+                <div>
+                  <div style={{ float: "left" }}>
+                    <Link
+                      color="teal.500"
+                      href="#"
+                      mr="1"
+                      as={ReachLink}
+                      to="/posts"
+                    >
+                      <Text isTruncated as="samp" fontSize="lg">
+                        <span style={{ fontWeight: "bold" }}>View</span>
+                      </Text>
+                    </Link>
+                  </div>
+                  <div style={{ float: "right" }}>
+                    <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
+                      <Text isTruncated as="samp" fontSize="lg">
+                        <span style={{ fontWeight: "bold" }}>Create</span>
+                      </Text>
+                    </Link>
+                  </div>
+                </div>
 
-              <div style={{ height: "100px" }}></div>
-              <div>
-                <Center>
-                  <Link color="teal.500" as={ReachLink} ml="1" to="/user">
-                    <Text isTruncated as="samp" fontSize="lg">
-                      <span style={{ fontWeight: "bold" }}>Your Profile</span>
-                    </Text>
-                  </Link>
-                </Center>
-              </div>
-              <div>
-                <Center>
-                  <Link color="teal.500">
-                    <Text isTruncated as="em" fontSize="md" onClick={logout}>
-                      <span style={{ fontWeight: "bold" }}>Sign Out</span>
-                    </Text>
-                  </Link>
-                </Center>
+                <div style={{ height: "100px" }}></div>
+                <div>
+                  <Center>
+                    <Link color="teal.500" as={ReachLink} ml="1" to="/user">
+                      <Text isTruncated as="samp" fontSize="lg">
+                        <span style={{ fontWeight: "bold" }}>Your Profile</span>
+                      </Text>
+                    </Link>
+                  </Center>
+                </div>
+                <div>
+                  <Center>
+                    <Link color="teal.500">
+                      <Text isTruncated as="em" fontSize="md" onClick={logout}>
+                        <span style={{ fontWeight: "bold" }}>Sign Out</span>
+                      </Text>
+                    </Link>
+                  </Center>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </>
   );
 };
