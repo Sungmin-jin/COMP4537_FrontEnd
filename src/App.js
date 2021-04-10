@@ -10,6 +10,8 @@ import Dashboard from './pages/dashboard/Dashboard';
 import PostForm from './pages/postForm/PostForm';
 import Posts from './pages/posts/Posts';
 import Post from './pages/post/Post';
+import Admin from './pages/admin/Admin';
+import User from './pages/user/User';
 
 //Autenticated route
 import AuthRoute from './components/authRoute/AuthRoute';
@@ -19,8 +21,6 @@ import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './redux/action/auth';
-import Admin from './pages/admin/Admin';
-import User from './pages/user/User';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
