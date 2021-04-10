@@ -86,10 +86,18 @@ const Post = ({ getPost, match, post, loading }) => {
                   <span
                     style={{ float: "right", color: "red", fontWeight: "bold" }}
                   >
-                    SOLD OUT
+                    NOT AVAILABLE
                   </span>
                 ) : (
-                  <div></div>
+                  <span
+                    style={{
+                      float: "right",
+                      color: "teal",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    AVAILABLE
+                  </span>
                 )}
               </Text>
 

@@ -25,84 +25,112 @@ const Dashboard = ({ logout, isAuthenticated }) => {
   };
   return (
     <>
-      <form onSubmit={(e) => onSubmit(e)}>
-        <Grid templateColumns="repeat(7, 1fr)" gap={4}>
-          <GridItem colStart={4} colSpan={1} p={10}>
-            <Center>
-              <Link to="/home">
-                <Text fontSize="3xl" as="samp" color="teal">
-                  Krēamin
-                </Text>
-              </Link>
-            </Center>
-          </GridItem>
-          <GridItem colStart={4} p={15}>
-            <Stack spacing={5}>
-              <Container>
-                <Center>
-                  <Text fontSize="6xl" as="samp">
-                    Hello!
-                  </Text>
-                </Center>
-                <Center>
-                  <Text color="gray.500" as="samp" isTruncated>
-                    Welcome to Krēamin!
-                  </Text>
-                </Center>
-              </Container>
-            </Stack>
-          </GridItem>
-          <GridItem colStart={4} p={30}>
-            <Center>
-              <Grid templateColumns="repeat(2, 1fr)" gap={25}>
-                <GridItem colSpan={2}>
-                  <Link
-                    color="teal.500"
-                    href="#"
-                    mr="1"
-                    as={ReachLink}
-                    to="/posts"
-                  >
-                    <Text isTruncated as="samp" fontSize="lg">
-                      View Items
-                    </Text>
-                  </Link>
-                  <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
-                    <Text isTruncated as="samp" fontSize="lg">
-                      Create an Item
-                    </Text>
-                  </Link>
-                </GridItem>
-                <GridItem colSpan={2}>
+      <div
+        style={{
+          height: "100%",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <form
+          onSubmit={(e) => onSubmit(e)}
+          style={{
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div
+            style={{
+              height: "100%",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <div
+              style={{
+                height: "100%",
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <div>
+                <div>
                   <Center>
-                    <Link color="teal.500" as={ReachLink} ml="1" to="/user">
-                      <Text isTruncated as="samp" fontSize="lg">
-                        Your Profile
+                    <Link to="/home">
+                      <Text fontSize="3xl" as="samp" color="teal">
+                        <span style={{ fontWeight: "bold" }}>Krēamin</span>
                       </Text>
                     </Link>
                   </Center>
-                </GridItem>
-                <GridItem colSpan={2}>
-                  <Container>
-                    <Center>
-                      <Link color="teal.500">
-                        <Text
-                          isTruncated
-                          as="em"
-                          fontSize="lg"
-                          onClick={logout}
-                        >
-                          Sign Out
-                        </Text>
-                      </Link>
-                    </Center>
-                  </Container>
-                </GridItem>
-              </Grid>
-            </Center>
-          </GridItem>
-        </Grid>
-      </form>
+                </div>
+                <div>
+                  <Center>
+                    <Text fontSize="5xl" as="em">
+                      Welcome
+                    </Text>
+                  </Center>
+                </div>
+                <div>
+                  <Center>
+                    <Text color="gray.500" as="i" isTruncated>
+                      to Krēamin!
+                    </Text>
+                  </Center>
+                </div>
+                <div>
+                  <div style={{ float: "left" }}>
+                    <Link
+                      color="teal.500"
+                      href="#"
+                      mr="1"
+                      as={ReachLink}
+                      to="/posts"
+                    >
+                      <Text isTruncated as="samp" fontSize="lg">
+                        <span style={{ fontWeight: "bold" }}>View</span>
+                      </Text>
+                    </Link>
+                  </div>
+                  <div style={{ float: "right" }}>
+                    <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
+                      <Text isTruncated as="samp" fontSize="lg">
+                        <span style={{ fontWeight: "bold" }}>Create</span>
+                      </Text>
+                    </Link>
+                  </div>
+                </div>
+
+                <div style={{ height: "100px" }}></div>
+                <div>
+                  <Center>
+                    <Link color="teal.500" as={ReachLink} ml="1" to="/user">
+                      <Text isTruncated as="samp" fontSize="lg">
+                        <span style={{ fontWeight: "bold" }}>Your Profile</span>
+                      </Text>
+                    </Link>
+                  </Center>
+                </div>
+                <div>
+                  <Center>
+                    <Link color="teal.500">
+                      <Text isTruncated as="em" fontSize="md" onClick={logout}>
+                        <span style={{ fontWeight: "bold" }}>Sign Out</span>
+                      </Text>
+                    </Link>
+                  </Center>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </>
   );
 };
