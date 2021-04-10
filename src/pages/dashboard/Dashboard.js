@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
-import { Link as ReachLink } from 'react-router-dom';
-import { logout } from '../../redux/action/auth';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import React, { useEffect } from "react";
+import { Link as ReachLink } from "react-router-dom";
+import { logout } from "../../redux/action/auth";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import {
   Link,
   Text,
@@ -11,7 +11,7 @@ import {
   Center,
   Stack,
   Container,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const Dashboard = ({ logout, isAuthenticated }) => {
   // 2 bool values for login, and sign up
@@ -26,10 +26,10 @@ const Dashboard = ({ logout, isAuthenticated }) => {
   return (
     <>
       <form onSubmit={(e) => onSubmit(e)}>
-        <Grid templateColumns='repeat(7, 1fr)' gap={4}>
+        <Grid templateColumns="repeat(7, 1fr)" gap={4}>
           <GridItem colStart={4} colSpan={1} p={10}>
             <Center>
-              <Text fontSize='2xl' as='samp' color='teal'>
+              <Text fontSize="2xl" as="samp" color="teal">
                 Sungmin Market
               </Text>
             </Center>
@@ -38,12 +38,12 @@ const Dashboard = ({ logout, isAuthenticated }) => {
             <Stack spacing={5}>
               <Container>
                 <Center>
-                  <Text fontSize='6xl' as='em'>
+                  <Text fontSize="6xl" as="em">
                     Hello!
                   </Text>
                 </Center>
                 <Center>
-                  <Text color='gray.500' isTruncated>
+                  <Text color="gray.500" isTruncated>
                     Welcome to Sungmin Market!
                   </Text>
                 </Center>
@@ -52,33 +52,42 @@ const Dashboard = ({ logout, isAuthenticated }) => {
           </GridItem>
           <GridItem colStart={4} p={30}>
             <Center>
-              <Grid templateColumns='repeat(2, 1fr)' gap={25}>
+              <Grid templateColumns="repeat(2, 1fr)" gap={25}>
                 <GridItem colSpan={2}>
                   <Link
-                    color='teal.500'
-                    href='#'
-                    mr='1'
+                    color="teal.500"
+                    href="#"
+                    mr="1"
                     as={ReachLink}
-                    to='/posts'
+                    to="/posts"
                   >
-                    <Text isTruncated as='em' fontSize='lg'>
+                    <Text isTruncated as="em" fontSize="lg">
                       View Items
                     </Text>
                   </Link>
-                  <Link color='teal.500' as={ReachLink} ml='1' to='/postForm'>
-                    <Text isTruncated as='em' fontSize='lg'>
+                  <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
+                    <Text isTruncated as="em" fontSize="lg">
                       Create an Item
                     </Text>
                   </Link>
                 </GridItem>
                 <GridItem colSpan={2}>
+                  <Center>
+                    <Link color="teal.500" as={ReachLink} ml="1" to="/user">
+                      <Text isTruncated as="em" fontSize="lg">
+                        Your Profile
+                      </Text>
+                    </Link>
+                  </Center>
+                </GridItem>
+                <GridItem colSpan={2}>
                   <Container>
                     <Center>
-                      <Link color='teal.500'>
+                      <Link color="teal.500">
                         <Text
                           isTruncated
-                          as='em'
-                          fontSize='lg'
+                          as="em"
+                          fontSize="lg"
                           onClick={logout}
                         >
                           Sign Out
