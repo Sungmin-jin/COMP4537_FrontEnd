@@ -59,7 +59,12 @@ export const getMyPosts = () => async (dispatch) => {
 
 export const getPost = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`${defaultUrl.url}/posts/${id}`);
+    const config = {
+      headers: {
+        'x-auth-token': localStorage.token,
+      },
+    };
+    const res = await axios.get(`${defaultUrl.url}/posts/${id}`, config);
     dispatch({
       type: GET_POST,
       payload: res.data,
