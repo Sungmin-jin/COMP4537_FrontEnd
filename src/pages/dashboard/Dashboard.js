@@ -29,22 +29,24 @@ const Dashboard = ({ logout, isAuthenticated }) => {
         <Grid templateColumns="repeat(7, 1fr)" gap={4}>
           <GridItem colStart={4} colSpan={1} p={10}>
             <Center>
-              <Text fontSize="2xl" as="samp" color="teal">
-                Sungmin Market
-              </Text>
+              <Link to="/home">
+                <Text fontSize="3xl" as="samp" color="teal">
+                  Krēamin
+                </Text>
+              </Link>
             </Center>
           </GridItem>
           <GridItem colStart={4} p={15}>
             <Stack spacing={5}>
               <Container>
                 <Center>
-                  <Text fontSize="6xl" as="em">
+                  <Text fontSize="6xl" as="samp">
                     Hello!
                   </Text>
                 </Center>
                 <Center>
-                  <Text color="gray.500" isTruncated>
-                    Welcome to Sungmin Market!
+                  <Text color="gray.500" as="samp" isTruncated>
+                    Welcome to Krēamin!
                   </Text>
                 </Center>
               </Container>
@@ -61,12 +63,12 @@ const Dashboard = ({ logout, isAuthenticated }) => {
                     as={ReachLink}
                     to="/posts"
                   >
-                    <Text isTruncated as="em" fontSize="lg">
+                    <Text isTruncated as="samp" fontSize="lg">
                       View Items
                     </Text>
                   </Link>
                   <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
-                    <Text isTruncated as="em" fontSize="lg">
+                    <Text isTruncated as="samp" fontSize="lg">
                       Create an Item
                     </Text>
                   </Link>
@@ -74,7 +76,7 @@ const Dashboard = ({ logout, isAuthenticated }) => {
                 <GridItem colSpan={2}>
                   <Center>
                     <Link color="teal.500" as={ReachLink} ml="1" to="/user">
-                      <Text isTruncated as="em" fontSize="lg">
+                      <Text isTruncated as="samp" fontSize="lg">
                         Your Profile
                       </Text>
                     </Link>

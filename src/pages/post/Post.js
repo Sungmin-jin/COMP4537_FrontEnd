@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { getPost } from "../../redux/action/post";
+import { Link } from "react-router-dom";
 import "./Post.css";
 import moment from "moment-timezone";
 import CommentForm from "../../components/comment/CommentForm";
@@ -21,7 +22,6 @@ import {
 
 const Post = ({ getPost, match, post, loading }) => {
   const { onToggle } = useDisclosure();
-
   useEffect(() => {
     getPost(match.params.id);
   }, []);
@@ -46,9 +46,11 @@ const Post = ({ getPost, match, post, loading }) => {
           onClick={onToggle}
           margin="auto"
         >
-          <Text fontSize="2xl" as="samp" colorScheme="teal">
-            Sungmin Market
-          </Text>
+          <Link to="/home">
+            <Text fontSize="2xl" as="samp" color="teal">
+              Krēamin
+            </Text>
+          </Link>
         </Button>
       </Center>
 
@@ -74,13 +76,23 @@ const Post = ({ getPost, match, post, loading }) => {
           <Grid>
             <GridItem pl={5} pt={10} pb={20}>
               <Heading size="xl" as="samp" colorScheme="teal">
-                {post.title}
+                <Text as="samp">{post.title}</Text>
               </Heading>
             </GridItem>
             <GridItem pl={5} pt={3} pb={10}>
-              <Text fontSize="lg" as="samp" colorScheme="teal">
+              <Text fontSize="lg" as="samp" colorScheme="teal" width="100%">
                 {moment(moment(post.date).add(-7, "hour").format()).fromNow()}
+                {post.isSold ? (
+                  <span
+                    style={{ float: "right", color: "red", fontWeight: "bold" }}
+                  >
+                    SOLD OUT
+                  </span>
+                ) : (
+                  <div></div>
+                )}
               </Text>
+
               <Divider />
               <Text fontSize="lg" as="samp" colorScheme="teal">
                 {post.name}

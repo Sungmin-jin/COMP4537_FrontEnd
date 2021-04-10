@@ -46,9 +46,11 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
           <GridItem rowSpan={1} colSpan={5} bg="white">
             <Center p={10}>
               <Button colorScheme="teal" variant="ghost" margin="auto">
-                <Text fontSize="2xl" as="samp" colorScheme="teal">
-                  Sungmin Market
-                </Text>
+                <Link to="/home">
+                  <Text fontSize="2xl" as="samp" color="teal">
+                    Krēamin
+                  </Text>
+                </Link>
               </Button>
             </Center>
             <Stack p={10}>
