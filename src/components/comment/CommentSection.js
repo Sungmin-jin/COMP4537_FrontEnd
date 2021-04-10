@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import {
   getComments,
   deleteComment,
   editComment,
-} from "../../redux/action/comment";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import "./Comment.css";
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
-import moment from "moment";
+} from '../../redux/action/comment';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import './Comment.css';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import moment from 'moment';
 import {
   Box,
   Text,
@@ -24,7 +24,7 @@ import {
   ModalCloseButton,
   Input,
   Center,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const CommentSection = ({
   id,
@@ -41,7 +41,7 @@ const CommentSection = ({
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentId, setCommentId] = useState();
-  const [formData, setFormData] = useState({ text: "", id: "" });
+  const [formData, setFormData] = useState({ text: '', id: '' });
 
   const onOpenDelete = () => {
     setShowDelete(true);
@@ -71,25 +71,25 @@ const CommentSection = ({
 
   return (
     <>
-      <div id="commentSection">
+      <div id='commentSection'>
         {comments &&
           comments.map((comment) => (
             <div key={comment.commentId}>
-              <Box p={2} shadow="sm" borderWidth="1px">
+              <Box p={2} shadow='sm' borderWidth='1px'>
                 <Grid
-                  templateRows="repeat(1, 1fr)"
-                  templateColumns="repeat(5, 1fr)"
+                  templateRows='repeat(1, 1fr)'
+                  templateColumns='repeat(5, 1fr)'
                   gap={1}
                 >
                   <GridItem colSpan={4} rowSpan={2} pl={2} pt={3}>
-                    <Text fontSize="md" as="samp" colorScheme="teal">
+                    <Text fontSize='md' as='samp' colorScheme='teal'>
                       {comment.commentText}
                     </Text>
                   </GridItem>
                   <GridItem colSpan={1}>
-                    <Text fontSize={10} as="samp" colorScheme="teal">
+                    <Text fontSize={10} as='samp' colorScheme='teal'>
                       {moment(
-                        moment(comment.commentDate).add(-7, "hour").format()
+                        moment(comment.commentDate).add(-7, 'hour').format()
                       ).fromNow()}
                     </Text>
                   </GridItem>
@@ -97,8 +97,8 @@ const CommentSection = ({
                     {user.userId === comment.userId && (
                       <>
                         <EditIcon
-                          color="teal"
-                          mr="7"
+                          color='teal'
+                          mr='7'
                           onClick={(e) => {
                             onOpenEdit();
                             setFormData({
@@ -108,7 +108,7 @@ const CommentSection = ({
                           }}
                         />
                         <DeleteIcon
-                          color="teal"
+                          color='teal'
                           onClick={(e) => {
                             onOpenDelete();
                             setCommentId(comment.commentId);
@@ -133,18 +133,18 @@ const CommentSection = ({
             </Center>
           </ModalHeader> */}
           <ModalCloseButton />
-          <ModalBody padding="5">
+          <ModalBody padding='5'>
             <Center>
-              <Text as="samp" colorScheme="teal">
+              <Text as='samp' colorScheme='teal'>
                 Are you sure you want to delete this comment?
               </Text>
               <Button
-                mx="3"
-                colorScheme="red"
-                variant="ghost"
+                mx='3'
+                colorScheme='red'
+                variant='ghost'
                 onClick={onDeleteClick}
               >
-                <Text as="samp" colorScheme="red">
+                <Text as='samp' colorScheme='red'>
                   Delete
                 </Text>
               </Button>
@@ -157,14 +157,15 @@ const CommentSection = ({
         <form onSubmit={(e) => onSubmit(e)}>
           <ModalContent>
             <ModalHeader>
-              <Text as="samp" colorScheme="teal">
+              <Text as='samp' colorScheme='teal'>
                 Edit Your Comment
               </Text>
             </ModalHeader>
             <ModalCloseButton />
-            <ModalBody padding="5">
+            <ModalBody padding='5'>
               <Center>
                 <Input
+                  required
                   value={formData.text}
                   onChange={(e) =>
                     setFormData({ ...formData, text: e.target.value })
@@ -173,8 +174,8 @@ const CommentSection = ({
               </Center>
             </ModalBody>
             <ModalFooter>
-              <Button mr="3" background="teal" type="submit">
-                <Text as="samp" colorScheme="teal" color="white">
+              <Button mr='3' background='teal' type='submit'>
+                <Text as='samp' colorScheme='teal' color='white'>
                   Save
                 </Text>
               </Button>

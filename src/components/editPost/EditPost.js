@@ -68,11 +68,17 @@ const EditPost = ({ onClose, editPost, post }) => {
         <ModalBody>
           <FormControl mb='3'>
             <FormLabel>Title</FormLabel>
-            <Input value={formData.title} name='title' onChange={onChange} />
+            <Input
+              value={formData.title}
+              name='title'
+              onChange={onChange}
+              required
+            />
           </FormControl>
           <FormControl mb='3'>
             <FormLabel>Price</FormLabel>
             <Input
+              required
               value={formData.price}
               type='number'
               name='price'
@@ -81,7 +87,13 @@ const EditPost = ({ onClose, editPost, post }) => {
           </FormControl>
           <FormControl mb='5'>
             <FormLabel>About your Item</FormLabel>
-            <Input value={formData.text} name='text' onChange={onChange} />
+            <Input
+              required
+              value={formData.text}
+              name='text'
+              onChange={onChange}
+              required
+            />
           </FormControl>
           <Center mb='3'>
             Is it Sold Out?

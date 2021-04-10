@@ -26,7 +26,7 @@ const PostForm = ({ uploadPost }) => {
     title: '',
     text: '',
     price: '',
-    file: '',
+    file: null,
   });
   const defaultChange = (e) => {
     const file = e.target.files[0];
@@ -49,6 +49,10 @@ const PostForm = ({ uploadPost }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.file) {
+      alert('Add The Image');
+      return;
+    }
     uploadPost(formData);
     history.push('/posts');
   };
@@ -62,6 +66,7 @@ const PostForm = ({ uploadPost }) => {
         <FormControl>
           <FormLabel>Title</FormLabel>
           <Input
+            required
             placeholder='title'
             name='title'
             value={formData.title}
@@ -80,6 +85,7 @@ const PostForm = ({ uploadPost }) => {
         <FormControl>
           <FormLabel>Price</FormLabel>
           <Input
+            required
             placeholder='price'
             type='number'
             min='0'
