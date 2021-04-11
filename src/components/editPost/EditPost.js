@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
   Button,
   ModalContent,
@@ -12,11 +12,11 @@ import {
   Input,
   Switch,
   Center,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { connect } from 'react-redux';
-import { editPost } from '../../redux/action/post';
-import { AiFillCamera } from 'react-icons/ai';
+import { connect } from "react-redux";
+import { editPost } from "../../redux/action/post";
+import { AiFillCamera } from "react-icons/ai";
 
 const EditPost = ({ onClose, editPost, post }) => {
   const [src, setSrc] = useState(post.img);
@@ -66,62 +66,63 @@ const EditPost = ({ onClose, editPost, post }) => {
         <ModalHeader>Edit Your Post</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <FormControl mb='3'>
+          <FormControl mb="3">
             <FormLabel>Title</FormLabel>
             <Input
               value={formData.title}
-              name='title'
+              name="title"
               onChange={onChange}
               required
             />
           </FormControl>
-          <FormControl mb='3'>
+          <FormControl mb="3">
             <FormLabel>Price</FormLabel>
             <Input
               required
               value={formData.price}
-              type='number'
-              name='price'
+              type="number"
+              pattern="[0-9]*"
+              name="price"
               onChange={onChange}
             />
           </FormControl>
-          <FormControl mb='5'>
+          <FormControl mb="5">
             <FormLabel>About your Item</FormLabel>
             <Input
               required
               value={formData.text}
-              name='text'
+              name="text"
               onChange={onChange}
               required
             />
           </FormControl>
-          <Center mb='3'>
+          <Center mb="3">
             Is it Sold Out?
             <Switch
-              size='lg'
-              colorScheme='teal'
-              mx='5'
+              size="lg"
+              colorScheme="teal"
+              mx="5"
               defaultChecked={formData.isSold}
               onChange={(e) =>
                 setFormData({ ...formData, isSold: e.target.checked })
               }
             />
           </Center>
-          {src && <img className='img-thumbnail' src={src} />}
+          {src && <img className="img-thumbnail" src={src} />}
         </ModalBody>
         <ModalFooter>
           <input
-            type='file'
-            accept='image/x-png,image/jpeg'
-            style={{ visibility: 'hidden' }}
+            type="file"
+            accept="image/x-png,image/jpeg"
+            style={{ visibility: "hidden" }}
             ref={imageRef}
             onChange={onFileChange}
           />
-          <AiFillCamera color='teal' size={45} onClick={onImageClick} />
-          <Button colorScheme='linkedin' mx='1' onClick={onClose}>
+          <AiFillCamera color="teal" size={45} onClick={onImageClick} />
+          <Button colorScheme="linkedin" mx="1" onClick={onClose}>
             Cancel
           </Button>
-          <Button type='submit' colorScheme='teal'>
+          <Button type="submit" colorScheme="teal">
             Save
           </Button>
         </ModalFooter>
