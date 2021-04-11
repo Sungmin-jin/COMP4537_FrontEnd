@@ -103,6 +103,12 @@ const Post = ({ getPost, match, post, loading }) => {
 
               <Divider />
               <Text fontSize="lg" as="samp" colorScheme="teal">
+                <Stack>
+                  {post.name}
+                  <span style={{ fontWeight: "bold" }}>
+                    price: {post.price}
+                  </span>
+                </Stack>
                 {post.name}
               </Text>
             </GridItem>

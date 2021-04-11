@@ -81,7 +81,6 @@ const EditPost = ({ onClose, editPost, post }) => {
               required
               value={formData.price}
               type="number"
-              pattern="[0-9]*"
               name="price"
               onChange={onChange}
             />
