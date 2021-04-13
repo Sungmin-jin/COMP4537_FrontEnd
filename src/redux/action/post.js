@@ -22,7 +22,7 @@ export const uploadPost = ({ title, text, price, file }) => async (
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    await axios.post(`/posts`, formData, config);
+    await axios.post(`${defaultUrl.url}/posts`, formData, config);
     dispatch(getPosts());
   } catch (error) {
     console.log(error);
@@ -35,7 +35,7 @@ export const uploadPost = ({ title, text, price, file }) => async (
 
 export const getPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/posts`);
+    const res = await axios.get(`${defaultUrl.url}/posts`);
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -47,7 +47,7 @@ export const getPosts = () => async (dispatch) => {
 
 export const getMyPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get(`/posts/user`);
+    const res = await axios.get(`${defaultUrl.url}/posts/user`);
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -64,7 +64,7 @@ export const getPost = (id) => async (dispatch) => {
         'x-auth-token': localStorage.token,
       },
     };
-    const res = await axios.get(`/posts/${id}`, config);
+    const res = await axios.get(`${defaultUrl.url}/posts/${id}`, config);
     dispatch({
       type: GET_POST,
       payload: res.data,
@@ -79,7 +79,7 @@ export const deletePost = (id, url) => async (dispatch) => {
   try {
     const imageRef = firebase.storage().refFromURL(url);
     imageRef.delete();
-    await axios.delete(`/posts/${id}`);
+    await axios.delete(`${defaultUrl.url}/posts/${id}`);
     dispatch({
       type: DELETE_POST,
       payload: id,
@@ -109,7 +109,11 @@ export const editPost = (formData, id, file) => async (dispatch) => {
     }
     console.log('edit post');
 
-    const res = await axios.put(`/posts/${id}`, formData, config);
+    const res = await axios.put(
+      `${defaultUrl.url}/posts/${id}`,
+      formData,
+      config
+    );
     console.log(res);
     dispatch(getMyPosts());
   } catch (error) {
