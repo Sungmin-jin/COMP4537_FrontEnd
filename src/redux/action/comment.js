@@ -10,7 +10,7 @@ export const getComments = (postId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -20,11 +20,12 @@ export const uploadComment = (formData) => async (dispatch) => {
       'Content-Type': 'application/json',
     },
   };
+  console.log(formData);
   try {
     await axios.post(`${defaultUrl.url}/comments`, formData, config);
     dispatch(getComments(formData.postId));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -39,7 +40,7 @@ export const deleteComment = (id) => async (dispatch) => {
       });
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

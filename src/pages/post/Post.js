@@ -1,12 +1,12 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { getPost } from "../../redux/action/post";
-import { Link } from "react-router-dom";
-import "./Post.css";
-import moment from "moment-timezone";
-import CommentForm from "../../components/comment/CommentForm";
-import CommentSection from "../../components/comment/CommentSection";
+import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getPost } from '../../redux/action/post';
+import { Link } from 'react-router-dom';
+import './Post.css';
+import moment from 'moment-timezone';
+import CommentForm from '../../components/comment/CommentForm';
+import CommentSection from '../../components/comment/CommentSection';
 import {
   Text,
   Stack,
@@ -19,7 +19,7 @@ import {
   GridItem,
   Container,
   useDisclosure,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const Post = ({ getPost, match, post, loading }) => {
   const { onToggle } = useDisclosure();
@@ -28,27 +28,27 @@ const Post = ({ getPost, match, post, loading }) => {
   }, []);
 
   return loading ? (
-    <Center height="100%">
+    <Center height='100%'>
       <Spinner
-        size="xl"
-        thickness="4px"
-        speed="0.65s"
-        emptyColor="gray.200"
-        color="blue.500"
+        size='xl'
+        thickness='4px'
+        speed='0.65s'
+        emptyColor='gray.200'
+        color='blue.500'
       />
     </Center>
   ) : (
-    <Container maxW="container.xl" margin="auto" style={{ height: "100%" }}>
+    <Container maxW='container.xl' margin='auto' style={{ height: '100%' }}>
       <Center p={10}>
         <Button
           p={10}
-          colorScheme="teal"
-          variant="ghost"
+          colorScheme='teal'
+          variant='ghost'
           onClick={onToggle}
-          margin="auto"
+          margin='auto'
         >
-          <Link to="/home">
-            <Text fontSize="2xl" as="samp" color="teal">
+          <Link to='/home'>
+            <Text fontSize='2xl' as='samp' color='teal'>
               Krēamin
             </Text>
           </Link>
@@ -56,8 +56,8 @@ const Post = ({ getPost, match, post, loading }) => {
       </Center>
 
       <Grid
-        templateRows="repeat(3, 1fr)"
-        templateColumns="repeat(5, 1fr)"
+        templateRows='repeat(3, 1fr)'
+        templateColumns='repeat(5, 1fr)'
         gap={4}
       >
         <GridItem
@@ -67,34 +67,36 @@ const Post = ({ getPost, match, post, loading }) => {
           <Center>
             <img
               src={post.img}
-              height="100%"
-              width="100%"
-              className="img-thumbnail"
+              height='100%'
+              width='100%'
+              className='img-thumbnail'
             />
           </Center>
         </GridItem>
         <GridItem rowSpan={3} colSpan={{ base: 5, sm: 5, lg: 2 }}>
           <Grid>
             <GridItem pl={5} pt={10} pb={20}>
-              <Heading size="xl" as="samp" colorScheme="teal">
-                <Text as="samp">{post.title}</Text>
+              <Heading size='xl' as='samp' colorScheme='teal'>
+                <Text as='samp'>{post.title}</Text>
               </Heading>
             </GridItem>
             <GridItem pl={5} pt={3} pb={10}>
-              <Text fontSize="lg" as="samp" colorScheme="teal" width="100%">
-                {moment(moment(post.date).add(-7, "hour").format()).fromNow()}
+              <Text fontSize='lg' as='samp' colorScheme='teal' width='100%'>
+                {moment(
+                  moment(post.postDate).add(-7, 'hour').format()
+                ).fromNow()}
                 {post.isSold ? (
                   <span
-                    style={{ float: "right", color: "red", fontWeight: "bold" }}
+                    style={{ float: 'right', color: 'red', fontWeight: 'bold' }}
                   >
                     NOT AVAILABLE
                   </span>
                 ) : (
                   <span
                     style={{
-                      float: "right",
-                      color: "teal",
-                      fontWeight: "bold",
+                      float: 'right',
+                      color: 'teal',
+                      fontWeight: 'bold',
                     }}
                   >
                     AVAILABLE
@@ -103,18 +105,18 @@ const Post = ({ getPost, match, post, loading }) => {
               </Text>
 
               <Divider />
-              <Text fontSize="lg" as="samp" colorScheme="teal">
+              <Text fontSize='lg' as='samp' colorScheme='teal'>
                 <Stack>
                   {post.name}
-                  <span style={{ fontWeight: "bold" }}>
+                  <span style={{ fontWeight: 'bold' }}>
                     price: {post.price}
                   </span>
                 </Stack>
                 {post.name}
               </Text>
             </GridItem>
-            <GridItem overflowy="scroll" pl={5} pt={3} pb={10}>
-              <Text fontSize="lg" as="samp" colorScheme="teal">
+            <GridItem overflowy='scroll' pl={5} pt={3} pb={10}>
+              <Text fontSize='lg' as='samp' colorScheme='teal'>
                 {post.text}
               </Text>
             </GridItem>
