@@ -4,7 +4,7 @@ import defaultUrl from '../../config/defaultUrl.json';
 
 export const getComments = (postId) => async (dispatch) => {
   try {
-    const res = await axios.get(`${defaultUrl.url}/comments/${postId}`);
+    const res = await axios.get(`/comments/${postId}`);
     dispatch({
       type: GET_COMMENTS,
       payload: res.data,
@@ -21,7 +21,7 @@ export const uploadComment = (formData) => async (dispatch) => {
     },
   };
   try {
-    await axios.post(`${defaultUrl.url}/comments`, formData, config);
+    await axios.post(`/comments`, formData, config);
     dispatch(getComments(formData.postId));
   } catch (error) {
     console.log(error);
@@ -30,7 +30,7 @@ export const uploadComment = (formData) => async (dispatch) => {
 
 export const deleteComment = (id) => async (dispatch) => {
   try {
-    const res = await axios.delete(`${defaultUrl.url}/comments/${id}`);
+    const res = await axios.delete(`/comments/${id}`);
     console.log(res);
     if (res.data.affectedRows > 0) {
       dispatch({
@@ -47,10 +47,11 @@ export const editComment = (formData, postId) => async (dispatch) => {
   const config = {
     headers: {
       'Content-Type': 'application/json',
+      crossDomain: true,
     },
   };
   try {
-    await axios.put(`${defaultUrl.url}/comments`, formData, config);
+    await axios.put(`/comments`, formData, config);
     dispatch(getComments(postId));
   } catch (error) {
     console.log(error);
