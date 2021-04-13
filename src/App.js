@@ -39,7 +39,7 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={Landing} />
             <AuthRoute exact path='/admin' component={Admin} />
-            <Route exact path='/user' component={User} />
+            <AuthRoute exact path='/user' component={User} />
             <AuthRoute path='/post/:id' component={Post} />
             <AuthRoute path='/home' component={Dashboard} />
             <AuthRoute path='/postform' component={PostForm} />
