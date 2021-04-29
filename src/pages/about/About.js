@@ -1,8 +1,9 @@
-import React from "react";
-import { Text } from "@chakra-ui/react";
+import React from 'react';
 const About = () => {
   return (
-      
+    <div>
+      <span> About Page</span>
+    </div>
   );
 };
 

@@ -1,0 +1,22 @@
+.header {
+  height: 100vh;
+  position: relative;
+  background-size: cover;
+  background-position: top;
+}
+
+.heading-primary-main {
+  text-align: center;
+}
+
+.heading-primary-welcome {
+  font-size: 2em;
+  font-style: italic;
+  text-align: center;
+}
+
+.heading-secondary span {
+  display: inline-block;
+  padding: 3em;
+  margin: 0;
+}

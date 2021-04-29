@@ -1,0 +1,92 @@
+.authentication-container {
+  height: 100vh;
+  position: relative;
+}
+
+::-webkit-input-placeholder {
+  font-family: 'Questrial', sans-serif;
+}
+
+.word-style1 {
+  color: #63b3ed;
+}
+
+.authentication-form-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 5px;
+}
+
+.description-text,
+.authentication-title {
+  text-align: center;
+}
+
+.title-name {
+  width: 100vh;
+  font-size: 40px;
+  color: #63b3ed;
+  text-transform: uppercase;
+  letter-spacing: 10px;
+  text-align: center;
+  font-family: 'Questrial', sans-serif;
+}
+
+.title-description {
+  font-size: 15px;
+  font-family: 'Questrial', sans-serif;
+}
+
+.description-text {
+  padding: 20px;
+  font-size: 15px;
+  color: black;
+  text-align: center;
+  font-family: 'Questrial', sans-serif;
+}
+
+.terms-policy-container {
+  font-size: 13px;
+  padding: 10px 0px;
+  font-family: 'Questrial', sans-serif;
+}
+
+.authentication-miscellaneous-container {
+  font-family: 'Questrial', sans-serif;
+}
+
+.authentication-miscellaneous-container span {
+  position: relative;
+  display: block;
+  padding: 3px 0px;
+}
+.authentication-submit-container {
+  display: flex;
+  padding: 5px 0px;
+}
+.flex-child {
+  flex: 1;
+}
+.signup-forgotpassword-container,
+.signin-alreadyaccount-container {
+  display: flex;
+  flex-direction: column;
+}
+.signup-forgotpassword-container span,
+.signin-alreadyaccount-container span {
+  font-size: 13px;
+  color: #4a5568;
+  padding: 2px 0px;
+  text-transform: uppercase;
+  font-family: 'Questrial', sans-serif;
+}
+.authentication-submit-button-container Button {
+  width: 100%;
+  border: 2px solid #63b3ed;
+}
+.signin-container {
+  display: flex;
+  flex-direction: column;
+}

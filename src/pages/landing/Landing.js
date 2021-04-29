@@ -1,115 +1,26 @@
-import { React, useState, useRef } from "react";
-import { Redirect } from "react-router-dom";
-import {
-  Text,
-  Center,
-  Button,
-  Stack,
-  Drawer,
-  DrawerBody,
-  DrawerHeader,
-  DrawerOverlay,
-  DrawerContent,
-  useDisclosure,
-  Modal,
-} from "@chakra-ui/react";
+import { React } from 'react';
+import { Link as ReachLink } from 'react-router-dom';
+import { Link } from '@chakra-ui/react';
 //components
-import SignIn from "../../components/signin/SignIn";
-import SignUp from "../../components/signup/SignUp";
+import './landing.css';
+import Header from '../../components/header/Header';
 
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-
-const Landing = ({ isAuthenticated }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [signInModal, setSignInModal] = useState(false);
-  const [signUpModal, setSignUpModal] = useState(false);
-  const initialRef = useRef();
-  const finalRef = useRef();
-  if (isAuthenticated) {
-    return <Redirect to="/home" />;
-  }
-
+const Landing = () => {
   return (
-    <>
-      <Center margin="auto" style={{ height: "100%" }}>
-        <Button
-          colorScheme="teal"
-          variant="ghost"
-          onClick={onOpen}
-          margin="auto"
-        >
-          <Text fontSize="3xl" as="samp" color="teal">
-            Krēamin
-          </Text>
-        </Button>
-      </Center>
-      <Drawer placement="left" onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay>
-          <DrawerContent>
-            <DrawerHeader borderBottomWidth="1px">
-              <Center>
-                <Text fontSize="2xl" as="samp" color="black">
-                  Krēamin
-                </Text>
-              </Center>
-            </DrawerHeader>
-            <DrawerBody>
-              <Stack spacing={8}>
-                <Button
-                  colorScheme="green"
-                  variant="link"
-                  onClick={() => setSignInModal(true)}
-                  size="lg"
-                >
-                  <Text isTruncated as="samp" fontSize="xl" color="teal">
-                    Sign in
-                  </Text>
-                </Button>
-                <Button
-                  colorScheme="green"
-                  variant="link"
-                  onClick={() => setSignUpModal(true)}
-                  size="lg"
-                >
-                  <Text isTruncated as="samp" fontSize="xl" color="teal">
-                    Sign up
-                  </Text>
-                </Button>
-              </Stack>
-              <Modal
-                size="sm"
-                initialFocusRef={initialRef}
-                finalFocusRef={finalRef}
-                isOpen={signInModal}
-                onClose={() => setSignInModal(false)}
-              >
-                {/* Sign in modal */}
-                <SignIn />
-              </Modal>
-              <Modal
-                size="sm"
-                initialFocusRef={initialRef}
-                finalFocusRef={finalRef}
-                isOpen={signUpModal}
-                onClose={() => setSignUpModal(false)}
-              >
-                {/* sign out modal */}
-                <SignUp />
-              </Modal>
-            </DrawerBody>
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
-    </>
+    <div className="container">
+      <Header />
+      <div className="text-box">
+        <button className="header-btn">
+          <h1 className="heading-primary">
+            <span className="heading-primary-main">Kreamin Studio</span>
+          </h1>
+        </button>
+      </div>
+      <div className="footer-container">
+        <span>© COPYRIGHT 2021 | KREAMIN STUDIO | ALL RIGHTS RESERVED.</span>
+      </div>
+    </div>
   );
 };
 
-Landing.propTypes = {
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-export default connect(mapStateToProps)(Landing);
+export default Landing;

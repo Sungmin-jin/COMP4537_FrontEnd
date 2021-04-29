@@ -1,0 +1,63 @@
+.container {
+  height: 100vh;
+  position: relative;
+  font-family: 'Questrial', sans-serif;
+}
+.header-top {
+  height: 10vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  position: relative;
+  text-align: center;
+}
+.header-top-flex-child {
+  margin: 5px auto;
+  float: left;
+  display: table;
+}
+.header-top-flex-child:hover {
+  text-decoration: underline;
+}
+.header-top-flex-child span {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 20px 30px;
+}
+
+.modal-title {
+  font-size: 1.2em;
+  letter-spacing: 5px;
+  color: #bee3f8;
+  font-family: 'Questrial', sans-serif;
+}
+.text-box {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.heading-primary {
+  color: #63b3ed;
+  text-align: center;
+  text-transform: uppercase;
+}
+.heading-primary-main {
+  font-size: 60px;
+  letter-spacing: 10px;
+}
+.drawer-title {
+  font-size: 1.5em;
+  color: black;
+  text-align: center;
+  letter-spacing: 5px;
+  font-family: 'Questrial', sans-serif;
+}
+.footer-container {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  padding: 15px;
+}

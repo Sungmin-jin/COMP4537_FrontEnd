@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { Link as ReachLink } from "react-router-dom";
-import { logout } from "../../redux/action/auth";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import React, { useEffect } from 'react';
+import { Link as ReachLink } from 'react-router-dom';
+import { logout } from '../../redux/action/auth';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import {
   Link,
   Text,
@@ -11,7 +11,9 @@ import {
   Center,
   Stack,
   Container,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
+
+import './dashboard.css';
 
 const Dashboard = ({ logout, isAuthenticated }) => {
   // 2 bool values for login, and sign up
@@ -19,115 +21,37 @@ const Dashboard = ({ logout, isAuthenticated }) => {
     // if (isAuthenticated){ toastsadkflasdf}
     console.log(isAuthenticated);
   });
+
   const onSubmit = async (e) => {
     e.preventDefault();
     logout();
   };
+
   return (
     <>
-      <div
-        style={{
-          height: "100%",
-          width: "100%",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <form
-          onSubmit={(e) => onSubmit(e)}
-          style={{
-            height: "100%",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              height: "100%",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <div>
-                <div>
-                  <Center>
-                    <Link to="/home">
-                      <Text fontSize="3xl" as="samp" color="teal">
-                        <span style={{ fontWeight: "bold" }}>Krēamin</span>
-                      </Text>
-                    </Link>
-                  </Center>
-                </div>
-                <div>
-                  <Center>
-                    <Text fontSize="5xl" as="em">
-                      Welcome
-                    </Text>
-                  </Center>
-                </div>
-                <div>
-                  <Center>
-                    <Text color="gray.500" as="i" isTruncated>
-                      to Krēamin!
-                    </Text>
-                  </Center>
-                </div>
-                <div>
-                  <div style={{ float: "left" }}>
-                    <Link
-                      color="teal.500"
-                      href="#"
-                      mr="1"
-                      as={ReachLink}
-                      to="/posts"
-                    >
-                      <Text isTruncated as="samp" fontSize="lg">
-                        <span style={{ fontWeight: "bold" }}>View</span>
-                      </Text>
-                    </Link>
-                  </div>
-                  <div style={{ float: "right" }}>
-                    <Link color="teal.500" as={ReachLink} ml="1" to="/postForm">
-                      <Text isTruncated as="samp" fontSize="lg">
-                        <span style={{ fontWeight: "bold" }}>Create</span>
-                      </Text>
-                    </Link>
-                  </div>
-                </div>
-
-                <div style={{ height: "100px" }}></div>
-                <div>
-                  <Center>
-                    <Link color="teal.500" as={ReachLink} ml="1" to="/user">
-                      <Text isTruncated as="samp" fontSize="lg">
-                        <span style={{ fontWeight: "bold" }}>Your Profile</span>
-                      </Text>
-                    </Link>
-                  </Center>
-                </div>
-                <div>
-                  <Center>
-                    <Link color="teal.500">
-                      <Text isTruncated as="em" fontSize="md" onClick={logout}>
-                        <span style={{ fontWeight: "bold" }}>Sign Out</span>
-                      </Text>
-                    </Link>
-                  </Center>
-                </div>
-              </div>
+      <div className="header">
+        <form onSubmit={(e) => onSubmit(e)}>
+          <div className="text-box">
+            <h1 className="heading-primary-main">Kreamin Studio</h1>
+            <h3 className="heading-primary-welcome">
+              <span> Welcome!</span>
+            </h3>
+            <div className="heading-secondary">
+              <Link as={ReachLink} to="/posts">
+                <span>View</span>
+              </Link>
+              <Link as={ReachLink} to="/postForm">
+                <span>Create</span>
+              </Link>
             </div>
+            <h3>
+              <Link as={ReachLink} to="/user">
+                <span>Profile</span>
+              </Link>
+            </h3>
+            <h3 className="footer-primary" onClick={logout}>
+              <span>Sign Out</span>
+            </h3>
           </div>
         </form>
       </div>

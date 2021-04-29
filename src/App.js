@@ -22,6 +22,13 @@ import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './redux/action/auth';
 
+import './styles/app.css';
+import SignIn from './components/signin/SignIn';
+import About from './pages/about/About';
+import SignUp from './components/signup/SignUp';
+import Temp from './components/temp/Temp';
+import Header from './components/header/Header';
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
@@ -37,13 +44,17 @@ const App = () => {
       <ChakraProvider>
         <Router>
           <Switch>
-            <Route exact path='/' component={Landing} />
-            <AuthRoute exact path='/admin' component={Admin} />
-            <AuthRoute exact path='/user' component={User} />
-            <AuthRoute path='/post/:id' component={Post} />
-            <AuthRoute path='/home' component={Dashboard} />
-            <AuthRoute path='/postform' component={PostForm} />
-            <AuthRoute paht='/posts' component={Posts} />
+            <Route exact path="/temp" component={Temp} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route ext path="/signup" component={SignUp} />
+            <AuthRoute exact path="/admin" component={Admin} />
+            <AuthRoute exact path="/user" component={User} />
+            <AuthRoute path="/post/:id" component={Post} />
+            <AuthRoute path="/home" component={Dashboard} />
+            <AuthRoute path="/postform" component={PostForm} />
+            <AuthRoute paht="/posts" component={Posts} />
           </Switch>
         </Router>
       </ChakraProvider>
