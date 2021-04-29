@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { GET_COMMENTS, DELETE_COMMENT } from './types';
-import defaultUrl from '../../config/defaultUrl.json';
+import axios from "axios";
+import { GET_COMMENTS, DELETE_COMMENT } from "./types";
+import defaultUrl from "../../config/defaultUrl.json";
 
 export const getComments = (postId) => async (dispatch) => {
   try {
@@ -17,7 +17,7 @@ export const getComments = (postId) => async (dispatch) => {
 export const uploadComment = (formData) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
   console.log(formData);
@@ -32,8 +32,7 @@ export const uploadComment = (formData) => async (dispatch) => {
 export const deleteComment = (id) => async (dispatch) => {
   try {
     const res = await axios.delete(`${defaultUrl.url}/comments/${id}`);
-    console.log(res);
-    if (res.data.affectedRows > 0) {
+    if (res.status === 200) {
       dispatch({
         type: DELETE_COMMENT,
         payload: id,
@@ -47,7 +46,7 @@ export const deleteComment = (id) => async (dispatch) => {
 export const editComment = (formData, postId) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
   try {

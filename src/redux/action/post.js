@@ -1,23 +1,23 @@
-import axios from 'axios';
-import { DELETE_POST, GET_POST, GET_POSTS, POST_ERROR } from './types';
-import defaultUrl from '../../config/defaultUrl.json';
-import firebase from '../../config/firebase';
-import { v4 as uuidv4 } from 'uuid';
+import axios from "axios";
+import { DELETE_POST, GET_POST, GET_POSTS, POST_ERROR } from "./types";
+import defaultUrl from "../../config/defaultUrl.json";
+import firebase from "../../config/firebase";
+import { v4 as uuidv4 } from "uuid";
 
 export const uploadPost = ({ title, text, price, file }) => async (
   dispatch
 ) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
 
   try {
     const formData = { title, text, price, image: null };
     if (file) {
-      const storageRef = firebase.storage().ref('media');
-      const fileRef = storageRef.child(uuidv4() + '');
+      const storageRef = firebase.storage().ref("media");
+      const fileRef = storageRef.child(uuidv4() + "");
       await fileRef.put(file);
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
@@ -34,8 +34,14 @@ export const uploadPost = ({ title, text, price, file }) => async (
 };
 
 export const getPosts = () => async (dispatch) => {
+  const config = {
+    headers: {
+      "x-auth-token": localStorage.token,
+    },
+  };
+
   try {
-    const res = await axios.get(`${defaultUrl.url}/posts`);
+    const res = await axios.get(`${defaultUrl.url}/posts`, config);
     dispatch({
       type: GET_POSTS,
       payload: res.data,
@@ -61,7 +67,7 @@ export const getPost = (id) => async (dispatch) => {
   try {
     const config = {
       headers: {
-        'x-auth-token': localStorage.token,
+        "x-auth-token": localStorage.token,
       },
     };
     const res = await axios.get(`${defaultUrl.url}/posts/${id}`, config);
@@ -93,7 +99,7 @@ export const deletePost = (id, url) => async (dispatch) => {
 export const editPost = (formData, id, file) => async (dispatch) => {
   const config = {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
   try {
@@ -101,13 +107,13 @@ export const editPost = (formData, id, file) => async (dispatch) => {
       const imageRef = firebase.storage().refFromURL(formData.image);
       await imageRef.delete();
 
-      const storageRef = firebase.storage().ref('media');
-      const fileRef = storageRef.child(uuidv4() + '');
+      const storageRef = firebase.storage().ref("media");
+      const fileRef = storageRef.child(uuidv4() + "");
       await fileRef.put(file);
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    console.log('edit post');
+    console.log("edit post");
 
     const res = await axios.put(
       `${defaultUrl.url}/posts/${id}`,
