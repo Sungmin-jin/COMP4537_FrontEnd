@@ -1,33 +1,32 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // Chakra ui
-import { ChakraProvider } from '@chakra-ui/react';
+import { ChakraProvider } from "@chakra-ui/react";
 
 // pages
-import Landing from './pages/landing/Landing';
-import Dashboard from './pages/dashboard/Dashboard';
-import PostForm from './pages/postForm/PostForm';
-import Posts from './pages/posts/Posts';
-import Post from './pages/post/Post';
-import Admin from './pages/admin/Admin';
-import User from './pages/user/User';
+import Landing from "./pages/landing/Landing";
+import Dashboard from "./pages/dashboard/Dashboard";
+import PostForm from "./pages/postForm/PostForm";
+import Posts from "./pages/posts/Posts";
+import Post from "./pages/post/Post";
+import User from "./pages/user/User";
 
 //Autenticated route
-import AuthRoute from './components/authRoute/AuthRoute';
+import AuthRoute from "./components/authRoute/AuthRoute";
 
 //Redux
-import { Provider } from 'react-redux';
-import store from './store';
-import setAuthToken from './utils/setAuthToken';
-import { loadUser } from './redux/action/auth';
+import { Provider } from "react-redux";
+import store from "./store";
+import setAuthToken from "./utils/setAuthToken";
+import { loadUser } from "./redux/action/auth";
 
-import './styles/app.css';
-import SignIn from './components/signin/SignIn';
-import About from './pages/about/About';
-import SignUp from './components/signup/SignUp';
-import Temp from './components/temp/Temp';
-import Header from './components/header/Header';
+import "./styles/app.css";
+import SignIn from "./components/signin/SignIn";
+import About from "./pages/about/About";
+import SignUp from "./components/signup/SignUp";
+import Temp from "./components/temp/Temp";
+import Header from "./components/header/Header";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -49,7 +48,6 @@ const App = () => {
             <Route exact path="/about" component={About} />
             <Route exact path="/signin" component={SignIn} />
             <Route ext path="/signup" component={SignUp} />
-            <AuthRoute exact path="/admin" component={Admin} />
             <AuthRoute exact path="/user" component={User} />
             <AuthRoute path="/post/:id" component={Post} />
             <AuthRoute path="/home" component={Dashboard} />

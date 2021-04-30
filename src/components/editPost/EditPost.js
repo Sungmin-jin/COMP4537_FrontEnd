@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
   Button,
   ModalContent,
@@ -12,11 +12,11 @@ import {
   Input,
   Switch,
   Center,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
-import { connect } from 'react-redux';
-import { editPost } from '../../redux/action/post';
-import { AiFillCamera } from 'react-icons/ai';
+import { connect } from "react-redux";
+import { editPost } from "../../redux/action/post";
+import { AiFillCamera } from "react-icons/ai";
 
 const EditPost = ({ onClose, editPost, post }) => {
   const [src, setSrc] = useState(post.img);
@@ -25,7 +25,7 @@ const EditPost = ({ onClose, editPost, post }) => {
     title: post.title,
     price: post.price,
     image: post.img,
-    isSold: post.isSold === 0 ? false : true,
+    isSold: post.isSold === 0 ? true : false,
   });
   const [file, setFile] = useState(null);
   const imageRef = useRef(null);
@@ -34,7 +34,7 @@ const EditPost = ({ onClose, editPost, post }) => {
     e.preventDefault();
     imageRef.current.click();
   };
-
+  console.log(formData.isSold);
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -113,7 +113,7 @@ const EditPost = ({ onClose, editPost, post }) => {
           <input
             type="file"
             accept="image/x-png,image/jpeg"
-            style={{ visibility: 'hidden' }}
+            style={{ visibility: "hidden" }}
             ref={imageRef}
             onChange={onFileChange}
           />
