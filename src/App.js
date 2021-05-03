@@ -11,6 +11,7 @@ import PostForm from "./pages/postForm/PostForm";
 import Posts from "./pages/posts/Posts";
 import Post from "./pages/post/Post";
 import User from "./pages/user/User";
+import ChatRoom from "./pages/chat/ChatRoom";
 
 //Autenticated route
 import AuthRoute from "./components/authRoute/AuthRoute";
@@ -49,10 +50,12 @@ const App = () => {
             <Route exact path="/signin" component={SignIn} />
             <Route ext path="/signup" component={SignUp} />
             <AuthRoute exact path="/user" component={User} />
-            <AuthRoute path="/post/:id" component={Post} />
-            <AuthRoute path="/home" component={Dashboard} />
-            <AuthRoute path="/postform" component={PostForm} />
-            <AuthRoute paht="/posts" component={Posts} />
+            //auth route
+            <Route exact path="/chating/:id" component={ChatRoom} />
+            <AuthRoute exact path="/post/:id" component={Post} />
+            <AuthRoute exact path="/home" component={Dashboard} />
+            <AuthRoute exact path="/postform" component={PostForm} />
+            <AuthRoute exact path="/posts" component={Posts} />
           </Switch>
         </Router>
       </ChakraProvider>

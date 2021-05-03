@@ -126,13 +126,6 @@ const CommentSection = ({
       <Modal isOpen={showDelete} onClose={onCloseDelete}>
         <ModalOverlay />
         <ModalContent>
-          {/* <ModalHeader>
-            <Center>
-              <Text as="samp" colorScheme="teal">
-                Delete Comment
-              </Text>
-            </Center>
-          </ModalHeader> */}
           <ModalCloseButton />
           <ModalBody padding="5">
             <Center>
