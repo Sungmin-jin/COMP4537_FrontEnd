@@ -5,6 +5,7 @@ import "./chatRoom.css";
 import Chat from "../../components/chat/Chat";
 import { connect } from "react-redux";
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatRoom = ({ match, user }) => {
   const [chats, setChats] = useState([]);
@@ -15,44 +16,47 @@ const ChatRoom = ({ match, user }) => {
   const socket = useRef();
 
   useEffect(() => {
-    const getOpponent = async () => {
-      const res = await axios.get(`${url.url}/chatRoom/${user.userId}`);
-      const { userOne, userTwo } = res;
-      const user = await axios.get(
-        `${url.url}/user/${userOne === user.userId ? userTwo : userOne}`
-      );
-      setOpponent(user);
-    };
-    getOpponent();
-
     socket.current = io("ws://localhost:8900");
     socket.current.on("getChat", (data) => {
       const ts = Math.round(new Date().getTime() / 1000);
       const newTs = ts - 7 * 3600;
       setArrivalChat({
         senderId: data.senderId,
-        chatText: data.text,
+        chatText: data.chatText,
         chatDate: newTs,
       });
     });
   }, []);
 
   useEffect(() => {
-    arrivalChat && setChats((prev) => [...prev, arrivalChat]);
-  }, [arrivalChat]);
+    const getChats = async () => {
+      const res = await axios.get(`${url.url}/chat/${match.params.id}`);
+      setChats(res.data);
+    };
 
-  useEffect(() => {
+    const getOpponent = async () => {
+      const res = await axios.get(`${url.url}/chatRoom/${match.params.id}`);
+      const { userOne, userTwo } = res.data;
+
+      const opponent = await axios.get(
+        `${url.url}/user/${userOne === user?.userId ? userTwo : userOne}`
+      );
+      setOpponent(opponent.data);
+    };
+    getOpponent();
+
+    getChats();
     socket.current.emit("join", user?.userId);
     socket.current.on("getUsers", (users) => {});
   }, [user]);
 
   useEffect(() => {
-    const getChats = async () => {
-      const res = await axios.get(`${url.url}/chat/${match.params.id}`);
-      setChats(res.data);
+    const setChat = async () => {
+      console.log(arrivalChat);
+      arrivalChat && (await setChats([...chats, arrivalChat]));
     };
-    getChats();
-  }, [user]);
+    setChat();
+  }, [arrivalChat]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -77,7 +81,6 @@ const ChatRoom = ({ match, user }) => {
     });
     try {
       const res = await axios.post(`${url.url}/chat`, message, config);
-      console.log("from chatroom", res.data);
       setChats([...chats, res.data]);
     } catch (error) {}
   };
@@ -92,7 +95,7 @@ const ChatRoom = ({ match, user }) => {
         <div className="chatBoxTop">
           {chats.length !== 0 ? (
             chats.map((chat) => (
-              <div ref={scrollRef} key={chat.chatId}>
+              <div ref={scrollRef} key={uuidv4()}>
                 <Chat chat={chat} own={chat.senderId === user.userId} />
               </div>
             ))

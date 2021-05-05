@@ -12,6 +12,7 @@ import Posts from "./pages/posts/Posts";
 import Post from "./pages/post/Post";
 import User from "./pages/user/User";
 import ChatRoom from "./pages/chat/ChatRoom";
+import ChatList from "./pages/chat/ChatList";
 
 //Autenticated route
 import AuthRoute from "./components/authRoute/AuthRoute";
@@ -51,6 +52,7 @@ const App = () => {
             <Route ext path="/signup" component={SignUp} />
             <AuthRoute exact path="/user" component={User} />
             //auth route
+            <Route exact path="/chatList" component={ChatList} />
             <Route exact path="/chating/:id" component={ChatRoom} />
             <AuthRoute exact path="/post/:id" component={Post} />
             <AuthRoute exact path="/home" component={Dashboard} />
