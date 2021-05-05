@@ -11,14 +11,17 @@ const ChatList = ({ user }) => {
     const getChatList = async () => {
       const res = await axios.get(`${url.url}/chatRoom`);
       setChatList(res.data);
-      //   const fetchedOpponents = []
-      //   for(let user of res.data) {
-      //       const res2 = axios.get(`${url.url}/user/${use?.userId === userOne.userId}`)
-      //   }
+      console.log(res.data);
     };
     getChatList();
   }, [user]);
-  return <div></div>;
+  return (
+    <div>
+      {chatList.map((chat) => {
+        <div>{chat.chatRoomId}</div>;
+      })}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({

@@ -1,8 +1,17 @@
-import { React } from 'react';
+import React, { useEffect } from "react";
 //components
-import './landing.css';
+import "./landing.css";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-const Landing = () => {
+const Landing = ({ isAuthenticated }) => {
+  const history = useHistory();
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      history.push("/home");
+    }
+  }, [isAuthenticated]);
+
   return (
     <>
       <div className="text-box">
@@ -14,4 +23,8 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, null)(Landing);
