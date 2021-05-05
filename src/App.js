@@ -5,22 +5,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 // pages
-<<<<<<< HEAD
 import Landing from './pages/landing/Landing';
 import Dashboard from './pages/dashboard/Dashboard';
 import PostForm from './pages/postForm/PostForm';
 import Posts from './pages/posts/Posts';
 import Post from './pages/post/Post';
 import User from './pages/user/User';
-=======
-import Landing from "./pages/landing/Landing";
-import Dashboard from "./pages/dashboard/Dashboard";
-import PostForm from "./pages/postForm/PostForm";
-import Posts from "./pages/posts/Posts";
-import Post from "./pages/post/Post";
-import User from "./pages/user/User";
-import ChatRoom from "./pages/chat/ChatRoom";
->>>>>>> d32b8249ecba07bf8120f2025c72a3a1c480c570
+import ChatRoom from './pages/chat/ChatRoom';
 
 //Autenticated route
 import AuthRoute from './components/authRoute/AuthRoute';
@@ -51,9 +42,8 @@ const App = () => {
     <Provider store={store}>
       <ChakraProvider>
         <Router>
-          <Header/>
+          <Header />
           <Switch>
-            <Route exact path="/temp" component={Temp} />
             <Route exact path="/" component={Landing} />
             <Route exact path="/about" component={About} />
             <Route exact path="/signin" component={SignIn} />
