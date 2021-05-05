@@ -5,12 +5,22 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ChakraProvider } from '@chakra-ui/react';
 
 // pages
+<<<<<<< HEAD
 import Landing from './pages/landing/Landing';
 import Dashboard from './pages/dashboard/Dashboard';
 import PostForm from './pages/postForm/PostForm';
 import Posts from './pages/posts/Posts';
 import Post from './pages/post/Post';
 import User from './pages/user/User';
+=======
+import Landing from "./pages/landing/Landing";
+import Dashboard from "./pages/dashboard/Dashboard";
+import PostForm from "./pages/postForm/PostForm";
+import Posts from "./pages/posts/Posts";
+import Post from "./pages/post/Post";
+import User from "./pages/user/User";
+import ChatRoom from "./pages/chat/ChatRoom";
+>>>>>>> d32b8249ecba07bf8120f2025c72a3a1c480c570
 
 //Autenticated route
 import AuthRoute from './components/authRoute/AuthRoute';
@@ -41,25 +51,21 @@ const App = () => {
     <Provider store={store}>
       <ChakraProvider>
         <Router>
-          <div className="container">
-            <Header />
-            <Switch>
-              <Route exact path="/" component={Landing} />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/signin" component={SignIn} />
-              <Route ext path="/signup" component={SignUp} />
-              <AuthRoute exact path="/user" component={User} />
-              <AuthRoute path="/post/:id" component={Post} />
-              <AuthRoute path="/home" component={Dashboard} />
-              <AuthRoute path="/postform" component={PostForm} />
-              <AuthRoute paht="/posts" component={Posts} />
-            </Switch>
-            {/* <div className="footer-container">
-              <span>
-                © COPYRIGHT 2021 | KREAMIN STUDIO | ALL RIGHTS RESERVED.
-              </span>
-            </div> */}
-          </div>
+          <Header/>
+          <Switch>
+            <Route exact path="/temp" component={Temp} />
+            <Route exact path="/" component={Landing} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/signin" component={SignIn} />
+            <Route ext path="/signup" component={SignUp} />
+            <AuthRoute exact path="/user" component={User} />
+            //auth route
+            <Route exact path="/chating/:id" component={ChatRoom} />
+            <AuthRoute exact path="/post/:id" component={Post} />
+            <AuthRoute exact path="/home" component={Dashboard} />
+            <AuthRoute exact path="/postform" component={PostForm} />
+            <AuthRoute exact path="/posts" component={Posts} />
+          </Switch>
         </Router>
       </ChakraProvider>
     </Provider>

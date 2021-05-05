@@ -16,3 +16,5 @@ export const GET_COMMENTS = "GET_COMMENTS";
 export const DELETE_COMMENT = "DELETE_COMMENTS";
 export const EDIT_COMMENT = "EDIT_COMMENT";
 export const GET_USER_POSTS = "GET_USER_POSTS";
+export const GET_CHAT_IDS = "GET_CHAT_IDS";
+export const CHAT_ERROR = "CHAT_ERROR";
