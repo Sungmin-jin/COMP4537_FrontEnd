@@ -10,20 +10,12 @@ import './Comment.css';
 import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import moment from 'moment';
 import {
-  Box,
-  Text,
-  Grid,
-  GridItem,
-  Button,
   Modal,
-  ModalHeader,
   ModalOverlay,
   ModalContent,
   ModalBody,
-  ModalFooter,
   ModalCloseButton,
   Input,
-  Center,
 } from '@chakra-ui/react';
 
 const CommentSection = ({
@@ -36,7 +28,6 @@ const CommentSection = ({
 }) => {
   useEffect(() => {
     getComments(id);
-    console.log('infite?');
   }, []);
 
   const [showDelete, setShowDelete] = useState(false);

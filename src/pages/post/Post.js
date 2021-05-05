@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getPost } from '../../redux/action/post';
-import { Link } from 'react-router-dom';
 import './Post.css';
 import moment from 'moment-timezone';
 import CommentForm from '../../components/comment/CommentForm';
@@ -33,11 +32,7 @@ const Post = ({ getPost, match, post, loading }) => {
       <div className="post-container">
         <div className="grid-container">
           <div className="post-image-container">
-            <img
-              // src="https://www.ikea.com/kr/ko/images/products/ribba-frame-black__0638338_pe698862_s5.jpg?f=s"
-              src={post.img}
-              className="img-thumbnail"
-            />
+            <img src={post.img} className="img-thumbnail" alt="postImage" />
           </div>
           <div className="post-detail-container">
             <div className="post-detail-header">
