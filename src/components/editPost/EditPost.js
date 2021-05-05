@@ -123,7 +123,7 @@ const EditPost = ({ onClose, editPost, post }) => {
           </div>
           {src && (
             <figure className="editpost-image">
-              <img src={src} />
+              <img src={src} alt="editpostImage" />
             </figure>
           )}
           <div className="editpost-footer">

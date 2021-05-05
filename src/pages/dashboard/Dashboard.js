@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { logout } from '../../redux/action/auth';
 import PropTypes from 'prop-types';
@@ -6,12 +6,6 @@ import { connect } from 'react-redux';
 import './dashboard.css';
 
 const Dashboard = ({ logout, isAuthenticated }) => {
-  // 2 bool values for login, and sign up
-  useEffect(() => {
-    // if (isAuthenticated){ toastsadkflasdf}
-    console.log(isAuthenticated);
-  });
-
   const onSubmit = async (e) => {
     e.preventDefault();
     logout();

@@ -7,6 +7,9 @@ label {
 #menu__toggle {
   display: none;
 }
+.menu__item {
+  text-transform: uppercase;
+}
 .menu__item:hover {
   text-decoration: underline;
 }

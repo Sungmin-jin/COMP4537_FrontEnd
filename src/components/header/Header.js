@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { logout } from "../../redux/action/auth";
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../../redux/action/auth';
 
-import "./menu.css";
+import './menu.css';
 
 const Header = ({ isAuthenticated, logout }) => {
   return (
@@ -19,9 +19,11 @@ const Header = ({ isAuthenticated, logout }) => {
             <span className="menu__item">About</span>
           </Link>
           {isAuthenticated ? (
-            <span onClick={logout} className="menu__item">
-              Sign out
-            </span>
+            <Link to="/">
+              <span onClick={logout} className="menu__item">
+                Sign out
+              </span>
+            </Link>
           ) : (
             <Link to="/signin">
               <span className="menu__item">Sign in</span>

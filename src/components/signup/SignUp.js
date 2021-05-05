@@ -100,13 +100,7 @@ const SignUp = ({ register, isAuthenticated }) => {
                 <div className="terms-policy-container">
                   <span>
                     I Accept to
-                    <span>
-                      <a href="#"> Terms </a>
-                    </span>
-                    &
-                    <span>
-                      <a href="#"> Policy </a>
-                    </span>
+                    <span>Terms</span>&<span>Policy</span>
                   </span>
                 </div>
                 <div className="authentication-submit-container">
