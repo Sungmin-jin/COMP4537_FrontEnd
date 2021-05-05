@@ -1,0 +1,38 @@
+.font-style-editpost {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-family: 'Questrial', sans-serif;
+}
+.edit-post-title {
+  text-align: center;
+}
+.is-it-sold-out {
+  text-align: center;
+}
+.editpost-image-container {
+  height: 200px;
+  width: 100px;
+}
+.editpost-image {
+  vertical-align: middle;
+  object-fit: cover;
+  margin: 0 auto;
+  border: 2px solid black;
+}
+.editpost-footer {
+  display: flex;
+  grid-gap: 10px;
+}
+.edit-post-flex-item {
+  padding: 5px;
+  text-align: center;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.camera-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

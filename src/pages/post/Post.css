@@ -1,8 +1,104 @@
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #fff;
   border: 1px solid #dee2e6;
   border-radius: 0.25rem;
+  display: block;
+  margin: auto;
   max-width: 100%;
-  height: auto;
+  height: 100%;
+}
+.post-container {
+  height: 70vh;
+  width: 80%;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.grid-container {
+  display: grid;
+  gap: 3px;
+  grid-template-columns: 1fr 1fr fit-content(30%);
+  grid-template-rows: 1fr 1fr;
+  max-width: 100%;
+  grid-template-areas:
+    'post-image-container post-detail-container'
+    'post-image-container post-comment-container'
+    'post-image-container post-comment-container';
+  height: 100%;
+}
+
+.post-image-container {
+  grid-area: post-image-container;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.post-detail-container {
+  grid-area: post-detail-container;
+}
+.post-comment-container {
+  grid-area: post-comment-container;
+}
+.post-detail-header {
+  padding: 25px;
+}
+.post-title {
+  font-size: 30px;
+  font-weight: bold;
+}
+.available,
+.unavailable {
+  text-transform: uppercase;
+  float: right;
+  font-weight: bold;
+}
+.span-unavailable {
+  color: red;
+}
+.span-available {
+  color: blue;
+}
+.post-detail-contents {
+  width: 100%;
+  padding: 5px 30px;
+}
+.post-date {
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.post-owner {
+  padding: 10px 0px;
+}
+.post-owner span {
+  font-weight: bold;
+}
+.post-text {
+  overflow: auto;
+  padding: 5px;
+  height: 200px;
+}
+.comment-section-container {
+  height: 30vh;
+}
+@media only screen and (max-width: 500px) {
+  .grid-container {
+    padding: 30px 0px;
+    grid-template-columns: 1fr fit-content(30%);
+    grid-template-rows: 1fr;
+    gap: 3px;
+    grid-template-areas:
+      'post-image-container'
+      'post-detail-container'
+      'post-comment-container';
+  }
+  .post-detail-contents {
+    padding: 3px 0px;
+  }
+  .post-detail-header,
+  .post-owner,
+  .post-text {
+    text-align: center;
+  }
 }

@@ -3,7 +3,6 @@ import { uploadComment } from '../../redux/action/comment';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Comment.css';
-import { Text } from '@chakra-ui/react';
 const CommentForm = ({ id, uploadComment }) => {
   const [formData, setFormData] = useState({
     text: '',
@@ -17,31 +16,29 @@ const CommentForm = ({ id, uploadComment }) => {
   };
 
   return (
-    <div id='commentContainer'>
-      <form action='' id='commentForm' onSubmit={onSubmit}>
+    <div id="commentContainer">
+      <form action="" id="commentForm" onSubmit={onSubmit}>
         <input
           required
-          type='text'
-          name='text'
-          id='commentInput'
+          type="text"
+          name="text"
+          id="commentInput"
           value={formData.text}
           onChange={(e) => setFormData({ ...formData, text: e.target.value })}
-          placeholder='write your text here'
+          placeholder="write your text here"
         />
-        <button
-          type='button'
-          id='commentCancelBtn'
-          onClick={() => setFormData({ text: '' })}
-        >
-          <Text fontSize='md' as='samp' colorScheme='teal'>
-            cancel
-          </Text>
-        </button>
-        <button type='submit' id='commentSubmitBtn'>
-          <Text fontSize='md' as='samp' colorScheme='teal' color='white'>
-            Submit
-          </Text>
-        </button>
+        <div className="button-display">
+          <button
+            type="button"
+            id="commentCancelBtn"
+            onClick={() => setFormData({ text: '' })}
+          >
+            <span className="font-theme">cancel</span>
+          </button>
+          <button type="submit" id="commentSubmitBtn">
+            <span className="font-theme">Submit</span>
+          </button>
+        </div>
       </form>
     </div>
   );

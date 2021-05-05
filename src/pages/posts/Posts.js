@@ -1,61 +1,45 @@
-import React, { useEffect } from "react";
-import { getPosts } from "../../redux/action/post";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-
-import {
-  Button,
-  Container,
-  SimpleGrid,
-  Box,
-  Text,
-  Image,
-  Spinner,
-  Center,
-  Wrap,
-  WrapItem,
-  useDisclosure,
-} from "@chakra-ui/react";
+import React, { useEffect } from 'react';
+import { getPosts } from '../../redux/action/post';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Spinner } from '@chakra-ui/react';
+import './Posts.css';
 const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
     getPosts();
   }, []);
   return loading ? (
-    <Center height="100%">
+    <div className="spinner-container">
       <Spinner
         size="xl"
-        thickness="4px"
+        thickness="5px"
         speed="0.65s"
-        emptyColor="gray.200"
-        color="teal"
+        emptyColor="#E2E8F0"
+        color="#90CDF4"
       />
-    </Center>
+    </div>
   ) : (
-    <Container margin="auto" style={{ height: "100%" }}>
-      <Center pt={100} pb={10} margin="auto">
-        <Button p={10} colorScheme="teal" variant="ghost" margin="auto">
-          <Link to="/home">
-            <Text fontSize="2xl" as="samp" color="teal">
-              Krēamin
-            </Text>
+    <div className="posts-body-container">
+      <h1 className="posts-heading-primary">
+        <span className="posts-heading-primary-main">Kreamin Studio</span>
+      </h1>
+
+      <div className="posts-container">
+        {posts.map((post) => (
+          <Link key={post.postId} to={`/post/${post.postId}`}>
+            <div className="hover-post">
+              <figure className="flex-item">
+                <img src={post.img} className="posts-image" alt="images" />
+              </figure>
+              <span className="posts-title">{post.title}</span>
+              <br />
+              <span className="price">CAD${post.price}.00</span>
+            </div>
           </Link>
-        </Button>
-      </Center>
-      <Wrap>
-        <WrapItem>
-          <SimpleGrid columns={{ sm: 2, md: 3 }}>
-            {posts.map((post) => (
-              <Link key={post.postId} to={`/post/${post.postId}`}>
-                <Box>
-                  <Image src={post.img} />
-                </Box>
-              </Link>
-            ))}
-          </SimpleGrid>
-        </WrapItem>
-      </Wrap>
-    </Container>
+        ))}
+      </div>
+    </div>
   );
 };
 

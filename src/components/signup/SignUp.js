@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { register } from '../../redux/action/auth';
-import { Redirect, Link as ReachLink } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import {
-  Link,
   Input,
   Stack,
   Button,
@@ -113,7 +112,11 @@ const SignUp = ({ register, isAuthenticated }) => {
                 <div className="authentication-submit-container">
                   <div className="flex-child signin-alreadyaccount-container">
                     <span className="flex-child">Already have an account?</span>
-                    <span className="flex-child">sign in</span>
+                    <Link to="/signin">
+                      <span className="flex-child hover-underline">
+                        sign in
+                      </span>
+                    </Link>
                   </div>
                   <div className="flex-child authentication-submit-button-container">
                     <Button

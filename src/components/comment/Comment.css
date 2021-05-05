@@ -1,56 +1,46 @@
 /* border-bottom: 1px slid #008080; */
 
 #commentContainer * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
   text-transform: capitalize;
   border: none;
   outline: none;
   letter-spacing: 2px;
-  margin-top: 5px;
-  margin-bottom: 20px;
+  margin: 5px 0px;
 }
 
 #commentContainer {
   display: flex;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  /* min-height: 100vh; */
 }
 
 #commentForm {
-  width: 80%;
+  width: 70%;
   text-align: right;
 }
-
+.font-theme,
+.font-style {
+  font-family: 'Questrial', sans-serif;
+}
+.font-theme:hover {
+  font-weight: bold;
+}
 #commentInput {
   width: 100%;
   height: 40px;
-  background-color: none;
   font-size: 15px;
-  border-bottom: 3px solid #008080;
+  border-bottom: 3px solid #bee3f8;
 }
 #commentInput:focus {
-  border-bottom: 4px solid #008080;
+  border-bottom: 4px solid #bee3f8;
 }
-
-#commentForm button {
-  margin-top: 5px;
-  height: 30px;
-  width: 160px;
-  border-radius: 2px;
+.button-display button {
+  padding: 10px;
 }
-
-@media only screen and (max-width: 500px) {
-  #commentForm {
-    text-align: center;
-    justify-content: center;
-  }
-}
-
-#commentSubmitBtn {
-  background-color: #008080;
+#commentSubmitBtn span {
+  color: #63b3ed;
 }
 
 #commentSection {
@@ -59,6 +49,113 @@
 }
 
 .commentSection {
-  border-bottom: 2px solid #008080;
+  border-bottom: 2px solid #bee3f8;
   text-align: right;
+}
+
+.view-comment-container {
+  border-radius: 5px;
+  background-color: #edf2f7;
+  margin-bottom: 5px !important;
+  margin: 0 auto;
+  padding: 3px 5px;
+  width: 80%;
+  display: grid;
+  grid-template-areas:
+    'view-comment-commentText view-comment-commentDate'
+    'view-comment-commentText view-comment-deleteEdit';
+}
+
+.view-comment-commentText {
+  width: 40vh;
+  padding: 5px;
+  padding-right: 10px;
+  grid-area: view-comment-commentText;
+}
+
+.view-comment-commentDate {
+  text-align: right;
+  font-size: 12px;
+  grid-area: view-comment-commentDate;
+}
+.view-comment-deleteEdit {
+  text-align: right;
+  padding: 3px;
+  grid-area: view-comment-deleteEdit;
+}
+
+.hover-icon {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+.view-comment-deleteEdit:hover .hover-icon {
+  visibility: visible;
+  opacity: 1;
+}
+.modal-delete-title,
+.modal-edit-title {
+  padding: 20px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.modal-delete-btn {
+  padding: 4px;
+  text-align: center;
+}
+.modal-delete-btn span {
+  text-align: center;
+  color: red;
+  text-transform: lowercase;
+}
+.modal-delete-btn span:hover {
+  font-weight: bold;
+}
+.modal-edit-title {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+.modal-edit-input {
+  padding: 10px;
+}
+.modal-edit-btn {
+  padding: 4px;
+  text-align: center;
+  padding: 15px 0px;
+  font-size: 15px;
+}
+.modal-edit-btn span:hover {
+  font-weight: bold;
+}
+@media only screen and (max-width: 500px) {
+  .view-comment-container {
+    width: 37vh;
+  }
+  .view-comment-commentText {
+    width: 20vh;
+  }
+  #commentForm {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .hover-icon {
+    visibility: visible;
+    opacity: 1;
+  }
+  #commentInput {
+    font-size: 12px;
+  }
+  .button-display {
+    width: 100%;
+  }
+  .button-display button {
+    display: inline-block !important;
+  }
+  .font-theme {
+    font-size: 13px;
+  }
 }

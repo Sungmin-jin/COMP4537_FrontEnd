@@ -27,7 +27,6 @@ import "./styles/app.css";
 import SignIn from "./components/signin/SignIn";
 import About from "./pages/about/About";
 import SignUp from "./components/signup/SignUp";
-import Temp from "./components/temp/Temp";
 import Header from "./components/header/Header";
 
 if (localStorage.token) {
@@ -44,8 +43,8 @@ const App = () => {
     <Provider store={store}>
       <ChakraProvider>
         <Router>
+          <Header />
           <Switch>
-            <Route exact path="/temp" component={Temp} />
             <Route exact path="/" component={Landing} />
             <Route exact path="/about" component={About} />
             <Route exact path="/signin" component={SignIn} />

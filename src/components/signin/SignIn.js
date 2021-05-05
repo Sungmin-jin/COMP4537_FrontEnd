@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { Redirect, Link as ReachLink } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../redux/action/auth';
 import {
-  Link,
   Input,
   Stack,
   Button,
@@ -86,25 +85,18 @@ const SignIn = ({ login, isAuthenticated }) => {
                     </InputRightElement>
                   </InputGroup>
                 </FormControl>
-                <div className="terms-policy-container">
-                  <span>
-                    I Accept to
-                    <span>
-                      <a href="#"> Terms </a>
-                    </span>
-                    &
-                    <span>
-                      <a href="#"> Policy </a>
-                    </span>
-                  </span>
-                </div>
+
                 <div className="authentication-submit-container">
                   <div className="flex-child signup-forgotpassword-container">
-                    <Link as={ReachLink} to="/signup">
-                      <span className="flex-child">Sign Up</span>
+                    <Link to="/signup">
+                      <span className="flex-child hover-underline">
+                        Sign Up
+                      </span>
                     </Link>
 
-                    <span className="flex-child">Forgot Password</span>
+                    <span className="flex-child hover-underline">
+                      Forgot Password
+                    </span>
                   </div>
                   <div className="flex-child authentication-submit-button-container">
                     <Button

@@ -1,22 +1,20 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState } from 'react';
 import {
-  Button,
   ModalContent,
   ModalOverlay,
   ModalCloseButton,
   ModalHeader,
   ModalBody,
-  ModalFooter,
   FormControl,
   FormLabel,
   Input,
   Switch,
-  Center,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
-import { connect } from "react-redux";
-import { editPost } from "../../redux/action/post";
-import { AiFillCamera } from "react-icons/ai";
+import { connect } from 'react-redux';
+import { editPost } from '../../redux/action/post';
+import { AiFillCamera } from 'react-icons/ai';
+import './EditPost.css';
 
 const EditPost = ({ onClose, editPost, post }) => {
   const [src, setSrc] = useState(post.img);
@@ -63,68 +61,95 @@ const EditPost = ({ onClose, editPost, post }) => {
     <form onSubmit={onSubmit}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Edit Your Post</ModalHeader>
+        <ModalHeader>
+          <div className="edit-post-title">
+            <span className="font-style-editpost">Edit Your Post</span>
+          </div>
+        </ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <FormControl mb="3">
-            <FormLabel>Title</FormLabel>
+            <FormLabel>
+              <span className="font-style-editpost">Title</span>
+            </FormLabel>
             <Input
               value={formData.title}
               name="title"
+              variant="flushed"
+              focusBorderColor="#9bcaeb"
               onChange={onChange}
               required
             />
           </FormControl>
           <FormControl mb="3">
-            <FormLabel>Price</FormLabel>
+            <FormLabel>
+              <span className="font-style-editpost">Price</span>
+            </FormLabel>
             <Input
               required
               value={formData.price}
               type="number"
               name="price"
+              focusBorderColor="#9bcaeb"
+              variant="flushed"
               onChange={onChange}
             />
           </FormControl>
           <FormControl mb="5">
-            <FormLabel>About your Item</FormLabel>
+            <FormLabel>
+              <span className="font-style-editpost">About your Item</span>
+            </FormLabel>
             <Input
               required
               value={formData.text}
               name="text"
+              focusBorderColor="#9bcaeb"
               onChange={onChange}
-              required
+              variant="flushed"
             />
           </FormControl>
-          <Center mb="3">
-            Is it Sold Out?
+          <div className="is-it-sold-out">
+            <span className="font-style-editpost">Is it Sold Out?</span>
+            <br />
             <Switch
               size="lg"
-              colorScheme="teal"
-              mx="5"
+              color="#9bcaeb"
+              mx="3"
               defaultChecked={formData.isSold}
               onChange={(e) =>
                 setFormData({ ...formData, isSold: e.target.checked })
               }
             />
-          </Center>
-          {src && <img className="img-thumbnail" src={src} />}
+          </div>
+          {src && (
+            <figure className="editpost-image">
+              <img src={src} />
+            </figure>
+          )}
+          <div className="editpost-footer">
+            <div className="edit-post-flex-item">
+              <input
+                type="file"
+                accept="image/x-png,image/jpeg"
+                style={{ display: 'none' }}
+                ref={imageRef}
+                onChange={onFileChange}
+              />
+              <div className="camera-icon">
+                <AiFillCamera
+                  color="#9bcaeb"
+                  size={30}
+                  onClick={onImageClick}
+                />
+              </div>
+            </div>
+            <div className="edit-post-flex-item">
+              <button type="submit">
+                <span className="font-style-editpost">Save</span>
+              </button>
+            </div>
+          </div>
         </ModalBody>
-        <ModalFooter>
-          <input
-            type="file"
-            accept="image/x-png,image/jpeg"
-            style={{ visibility: "hidden" }}
-            ref={imageRef}
-            onChange={onFileChange}
-          />
-          <AiFillCamera color="teal" size={45} onClick={onImageClick} />
-          <Button colorScheme="linkedin" mx="1" onClick={onClose}>
-            Cancel
-          </Button>
-          <Button type="submit" colorScheme="teal">
-            Save
-          </Button>
-        </ModalFooter>
       </ModalContent>
     </form>
   );
