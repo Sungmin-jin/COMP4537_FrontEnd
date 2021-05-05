@@ -1,5 +1,5 @@
 .header {
-  height: 100vh;
+  height: 90vh;
   position: relative;
   background-size: cover;
   background-position: top;
@@ -7,16 +7,41 @@
 
 .heading-primary-main {
   text-align: center;
+  color: #bee3f8;
+  padding: 30px 0px;
 }
 
 .heading-primary-welcome {
-  font-size: 2em;
+  font-size: 20px;
   font-style: italic;
   text-align: center;
 }
-
+.dashboard-view-create-flex-container {
+  display: flex;
+  padding: 50px 0px;
+  font-weight: bold;
+}
+.dashboard-view-create-flex-child {
+  flex: 1;
+}
+.dashboard-profile-signout h3 {
+  padding: 10px 0px;
+}
 .heading-secondary span {
   display: inline-block;
   padding: 3em;
   margin: 0;
+}
+.dashboard-hover {
+  font-size: 20px;
+}
+.dashboard-hover:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px) {
+  .heading-secondary span {
+    display: inline-block;
+    padding: 40px;
+  }
 }

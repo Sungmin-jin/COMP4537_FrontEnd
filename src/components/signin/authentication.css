@@ -1,5 +1,5 @@
 .authentication-container {
-  height: 100vh;
+  height: 90vh;
   position: relative;
 }
 
@@ -13,7 +13,7 @@
 
 .authentication-form-container {
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 5px;
@@ -23,7 +23,9 @@
 .authentication-title {
   text-align: center;
 }
-
+.hover-underline:hover {
+  text-decoration: underline;
+}
 .title-name {
   width: 100vh;
   font-size: 40px;

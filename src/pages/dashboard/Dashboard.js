@@ -1,18 +1,8 @@
 import React, { useEffect } from 'react';
-import { Link as ReachLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { logout } from '../../redux/action/auth';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  Link,
-  Text,
-  Grid,
-  GridItem,
-  Center,
-  Stack,
-  Container,
-} from '@chakra-ui/react';
-
 import './dashboard.css';
 
 const Dashboard = ({ logout, isAuthenticated }) => {
@@ -31,27 +21,34 @@ const Dashboard = ({ logout, isAuthenticated }) => {
     <>
       <div className="header">
         <form onSubmit={(e) => onSubmit(e)}>
-          <div className="text-box">
+          <div className="text-box-dashboard">
             <h1 className="heading-primary-main">Kreamin Studio</h1>
-            <h3 className="heading-primary-welcome">
+            <h2 className="heading-primary-welcome">
               <span> Welcome!</span>
-            </h3>
-            <div className="heading-secondary">
-              <Link as={ReachLink} to="/posts">
-                <span>View</span>
-              </Link>
-              <Link as={ReachLink} to="/postForm">
-                <span>Create</span>
-              </Link>
+            </h2>
+            <div className="dashboard-view-create-flex-container">
+              <div className="dashboard-view-create-flex-child">
+                <Link to="/posts">
+                  <span className="dashboard-hover">View</span>
+                </Link>
+              </div>
+              <div className="dashboard-view-create-flex-child">
+                <Link to="/postForm">
+                  <span className="dashboard-hover">Create</span>
+                </Link>
+              </div>
             </div>
-            <h3>
-              <Link as={ReachLink} to="/user">
-                <span>Profile</span>
-              </Link>
-            </h3>
-            <h3 className="footer-primary" onClick={logout}>
-              <span>Sign Out</span>
-            </h3>
+
+            <div className="dashboard-profile-signout">
+              <h3>
+                <Link to="/user">
+                  <span className="dashboard-hover">Profile</span>
+                </Link>
+              </h3>
+              <h3 className="footer-primary" onClick={logout}>
+                <span className="dashboard-hover">Sign Out</span>
+              </h3>
+            </div>
           </div>
         </form>
       </div>
