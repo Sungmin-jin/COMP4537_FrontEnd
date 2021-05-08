@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   getComments,
   deleteComment,
   editComment,
-} from '../../redux/action/comment';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import './Comment.css';
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
-import moment from 'moment';
+} from "../../redux/action/comment";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import "./Comment.css";
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
+import moment from "moment";
 import {
   Modal,
   ModalOverlay,
@@ -16,7 +16,7 @@ import {
   ModalBody,
   ModalCloseButton,
   Input,
-} from '@chakra-ui/react';
+} from "@chakra-ui/react";
 
 const CommentSection = ({
   id,
@@ -33,7 +33,7 @@ const CommentSection = ({
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentId, setCommentId] = useState();
-  const [formData, setFormData] = useState({ text: '', id: '' });
+  const [formData, setFormData] = useState({ text: "", id: "" });
 
   const onOpenDelete = () => {
     setShowDelete(true);
@@ -73,7 +73,7 @@ const CommentSection = ({
               <div className="view-comment-commentDate">
                 <span>
                   {moment(
-                    moment(comment.commentDate).add(-7, 'hour').format()
+                    moment(comment.commentDate).add(-7, "hour").format()
                   ).fromNow()}
                 </span>
               </div>
@@ -167,7 +167,6 @@ CommentSection.propTypes = {
   getComments: PropTypes.func.isRequired,
   deleteComment: PropTypes.func.isRequired,
   editComment: PropTypes.func.isRequired,
-  user: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({

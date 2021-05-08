@@ -1,6 +1,6 @@
 import React from "react";
 import "./chat.css";
-import moment from "moment-timezone";
+import moment from "moment";
 
 const Chat = ({ own, chat }) => {
   return (
@@ -9,9 +9,7 @@ const Chat = ({ own, chat }) => {
       <div className="chatMiddle">
         <p className="chatText">{chat.chatText}</p>
       </div>
-      <div className="chatBottom">
-        {moment(chat.chatDate).add(7, "hour").fromNow()}
-      </div>
+      <div className="chatBottom">{moment(chat.chatDate).fromNow()}</div>
     </div>
   );
 };

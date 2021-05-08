@@ -1,24 +1,45 @@
-import React, { useEffect, useState, match } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import url from "../../config/defaultUrl.json";
+import moment from "moment-timezone";
 
 const ChatList = ({ user }) => {
   const [chatList, setChatList] = useState([]);
-  const [opponents, setOpponents] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getChatList = async () => {
       const res = await axios.get(`${url.url}/chatRoom`);
       setChatList(res.data);
-      //   const fetchedOpponents = []
-      //   for(let user of res.data) {
-      //       const res2 = axios.get(`${url.url}/user/${use?.userId === userOne.userId}`)
-      //   }
+      console.log(res.data);
     };
     getChatList();
   }, [user]);
-  return <div></div>;
+
+  return (
+    <div>
+      {chatList.map((chat) => (
+        <div
+          key={chat.chatRoomId}
+          className="chatRoom"
+          onClick={() => {
+            history.push(`/chatting/${chat.chatRoomId}`);
+          }}
+        >
+          <span>
+            {" "}
+            {user?.userId === chat.userOneId
+              ? chat.userTwoName
+              : chat.userOneName}
+          </span>
+          <span>{chat.lastChat}</span>
+          <span>{moment(chat.lastUpdate).fromNow()}</span>
+        </div>
+      ))}
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
