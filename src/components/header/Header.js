@@ -31,9 +31,15 @@ const Header = ({ isAuthenticated, logout }) => {
           )}
         </div>
         <div className="header-top-flex-child">
-          <Link to="/">
-            <span className="menu__item">KREAMIN STUDIO</span>
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/home">
+              <span className="menu__item">KREAMIN STUDIO</span>
+            </Link>
+          ) : (
+            <Link to="/">
+              <span className="menu__item">KREAMIN STUDIO</span>
+            </Link>
+          )}
         </div>
       </header>
     </>
