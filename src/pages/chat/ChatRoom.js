@@ -16,14 +16,13 @@ const ChatRoom = ({ match, user }) => {
   const socket = useRef();
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8900");
+    socket.current = io(url.endPoint);
     socket.current.on("getChat", (data) => {
-      const ts = Math.round(new Date().getTime() / 1000);
-      const newTs = ts - 7 * 3600;
+      var date = new Date(Date.now());
       setArrivalChat({
         senderId: data.senderId,
         chatText: data.chatText,
-        chatDate: newTs,
+        chatDate: date,
       });
     });
   }, []);
@@ -43,16 +42,18 @@ const ChatRoom = ({ match, user }) => {
       );
       setOpponent(opponent.data);
     };
-    getOpponent();
 
-    getChats();
-    socket.current.emit("join", user?.userId);
-    socket.current.on("getUsers", (users) => {});
+    if (user) {
+      getOpponent();
+
+      getChats();
+      socket.current.emit("join", user?.userId);
+      socket.current.on("getUsers", (users) => {});
+    }
   }, [user]);
 
   useEffect(() => {
     const setChat = async () => {
-      console.log(arrivalChat);
       arrivalChat && (await setChats([...chats, arrivalChat]));
     };
     setChat();
@@ -64,6 +65,7 @@ const ChatRoom = ({ match, user }) => {
 
   const messageSend = async (e) => {
     e.preventDefault();
+    setNewMessage("");
     const message = {
       senderId: user.userId,
       chatText: newMessage,

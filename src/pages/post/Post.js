@@ -1,17 +1,67 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getPost } from '../../redux/action/post';
-import './Post.css';
-import moment from 'moment-timezone';
-import CommentForm from '../../components/comment/CommentForm';
-import CommentSection from '../../components/comment/CommentSection';
-import { Spinner } from '@chakra-ui/react';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getPost } from "../../redux/action/post";
+import "./Post.css";
+import moment from "moment-timezone";
+import CommentForm from "../../components/comment/CommentForm";
+import CommentSection from "../../components/comment/CommentSection";
+import { Spinner } from "@chakra-ui/react";
+import axios from "axios";
+import url from "../../config/defaultUrl.json";
+import { useHistory } from "react-router-dom";
 
-const Post = ({ getPost, match, post, loading }) => {
+const Post = ({ getPost, match, post, loading, user }) => {
+  const [commonRoom, setCommonRoom] = useState(null);
+  const history = useHistory();
   useEffect(() => {
     getPost(match.params.id);
   }, []);
+
+  useEffect(() => {
+    const getChatRooms = async () => {
+      const config = {
+        header: {
+          "Content-Type": "application/json",
+        },
+      };
+      if (!user || !post) {
+        return;
+      }
+
+      if (user.userId == post.userId) return;
+      const res = await axios.post(
+        `${url.url}/chatRoom/commonRoom`,
+        { user1: post.userId, user2: user.userId },
+        config
+      );
+      console.log(res.data);
+      setCommonRoom(res.data);
+    };
+    getChatRooms();
+  }, [post, user]);
+
+  const chatClick = async () => {
+    const config = {
+      header: {
+        "Content-Type": "application/json",
+      },
+    };
+    const createChatRoom = async () => {
+      const chatRoom = await axios.post(
+        `${url.url}/chatRoom`,
+        { userOne: post.userId, userTwo: user.userId },
+        config
+      );
+      history.push(`/chatting/${chatRoom.chatRoomId}`);
+    };
+
+    if (!commonRoom) {
+      createChatRoom();
+    } else {
+      history.push(`/chatting/${commonRoom.chatRoomId}`);
+    }
+  };
 
   return loading ? (
     <div className="spinner-container">
@@ -37,6 +87,11 @@ const Post = ({ getPost, match, post, loading }) => {
           <div className="post-detail-container">
             <div className="post-detail-header">
               <span className="post-title">{post.title}</span>
+              {post && user && post.userId !== user.userId ? (
+                <span onClick={chatClick}> Go to Chat</span>
+              ) : (
+                <></>
+              )}
             </div>
             <div className="post-detail-contents">
               <span>
@@ -50,7 +105,7 @@ const Post = ({ getPost, match, post, loading }) => {
               </span>
               <span className="post-date">
                 {moment(
-                  moment(post.postDate).add(-7, 'hour').format()
+                  moment(post.postDate).add(-7, "hour").format()
                 ).fromNow()}
               </span>
               <hr />
@@ -83,6 +138,7 @@ Post.propTypes = {
 const mapStateToProps = (state) => ({
   post: state.post.post,
   loading: state.post.loading,
+  user: state.auth.user,
 });
 
 export default connect(mapStateToProps, { getPost })(Post);

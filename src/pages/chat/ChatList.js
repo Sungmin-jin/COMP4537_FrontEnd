@@ -1,11 +1,13 @@
-import React, { useEffect, useState, match } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import axios from "axios";
 import url from "../../config/defaultUrl.json";
+import moment from "moment-timezone";
 
 const ChatList = ({ user }) => {
   const [chatList, setChatList] = useState([]);
-  const [opponents, setOpponents] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     const getChatList = async () => {
@@ -15,11 +17,27 @@ const ChatList = ({ user }) => {
     };
     getChatList();
   }, [user]);
+
   return (
     <div>
-      {chatList.map((chat) => {
-        <div>{chat.chatRoomId}</div>;
-      })}
+      {chatList.map((chat) => (
+        <div
+          key={chat.chatRoomId}
+          className="chatRoom"
+          onClick={() => {
+            history.push(`/chatting/${chat.chatRoomId}`);
+          }}
+        >
+          <span>
+            {" "}
+            {user?.userId === chat.userOneId
+              ? chat.userTwoName
+              : chat.userOneName}
+          </span>
+          <span>{chat.lastChat}</span>
+          <span>{moment(chat.lastUpdate).fromNow()}</span>
+        </div>
+      ))}
     </div>
   );
 };
