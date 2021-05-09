@@ -71,6 +71,7 @@ export const getPost = (id) => async (dispatch) => {
       },
     };
     const res = await axios.get(`${defaultUrl.url}/posts/${id}`, config);
+
     dispatch({
       type: GET_POST,
       payload: res.data,
@@ -113,14 +114,12 @@ export const editPost = (formData, id, file) => async (dispatch) => {
       const fileUrl = await fileRef.getDownloadURL();
       formData.image = fileUrl;
     }
-    console.log("edit post");
 
     const res = await axios.put(
       `${defaultUrl.url}/posts/${id}`,
       formData,
       config
     );
-    console.log(res);
     dispatch(getMyPosts());
   } catch (error) {
     console.log(error);

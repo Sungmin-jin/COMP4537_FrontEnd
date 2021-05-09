@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { io } from "socket.io-client";
 import url from "../../config/defaultUrl.json";
 import "./chatRoom.css";
@@ -14,6 +15,7 @@ const ChatRoom = ({ match, user }) => {
   const [opponent, setOpponent] = useState(null);
   const scrollRef = useRef();
   const socket = useRef();
+  const history = useHistory();
 
   useEffect(() => {
     socket.current = io(url.endPoint);
@@ -34,11 +36,21 @@ const ChatRoom = ({ match, user }) => {
     };
 
     const getOpponent = async () => {
+      if (!user) {
+        return;
+      }
       const res = await axios.get(`${url.url}/chatRoom/${match.params.id}`);
+      if (!res) {
+        history.push("/NotFound");
+      }
       const { userOne, userTwo } = res.data;
 
+      if (userOne !== user.userId && userTwo !== user.userId) {
+        history.push("/NotFound");
+      }
+
       const opponent = await axios.get(
-        `${url.url}/user/${userOne === user?.userId ? userTwo : userOne}`
+        `${url.url}/user/${userOne === user.userId ? userTwo : userOne}`
       );
       setOpponent(opponent.data);
     };

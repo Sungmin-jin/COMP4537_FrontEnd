@@ -20,7 +20,6 @@ export const uploadComment = (formData) => async (dispatch) => {
       "Content-Type": "application/json",
     },
   };
-  console.log(formData);
   try {
     await axios.post(`${defaultUrl.url}/comments`, formData, config);
     dispatch(getComments(formData.postId));
