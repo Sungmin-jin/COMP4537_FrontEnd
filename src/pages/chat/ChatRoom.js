@@ -95,8 +95,8 @@ const ChatRoom = ({ match, user }) => {
   return (
     <>
       <div className="chatroom-header">
-        <h1>
-          <span className="chatroom-header-main">Kreamin Studio</span>
+        <h1 className="chat-heading-primary">
+          <span className="user-heading-primary-main">Kreamin Studio</span>
         </h1>
       </div>
       <div className="chatBox">
@@ -115,14 +115,14 @@ const ChatRoom = ({ match, user }) => {
             )}
           </div>
           <div className="chatBoxBottom">
-            <Textarea
+            <textarea
               placeholder="message here"
               className="chatMessageInput"
               value={newMessage}
               onChange={(e) => setNewMessage(e.target.value)}
-            ></Textarea>
+            ></textarea>
             <button className="chatSubmitButton" onClick={messageSend}>
-              Send
+              <span className="font-style">Send</span>
             </button>
           </div>
         </div>

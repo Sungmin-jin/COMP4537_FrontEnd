@@ -12,7 +12,43 @@
   margin: 0 auto;
   flex: 5.5;
   width: 50vh;
-  background-color: beige;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 10px;
+}
+.chatlist-container {
+  width: 20%;
+  margin: 0 auto;
+}
+.chatRoom {
+  height: 100%;
+  display: grid;
+  background-color: #edf2f7;
+  border-radius: 5px;
+  grid-template-areas:
+    'chat-person'
+    'chat-text';
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+.chat-person {
+  grid-area: chat-person;
+  padding: 10px;
+}
+.chat-person span {
+  font-weight: bold;
+  font-style: italic;
+}
+.chat-text {
+  grid-area: chat-text;
+  padding: 0px 10px;
+}
+.chat-text span {
+  padding: 0px 10px;
+}
+.chat-time {
+  font-size: 13px;
 }
 
 .chatBoxBottom {
@@ -20,6 +56,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px;
+  border-top: 1px solid black;
+}
+.chatBoxBottom textarea {
+  width: 100%;
 }
 
 .chatMessageInput {
@@ -29,13 +70,16 @@
 }
 
 .chatSubmitButton {
-  width: 70px;
+  width: 80px;
   height: 40px;
   cursor: pointer;
   text-align: center;
 }
+.chatSubmitButton span {
+  text-transform: uppercase;
+}
 .chatSubmitButton:hover {
-  background-color: #9bcaeb;
+  text-decoration: underline;
 }
 
 .chatBoxWrapper {
@@ -45,7 +89,22 @@
 }
 
 .chatBoxTop {
-  height: 100%;
-  /* overflow-y: scroll; */
-  padding-right: 10px;
+  height: 60vh;
+  overflow-y: scroll;
+}
+@media only screen and (max-width: 500px) {
+  .chatroom-header-main {
+    font-size: 20px;
+  }
+  .chat-heading-primary {
+    font-size: 20px;
+    padding: 75px 0px;
+  }
+  .chatBox {
+    width: 100%;
+    border: hidden;
+  }
+  .chatlist-container {
+    width: 80%;
+  }
 }

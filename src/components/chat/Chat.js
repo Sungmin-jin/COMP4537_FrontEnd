@@ -9,7 +9,9 @@ const Chat = ({ own, chat }) => {
       <div className="chatMiddle">
         <p className="chatText">{chat.chatText}</p>
       </div>
-      <div className="chatBottom">{moment(chat.chatDate).fromNow()}</div>
+      <div className="chatBottom">
+        <span>{moment(chat.chatDate).fromNow()}</span>
+      </div>
     </div>
   );
 };

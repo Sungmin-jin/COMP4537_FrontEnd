@@ -31,12 +31,3 @@
   background-color: rgb(245, 241, 241);
   color: black;
 }
-.chatBottom {
-  visibility: hidden;
-  opacity: 0;
-}
-.chatText:hover .chatBottom {
-  visibility: visible;
-  opacity: 1;
-  transition: opacity 0.2s, visibility 0.2s;
-}
