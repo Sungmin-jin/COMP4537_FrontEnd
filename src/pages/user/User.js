@@ -42,6 +42,11 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
               # of Posts: <span className="font-style">{posts.length}</span>
             </span>
           </div>
+          <div className="info-4">
+            <Link to="/chatList">
+              <span className="font-style"> Chat list</span>
+            </Link>
+          </div>
         </div>
         <div className="hr-line">
           <hr />

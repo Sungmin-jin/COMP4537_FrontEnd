@@ -26,12 +26,16 @@
   text-align: left;
 }
 .info-2,
-.info-3 {
+.info-3,
+.info-4 {
   text-align: left;
   font-size: 20px;
 }
+.info-4 span:hover {
+  text-decoration: underline;
+}
 .hr-line {
-  top: 27%;
+  top: 30%;
   left: 50%;
   position: absolute;
   transform: translate(-50%, -50%);
@@ -109,11 +113,13 @@
     font-size: 30px;
   }
   .info-2,
-  .info-3 {
+  .info-3,
+  .info-4 {
     text-align: center;
   }
   .info-2 span,
-  .info-3 span {
+  .info-3 span,
+  .info-4 span {
     font-size: 15px;
   }
   .text-display {

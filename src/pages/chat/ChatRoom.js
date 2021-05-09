@@ -1,15 +1,16 @@
-import React, { useEffect, useState, useRef } from "react";
-import { io } from "socket.io-client";
-import url from "../../config/defaultUrl.json";
-import "./chatRoom.css";
-import Chat from "../../components/chat/Chat";
-import { connect } from "react-redux";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+import React, { useEffect, useState, useRef } from 'react';
+import { io } from 'socket.io-client';
+import url from '../../config/defaultUrl.json';
+import './chatRoom.css';
+import Chat from '../../components/chat/Chat';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid';
+import { Textarea } from '@chakra-ui/react';
 
 const ChatRoom = ({ match, user }) => {
   const [chats, setChats] = useState([]);
-  const [newMessage, setNewMessage] = useState("");
+  const [newMessage, setNewMessage] = useState('');
   const [arrivalChat, setArrivalChat] = useState(null);
   const [opponent, setOpponent] = useState(null);
   const scrollRef = useRef();
@@ -17,7 +18,7 @@ const ChatRoom = ({ match, user }) => {
 
   useEffect(() => {
     socket.current = io(url.endPoint);
-    socket.current.on("getChat", (data) => {
+    socket.current.on('getChat', (data) => {
       var date = new Date(Date.now());
       setArrivalChat({
         senderId: data.senderId,
@@ -47,8 +48,8 @@ const ChatRoom = ({ match, user }) => {
       getOpponent();
 
       getChats();
-      socket.current.emit("join", user?.userId);
-      socket.current.on("getUsers", (users) => {});
+      socket.current.emit('join', user?.userId);
+      socket.current.on('getUsers', (users) => {});
     }
   }, [user]);
 
@@ -60,12 +61,12 @@ const ChatRoom = ({ match, user }) => {
   }, [arrivalChat]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chats]);
 
   const messageSend = async (e) => {
     e.preventDefault();
-    setNewMessage("");
+    setNewMessage('');
     const message = {
       senderId: user.userId,
       chatText: newMessage,
@@ -73,10 +74,10 @@ const ChatRoom = ({ match, user }) => {
     };
     const config = {
       header: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
     };
-    socket.current.emit("sendChat", {
+    socket.current.emit('sendChat', {
       senderId: user.userId,
       receiverId: opponent.userId,
       chatText: newMessage,
@@ -92,34 +93,41 @@ const ChatRoom = ({ match, user }) => {
   }
 
   return (
-    <div className="chatBox">
-      <div className="chatBoxWrapper">
-        <div className="chatBoxTop">
-          {chats.length !== 0 ? (
-            chats.map((chat) => (
-              <div ref={scrollRef} key={uuidv4()}>
-                <Chat chat={chat} own={chat.senderId === user.userId} />
-              </div>
-            ))
-          ) : (
-            <span className="noConversationText">
-              Open a conversation to start a chat
-            </span>
-          )}
-        </div>
-        <div className="chatBoxBottom">
-          <textarea
-            placeholder="message here"
-            className="chatMessageInput"
-            value={newMessage}
-            onChange={(e) => setNewMessage(e.target.value)}
-          ></textarea>
-          <button className="chatSubmitButton" onClick={messageSend}>
-            Send
-          </button>
+    <>
+      <div className="chatroom-header">
+        <h1>
+          <span className="chatroom-header-main">Kreamin Studio</span>
+        </h1>
+      </div>
+      <div className="chatBox">
+        <div className="chatBoxWrapper">
+          <div className="chatBoxTop">
+            {chats.length !== 0 ? (
+              chats.map((chat) => (
+                <div ref={scrollRef} key={uuidv4()}>
+                  <Chat chat={chat} own={chat.senderId === user.userId} />
+                </div>
+              ))
+            ) : (
+              <span className="noConversationText">
+                Open a conversation to start a chat
+              </span>
+            )}
+          </div>
+          <div className="chatBoxBottom">
+            <Textarea
+              placeholder="message here"
+              className="chatMessageInput"
+              value={newMessage}
+              onChange={(e) => setNewMessage(e.target.value)}
+            ></Textarea>
+            <button className="chatSubmitButton" onClick={messageSend}>
+              Send
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

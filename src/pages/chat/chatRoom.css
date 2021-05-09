@@ -1,5 +1,18 @@
+.chatroom-header {
+  color: #9bcaeb;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Questrial', sans-serif;
+}
+.chatroom-header-main {
+  font-size: 60px;
+  letter-spacing: 10px;
+}
 .chatBox {
+  margin: 0 auto;
   flex: 5.5;
+  width: 50vh;
+  background-color: beige;
 }
 
 .chatBoxBottom {
@@ -10,21 +23,19 @@
 }
 
 .chatMessageInput {
-  width: 80%;
+  width: 50%;
   height: 90px;
   padding: 10px;
-  border: 1px solid black;
 }
 
 .chatSubmitButton {
   width: 70px;
   height: 40px;
-  border: none;
-  border-radius: 5px;
   cursor: pointer;
-  background-color: teal;
-  color: white;
   text-align: center;
+}
+.chatSubmitButton:hover {
+  background-color: #9bcaeb;
 }
 
 .chatBoxWrapper {
