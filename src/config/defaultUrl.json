@@ -1,4 +1,4 @@
 {
-  "url": "http://localhost:5000/api/v1",
-  "endPoint": "http://localhost:5000"
+  "url": "https://comp4537-backend.herokuapp.com/api/v1",
+  "endPoint": "https://comp4537-backend.herokuapp.com/"
 }
