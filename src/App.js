@@ -13,6 +13,7 @@ import Post from "./pages/post/Post";
 import User from "./pages/user/User";
 import ChatRoom from "./pages/chat/ChatRoom";
 import ChatList from "./pages/chat/ChatList";
+import NotFound from "./pages/Error Page/NotFound";
 
 //Autenticated route
 import AuthRoute from "./components/authRoute/AuthRoute";
@@ -57,6 +58,7 @@ const App = () => {
             <AuthRoute exact path="/home" component={Dashboard} />
             <AuthRoute exact path="/postform" component={PostForm} />
             <AuthRoute exact path="/posts" component={Posts} />
+            <Route path="*" component={NotFound} />
           </Switch>
         </Router>
       </ChakraProvider>
