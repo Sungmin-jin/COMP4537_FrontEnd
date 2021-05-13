@@ -23,9 +23,9 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
   return (
     <>
       <div className="user-container">
-        <h1 className="user-heading-primary">
+        <div className="user-heading-primary">
           <span className="user-heading-primary-main">Kreamin Studio</span>
-        </h1>
+        </div>
 
         <div className="user-information-panel">
           <div className="info-1">

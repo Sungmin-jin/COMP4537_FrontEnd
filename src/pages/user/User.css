@@ -4,7 +4,8 @@
 }
 .user-container {
   text-align: center;
-  position: relative;
+  width: 80%;
+  margin: 0 auto;
 }
 .user-heading-primary {
   color: #9bcaeb;
@@ -16,9 +17,7 @@
   letter-spacing: 10px;
 }
 .user-information-panel {
-  top: 10%;
-  left: 25%;
-  position: absolute;
+  padding: 0px 100px;
 }
 .info-1 {
   font-size: 40px;
@@ -35,21 +34,15 @@
   text-decoration: underline;
 }
 .hr-line {
-  top: 30%;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, -50%);
-  background-color: #9bcaeb;
-  width: 60%;
+  height: 2px;
+  padding: 20px 50px;
 }
 .font-style {
   font-weight: bold;
 }
 .user-posts-container {
   margin: 0 auto;
-  margin-top: 15em;
   height: auto;
-  width: 60%;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
@@ -97,20 +90,21 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .user-container {
+    width: 100%;
+  }
   .user-heading-primary {
     font-size: 20px;
-    padding: 100px 0px;
+
+    padding: 80px 0px 10px 0px;
+    width: 100%;
   }
   .user-information-panel {
-    position: absolute;
     width: 100%;
-    transform: translate(-50%, -50%);
-    top: 30%;
-    left: 50%;
   }
   .info-1 {
     text-align: center;
-    font-size: 30px;
+    font-size: 20px;
   }
   .info-2,
   .info-3,
@@ -126,15 +120,10 @@
     display: none;
   }
 
-  .hr-line {
-    position: absolute;
-    top: 43%;
-  }
   .user-heading-primary-main {
     font-size: 20px;
   }
   .user-posts-container {
-    margin-top: 7em;
     width: 100%;
   }
   .user-btn {
