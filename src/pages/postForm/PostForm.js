@@ -61,14 +61,14 @@ const PostForm = ({ uploadPost }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   return (
-    <div className='whole-thing'>
-      <form id='post-form' onSubmit={onSubmit}>
+    <div className="whole-thing">
+      <form id="post-form" onSubmit={onSubmit}>
         <FormControl>
           <FormLabel>Title</FormLabel>
           <Input
             required
-            placeholder='title'
-            name='title'
+            placeholder="title"
+            name="title"
             value={formData.title}
             onChange={onChange}
           />
@@ -76,8 +76,8 @@ const PostForm = ({ uploadPost }) => {
         <FormControl>
           <FormLabel>About your item</FormLabel>
           <Textarea
-            placeholder='Tell us about your item'
-            name='text'
+            placeholder="Tell us about your item"
+            name="text"
             value={formData.text}
             onChange={onChange}
           />
@@ -86,28 +86,27 @@ const PostForm = ({ uploadPost }) => {
           <FormLabel>Price</FormLabel>
           <Input
             required
-            placeholder='price'
-            type='number'
-            min='0'
-            name='price'
+            placeholder="price"
+            type="number"
+            min="0"
             value={formData.price}
             onChange={onChange}
           />
         </FormControl>
         <FormControl>
-          <div className='fileContainer'>
-            <div className='wrapper' ref={wrapperRef}>
-              <div className='image'>
-                <img src={src} alt='' />
+          <div className="fileContainer">
+            <div className="wrapper" ref={wrapperRef}>
+              <div className="image">
+                <img src={src} alt="" />
               </div>
-              <div className='content'>
-                <div className='icon'>
+              <div className="content">
+                <div className="icon">
                   <Icon as={FiFile} />
                 </div>
-                <div className='text'>No file chosen, yet!</div>
+                <div className="text">No file chosen, yet!</div>
               </div>
               <div
-                id='cancel-btn'
+                id="cancel-btn"
                 ref={cancelBtn}
                 onClick={() => setSrc(undefined)}
               >
@@ -116,9 +115,9 @@ const PostForm = ({ uploadPost }) => {
               {/* <div className='file-name'>File name here</div> */}
             </div>
             <input
-              type='file'
-              id='default-btn'
-              name='image'
+              type="file"
+              id="default-btn"
+              name="image"
               //   value={formData.image}
               onChange={(e) => {
                 defaultChange(e);
@@ -127,12 +126,12 @@ const PostForm = ({ uploadPost }) => {
               //   style={{ display: 'none' }}
               hidden
             />
-            <button id='custom-btn' onClick={(e) => handleClick(e)}>
-              Choose a file
-            </button>
           </div>
         </FormControl>
-        <Button colorScheme='teal' type='submit' mt='5'>
+        <button id="custom-btn" onClick={(e) => handleClick(e)}>
+          Choose a file
+        </button>
+        <Button color="#9bcaeb" type="submit" mt="5">
           Submit
         </Button>
       </form>
