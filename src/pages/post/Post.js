@@ -78,47 +78,42 @@ const Post = ({ getPost, match, post, loading, user }) => {
       <h1 className="posts-heading-primary">
         <span className="posts-heading-primary-main">Kreamin Studio</span>
       </h1>
-
       <div className="post-container">
-        <div className="grid-container">
-          <div className="post-image-container">
-            <img src={post.img} className="img-thumbnail" alt="postImage" />
+        <div className="post-image-container">
+          <img src={post.img} className="img-thumbnail" alt="postImage" />
+        </div>
+        <div className="post-detail-container">
+          <div className="post-detail-header">
+            <span className="post-title">{post.title}</span>
+            {post && user && post.userId !== user.userId ? (
+              <span onClick={chatClick} className="go-to-chat">
+                Go to Chat
+              </span>
+            ) : (
+              <></>
+            )}
           </div>
-          <div className="post-detail-container">
-            <div className="post-detail-header">
-              <span className="post-title">{post.title}</span>
-              {post && user && post.userId !== user.userId ? (
-                <span onClick={chatClick} className="go-to-chat">
-                  Go to Chat
+          <div className="post-detail-contents-1">
+            <span>
+              {post.isSold === 1 ? (
+                <span className="span-unavailable unavailable">
+                  NOT AVAILABLE
                 </span>
               ) : (
-                <></>
+                <span className="span-available available">available</span>
               )}
+            </span>
+            <span className="post-date">
+              {moment(moment(post.postDate).add(-7, 'hour').format()).fromNow()}
+            </span>
+            <hr />
+          </div>
+          <div className="post-detail-contents-2">
+            <div className="post-owner">
+              Posted By: <span> {post.name}</span>
             </div>
-            <div className="post-detail-contents-1">
-              <span>
-                {post.isSold === 1 ? (
-                  <span className="span-unavailable unavailable">
-                    NOT AVAILABLE
-                  </span>
-                ) : (
-                  <span className="span-available available">available</span>
-                )}
-              </span>
-              <span className="post-date">
-                {moment(
-                  moment(post.postDate).add(-7, 'hour').format()
-                ).fromNow()}
-              </span>
-              <hr />
-            </div>
-            <div className="post-detail-contents-2">
-              <div className="post-owner">
-                Posted By: <span> {post.name}</span>
-              </div>
-              <div className="post-text">
-                <span>{post.text}</span>
-              </div>
+            <div className="post-text">
+              <span>{post.text}</span>
             </div>
           </div>
           <div className="post-comment-container">

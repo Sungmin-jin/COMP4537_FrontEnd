@@ -87,6 +87,7 @@ const PostForm = ({ uploadPost }) => {
           <Input
             required
             placeholder="price"
+            name="price"
             type="number"
             min="0"
             value={formData.price}
