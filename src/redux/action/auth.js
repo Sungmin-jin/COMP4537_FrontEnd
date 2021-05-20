@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 import {
   AUTH_ERROR,
   REGISTER_SUCCESS,
@@ -7,10 +7,10 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
   USER_LOADED,
-} from './types';
+} from "./types";
 
-import defaultUrl from '../../config/defaultUrl.json';
-import setAuthToken from '../../utils/setAuthToken';
+import defaultUrl from "../../config/defaultUrl.json";
+import setAuthToken from "../../utils/setAuthToken";
 
 //load user
 export const loadUser = () => async (dispatch) => {
@@ -31,47 +31,53 @@ export const loadUser = () => async (dispatch) => {
 };
 
 //Register User
-export const register = ({ name, email, password }) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
+export const register =
+  ({ name, email, password }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const formData = JSON.stringify({ name, email, password });
+    try {
+      const res = await axios.post(`${defaultUrl.url}/user`, formData, config);
+      dispatch({
+        type: REGISTER_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: REGISTER_FAIL,
+      });
+    }
   };
-  const formData = JSON.stringify({ name, email, password });
-  try {
-    const res = await axios.post(`${defaultUrl.url}/user`, formData, config);
-    dispatch({
-      type: REGISTER_SUCCESS,
-      payload: res.data,
-    });
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: REGISTER_FAIL,
-    });
-  }
-};
 
 //login
-export const login = ({ email, password }) => async (dispatch) => {
-  const config = {
-    headers: {
-      'Content-type': 'application/json',
-    },
+export const login =
+  ({ email, password }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    const formData = JSON.stringify({ email, password });
+    try {
+      const res = await axios.post(`${defaultUrl.url}/auth`, formData, config);
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+      dispatch(loadUser());
+    } catch (error) {
+      dispatch({
+        type: LOGIN_FAIL,
+      });
+    }
   };
-  const formData = JSON.stringify({ email, password });
-  try {
-    const res = await axios.post(`${defaultUrl.url}/auth`, formData, config);
-    dispatch({
-      type: LOGIN_SUCCESS,
-      payload: res.data,
-    });
-  } catch (error) {
-    dispatch({
-      type: LOGIN_FAIL,
-    });
-  }
-};
 
 export const logout = () => (dispatch) => {
   dispatch({ type: LOGOUT });

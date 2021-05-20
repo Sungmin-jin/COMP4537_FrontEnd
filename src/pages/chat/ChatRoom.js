@@ -1,16 +1,16 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { useHistory } from 'react-router-dom';
-import { io } from 'socket.io-client';
-import url from '../../config/defaultUrl.json';
-import './chatRoom.css';
-import Chat from '../../components/chat/Chat';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import { v4 as uuidv4 } from 'uuid';
+import React, { useEffect, useState, useRef } from "react";
+import { useHistory } from "react-router-dom";
+import { io } from "socket.io-client";
+import url from "../../config/defaultUrl.json";
+import "./chatRoom.css";
+import Chat from "../../components/chat/Chat";
+import { connect } from "react-redux";
+import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 
 const ChatRoom = ({ match, user }) => {
   const [chats, setChats] = useState([]);
-  const [newMessage, setNewMessage] = useState('');
+  const [newMessage, setNewMessage] = useState("");
   const [arrivalChat, setArrivalChat] = useState(null);
   const [opponent, setOpponent] = useState(null);
   const scrollRef = useRef();
@@ -19,7 +19,7 @@ const ChatRoom = ({ match, user }) => {
 
   useEffect(() => {
     socket.current = io(url.endPoint);
-    socket.current.on('getChat', (data) => {
+    socket.current.on("getChat", (data) => {
       var date = new Date(Date.now());
       setArrivalChat({
         senderId: data.senderId,
@@ -41,12 +41,12 @@ const ChatRoom = ({ match, user }) => {
       }
       const res = await axios.get(`${url.url}/chatRoom/${match.params.id}`);
       if (!res) {
-        history.push('/NotFound');
+        history.push("/NotFound");
       }
       const { userOne, userTwo } = res.data;
 
       if (userOne !== user.userId && userTwo !== user.userId) {
-        history.push('/NotFound');
+        history.push("/NotFound");
       }
 
       const opponent = await axios.get(
@@ -59,8 +59,8 @@ const ChatRoom = ({ match, user }) => {
       getOpponent();
 
       getChats();
-      socket.current.emit('join', user?.userId);
-      socket.current.on('getUsers', (users) => {});
+      socket.current.emit("join", user?.userId);
+      socket.current.on("getUsers", (users) => {});
     }
   }, [user]);
 
@@ -72,12 +72,12 @@ const ChatRoom = ({ match, user }) => {
   }, [arrivalChat]);
 
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth' });
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chats]);
 
   const messageSend = async (e) => {
     e.preventDefault();
-    setNewMessage('');
+    setNewMessage("");
     const message = {
       senderId: user.userId,
       chatText: newMessage,
@@ -85,10 +85,10 @@ const ChatRoom = ({ match, user }) => {
     };
     const config = {
       header: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
-    socket.current.emit('sendChat', {
+    socket.current.emit("sendChat", {
       senderId: user.userId,
       receiverId: opponent.userId,
       chatText: newMessage,
@@ -113,10 +113,18 @@ const ChatRoom = ({ match, user }) => {
       <div className="chatBox">
         <div className="chatBoxWrapper">
           <div className="chatBoxTop">
+            {console.log(chats)}
+
             {chats.length !== 0 ? (
               chats.map((chat) => (
                 <div ref={scrollRef} key={uuidv4()}>
-                  <Chat chat={chat} own={chat.senderId === user.userId} />
+                  <Chat
+                    chat={chat}
+                    own={chat.senderId === user.userId}
+                    username={
+                      chat.sendId !== user.userId ? user.name : opponent?.name
+                    }
+                  />
                 </div>
               ))
             ) : (

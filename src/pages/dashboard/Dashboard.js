@@ -1,11 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { logout } from '../../redux/action/auth';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import './dashboard.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import { logout } from "../../redux/action/auth";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import "./dashboard.css";
 
-const Dashboard = ({ logout, isAuthenticated }) => {
+const Dashboard = ({ logout }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     logout();
@@ -52,7 +52,5 @@ const Dashboard = ({ logout, isAuthenticated }) => {
 Dashboard.propTypes = {
   logout: PropTypes.func.isRequired,
 };
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-export default connect(mapStateToProps, { logout })(Dashboard);
+
+export default connect(null, { logout })(Dashboard);

@@ -23,6 +23,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import setAuthToken from "./utils/setAuthToken";
 import { loadUser } from "./redux/action/auth";
+import { LOGOUT } from "./redux/action/types";
 
 import "./styles/app.css";
 import SignIn from "./components/signin/SignIn";
@@ -36,8 +37,13 @@ if (localStorage.token) {
 
 const App = () => {
   useEffect(() => {
-    setAuthToken(localStorage.token);
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
     store.dispatch(loadUser());
+    window.addEventListener("storage", () => {
+      if (!localStorage.token) store.dispatch({ type: LOGOUT });
+    });
   }, []);
 
   return (
@@ -52,8 +58,8 @@ const App = () => {
             <Route ext path="/signup" component={SignUp} />
             <AuthRoute exact path="/user" component={User} />
             {/* auth route */}
-            <Route exact path="/chatList" component={ChatList} />
-            <Route exact path="/chatting/:id" component={ChatRoom} />
+            <AuthRoute exact path="/chatList" component={ChatList} />
+            <AuthRoute exact path="/chatting/:id" component={ChatRoom} />
             <AuthRoute exact path="/post/:id" component={Post} />
             <AuthRoute exact path="/home" component={Dashboard} />
             <AuthRoute exact path="/postform" component={PostForm} />
