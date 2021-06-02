@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getPost } from '../../redux/action/post';
-import './Post.css';
-import moment from 'moment-timezone';
-import CommentForm from '../../components/comment/CommentForm';
-import CommentSection from '../../components/comment/CommentSection';
-import { Spinner } from '@chakra-ui/react';
-import axios from 'axios';
-import url from '../../config/defaultUrl.json';
-import { useHistory } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getPost } from "../../redux/action/post";
+import "./Post.css";
+import moment from "moment-timezone";
+import CommentForm from "../../components/comment/CommentForm";
+import CommentSection from "../../components/comment/CommentSection";
+import { Spinner } from "@chakra-ui/react";
+import axios from "axios";
+import url from "../../config/defaultUrl.json";
+import { useHistory } from "react-router-dom";
 
 const Post = ({ getPost, match, post, loading, user }) => {
   const [commonRoom, setCommonRoom] = useState(null);
@@ -22,7 +22,7 @@ const Post = ({ getPost, match, post, loading, user }) => {
     const getChatRooms = async () => {
       const config = {
         header: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       };
       if (!user || !post) {
@@ -35,7 +35,6 @@ const Post = ({ getPost, match, post, loading, user }) => {
         { user1: post.userId, user2: user.userId },
         config
       );
-      console.log(res.data);
       setCommonRoom(res.data);
     };
     getChatRooms();
@@ -44,7 +43,7 @@ const Post = ({ getPost, match, post, loading, user }) => {
   const chatClick = async () => {
     const config = {
       header: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     };
     const createChatRoom = async () => {
@@ -103,9 +102,7 @@ const Post = ({ getPost, match, post, loading, user }) => {
                 <span className="span-available available">available</span>
               )}
             </span>
-            <span className="post-date">
-              {moment(moment(post.postDate).add(-7, 'hour').format()).fromNow()}
-            </span>
+            <span className="post-date">{moment(post.postDate).fromNow()}</span>
             <hr />
           </div>
           <div className="post-detail-contents-2">

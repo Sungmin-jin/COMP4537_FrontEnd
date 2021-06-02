@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { uploadComment } from '../../redux/action/comment';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import './Comment.css';
+import React, { useState } from "react";
+import { uploadComment } from "../../redux/action/comment";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import "./Comment.css";
 const CommentForm = ({ id, uploadComment }) => {
   const [formData, setFormData] = useState({
-    text: '',
+    text: "",
     postId: id,
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
+    const date = new Date(Date.now());
+    formData.date = date;
     uploadComment(formData);
-    setFormData({ ...formData, text: '' });
+    setFormData({ ...formData, text: "" });
   };
 
   return (
@@ -31,7 +33,7 @@ const CommentForm = ({ id, uploadComment }) => {
           <button
             type="button"
             id="commentCancelBtn"
-            onClick={() => setFormData({ text: '' })}
+            onClick={() => setFormData({ text: "" })}
           >
             <span className="font-theme">cancel</span>
           </button>

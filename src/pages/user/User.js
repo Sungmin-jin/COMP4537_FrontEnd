@@ -53,7 +53,7 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
         </div>
         <div className="user-posts-container">
           {posts.map((post) => (
-            <div className="user-post-hover">
+            <div className="user-post-hover" key={post.postId}>
               <div className="user-post-title">
                 <span className="user-post-title">{post.title}</span>
               </div>
