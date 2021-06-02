@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import url from '../../config/defaultUrl.json';
-import moment from 'moment-timezone';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+import axios from "axios";
+import url from "../../config/defaultUrl.json";
+import moment from "moment-timezone";
 
 const ChatList = ({ user }) => {
   const [chatList, setChatList] = useState([]);
@@ -13,7 +13,6 @@ const ChatList = ({ user }) => {
     const getChatList = async () => {
       const res = await axios.get(`${url.url}/chatRoom`);
       setChatList(res.data);
-      console.log(res.data);
     };
     getChatList();
   }, [user]);

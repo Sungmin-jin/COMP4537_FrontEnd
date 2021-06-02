@@ -20,7 +20,7 @@ const ChatRoom = ({ match, user }) => {
   useEffect(() => {
     socket.current = io(url.endPoint);
     socket.current.on("getChat", (data) => {
-      var date = new Date(Date.now());
+      const date = new Date(Date.now());
       setArrivalChat({
         senderId: data.senderId,
         chatText: data.chatText,
@@ -113,8 +113,6 @@ const ChatRoom = ({ match, user }) => {
       <div className="chatBox">
         <div className="chatBoxWrapper">
           <div className="chatBoxTop">
-            {console.log(chats)}
-
             {chats.length !== 0 ? (
               chats.map((chat) => (
                 <div ref={scrollRef} key={uuidv4()}>

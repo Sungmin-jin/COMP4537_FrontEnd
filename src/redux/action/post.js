@@ -4,34 +4,34 @@ import defaultUrl from "../../config/defaultUrl.json";
 import firebase from "../../config/firebase";
 import { v4 as uuidv4 } from "uuid";
 
-export const uploadPost = ({ title, text, price, file }) => async (
-  dispatch
-) => {
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
+export const uploadPost =
+  ({ title, text, price, file }) =>
+  async (dispatch) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
 
-  try {
-    const formData = { title, text, price, image: null };
-    if (file) {
-      const storageRef = firebase.storage().ref("media");
-      const fileRef = storageRef.child(uuidv4() + "");
-      await fileRef.put(file);
-      const fileUrl = await fileRef.getDownloadURL();
-      formData.image = fileUrl;
+    try {
+      const formData = { title, text, price, image: null };
+      if (file) {
+        const storageRef = firebase.storage().ref("media");
+        const fileRef = storageRef.child(uuidv4() + "");
+        await fileRef.put(file);
+        const fileUrl = await fileRef.getDownloadURL();
+        formData.image = fileUrl;
+      }
+      await axios.post(`${defaultUrl.url}/posts`, formData, config);
+      dispatch(getPosts());
+    } catch (error) {
+      console.log(error);
+      dispatch({
+        type: POST_ERROR,
+        payload: { error },
+      });
     }
-    await axios.post(`${defaultUrl.url}/posts`, formData, config);
-    dispatch(getPosts());
-  } catch (error) {
-    console.log(error);
-    dispatch({
-      type: POST_ERROR,
-      payload: { error },
-    });
-  }
-};
+  };
 
 export const getPosts = () => async (dispatch) => {
   const config = {
@@ -85,13 +85,29 @@ export const getPost = (id) => async (dispatch) => {
 export const deletePost = (id, url) => async (dispatch) => {
   try {
     const imageRef = firebase.storage().refFromURL(url);
-    imageRef.delete();
+    try {
+      await imageRef.delete();
+    } catch (error) {
+      throw "Firebase Error";
+    }
     await axios.delete(`${defaultUrl.url}/posts/${id}`);
     dispatch({
       type: DELETE_POST,
       payload: id,
     });
   } catch (error) {
+    if (error === "Firebase Error") {
+      try {
+        const res = await axios.delete(`${defaultUrl.url}/posts/${id}`);
+        console.log("response", res);
+        dispatch({
+          type: DELETE_POST,
+          payload: id,
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }
     console.log(error);
   }
 };

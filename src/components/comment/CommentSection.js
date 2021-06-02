@@ -72,9 +72,7 @@ const CommentSection = ({
               </div>
               <div className="view-comment-commentDate">
                 <span>
-                  {moment(
-                    moment(comment.commentDate).add(-7, "hour").format()
-                  ).fromNow()}
+                  {moment(moment(comment.commentDate).format()).fromNow()}
                 </span>
               </div>
               <div className="view-comment-deleteEdit">

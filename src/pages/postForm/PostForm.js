@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState } from "react";
 import {
   FormControl,
   FormLabel,
@@ -6,14 +6,14 @@ import {
   Textarea,
   Button,
   Icon,
-} from '@chakra-ui/react';
-import { useHistory } from 'react-router-dom';
-import { FiFile } from 'react-icons/fi';
-import { AiOutlineClose } from 'react-icons/ai';
-import './PostForm.css';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { uploadPost } from '../../redux/action/post';
+} from "@chakra-ui/react";
+import { useHistory } from "react-router-dom";
+import { FiFile } from "react-icons/fi";
+import { AiOutlineClose } from "react-icons/ai";
+import "./PostForm.css";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { uploadPost } from "../../redux/action/post";
 
 const PostForm = ({ uploadPost }) => {
   const history = useHistory();
@@ -23,9 +23,9 @@ const PostForm = ({ uploadPost }) => {
 
   const [src, setSrc] = useState();
   const [formData, setFormData] = useState({
-    title: '',
-    text: '',
-    price: '',
+    title: "",
+    text: "",
+    price: "",
     file: null,
   });
   const defaultChange = (e) => {
@@ -36,7 +36,7 @@ const PostForm = ({ uploadPost }) => {
         const result = reader.result;
         setSrc(result);
         setFormData({ ...formData, file: file });
-        wrapperRef.current.className += ' active';
+        wrapperRef.current.className += " active";
       };
       reader.readAsDataURL(file);
     }
@@ -50,11 +50,13 @@ const PostForm = ({ uploadPost }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!formData.file) {
-      alert('Add The Image');
+      alert("Add The Image");
       return;
     }
+    const date = new Date(Date.now());
+    formData.date = date;
     uploadPost(formData);
-    history.push('/posts');
+    history.push("/posts");
   };
 
   const onChange = (e) => {

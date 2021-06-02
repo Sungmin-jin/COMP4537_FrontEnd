@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { getMyPosts } from '../../redux/action/post';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { deletePost } from '../../redux/action/post';
-import '../post/Post.css';
-import EditPost from '../../components/editPost/EditPost';
+import React, { useEffect, useState } from "react";
+import { getMyPosts } from "../../redux/action/post";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { deletePost } from "../../redux/action/post";
+import "../post/Post.css";
+import EditPost from "../../components/editPost/EditPost";
 
-import { Modal } from '@chakra-ui/react';
-import './User.css';
+import { Modal } from "@chakra-ui/react";
+import "./User.css";
 const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -53,7 +53,7 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
         </div>
         <div className="user-posts-container">
           {posts.map((post) => (
-            <div className="user-post-hover">
+            <div className="user-post-hover" key={post.postId}>
               <span className="user-post-title">{post.title}</span>
               <Link key={post.postId} to={`/post/${post.postId}`}>
                 <figure>
