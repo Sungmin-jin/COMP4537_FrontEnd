@@ -32,9 +32,11 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
               <figure className="flex-item">
                 <img src={post.img} className="posts-image" alt="images" />
               </figure>
-              <span className="posts-title">{post.title}</span>
-              <br />
-              <span className="price">CAD${post.price}.00</span>
+              <div className="posts-information">
+                <span className="posts-title">{post.title}</span>
+                <br />
+                <span className="price">CAD${post.price}.00</span>
+              </div>
             </div>
           </Link>
         ))}

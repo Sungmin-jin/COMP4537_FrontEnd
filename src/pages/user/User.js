@@ -54,7 +54,9 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
         <div className="user-posts-container">
           {posts.map((post) => (
             <div className="user-post-hover">
-              <span className="user-post-title">{post.title}</span>
+              <div className="user-post-title">
+                <span className="user-post-title">{post.title}</span>
+              </div>
               <Link key={post.postId} to={`/post/${post.postId}`}>
                 <figure>
                   <img className="user-post-image " src={post.img} />

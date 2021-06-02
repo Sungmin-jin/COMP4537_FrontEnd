@@ -55,7 +55,7 @@
 }
 .user-post-image {
   vertical-align: middle;
-  object-fit: cover;
+  object-fit: scale-down;
   margin: 0 auto;
   border: 2px solid black;
 }
@@ -83,6 +83,9 @@
 }
 .user-post-title,
 .user-btn span {
+  margin: 0 auto;
+  text-align: center;
+  width: 300px;
   font-weight: bold;
   font-size: 15px;
   text-transform: uppercase;
