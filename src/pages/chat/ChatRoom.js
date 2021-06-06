@@ -16,6 +16,7 @@ const ChatRoom = ({ match, user }) => {
   const scrollRef = useRef();
   const socket = useRef();
   const history = useHistory();
+  console.log("opponent ", opponent);
 
   useEffect(() => {
     socket.current = io(url.endPoint);
@@ -39,6 +40,7 @@ const ChatRoom = ({ match, user }) => {
       if (!user) {
         return;
       }
+
       const res = await axios.get(`${url.url}/chatRoom/${match.params.id}`);
       if (!res) {
         history.push("/NotFound");
