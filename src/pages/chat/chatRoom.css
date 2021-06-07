@@ -2,7 +2,7 @@
   color: #9bcaeb;
   text-align: center;
   text-transform: uppercase;
-  font-family: 'Questrial', sans-serif;
+  font-family: "Questrial", sans-serif;
 }
 .chatroom-header-main {
   font-size: 60px;
@@ -22,13 +22,14 @@
 }
 .chatRoom {
   height: 100%;
+  margin-top: 1.5rem;
   display: grid;
   background-color: #edf2f7;
   border-radius: 5px;
   grid-template-areas:
-    'chat-person'
-    'chat-text';
-  font-family: 'Questrial', sans-serif;
+    "chat-person"
+    "chat-text";
+  font-family: "Questrial", sans-serif;
   text-align: center;
   cursor: pointer;
 }

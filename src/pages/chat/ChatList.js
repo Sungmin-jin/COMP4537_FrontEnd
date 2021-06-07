@@ -13,6 +13,7 @@ const ChatList = ({ user }) => {
     const getChatList = async () => {
       const res = await axios.get(`${url.url}/chatRoom`);
       setChatList(res.data);
+      console.log(res.data);
     };
     getChatList();
   }, [user]);
@@ -43,7 +44,7 @@ const ChatList = ({ user }) => {
                   : chat.userOneName}
               </span>
               <span className="chat-time">
-                {moment(chat.lastUpdate).fromNow()}
+                {chat.chatUpdate ? `${moment(chat.lastUpdate).fromNow()}` : ""}
               </span>
             </div>
           </div>

@@ -16,7 +16,6 @@ const ChatRoom = ({ match, user }) => {
   const scrollRef = useRef();
   const socket = useRef();
   const history = useHistory();
-  console.log("opponent ", opponent);
 
   useEffect(() => {
     socket.current = io(url.endPoint);
@@ -50,7 +49,6 @@ const ChatRoom = ({ match, user }) => {
       if (userOne !== user.userId && userTwo !== user.userId) {
         history.push("/NotFound");
       }
-
       const opponent = await axios.get(
         `${url.url}/user/${userOne === user.userId ? userTwo : userOne}`
       );
@@ -122,7 +120,7 @@ const ChatRoom = ({ match, user }) => {
                     chat={chat}
                     own={chat.senderId === user.userId}
                     username={
-                      chat.sendId !== user.userId ? user.name : opponent?.name
+                      chat.senderId === user.userId ? user.name : opponent?.name
                     }
                   />
                 </div>
