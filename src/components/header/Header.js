@@ -1,12 +1,20 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../redux/action/auth';
 
 import './menu.css';
 
-const Header = ({ isAuthenticated, logout }) => {
+
+const Header = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+  const logoutBtn = () => {
+    dispatch(logout());
+  }
+  
   return (
     <>
       <input id="menu__toggle" type="checkbox" />
@@ -20,7 +28,7 @@ const Header = ({ isAuthenticated, logout }) => {
           </Link>
           {isAuthenticated ? (
             <Link to="/">
-              <span onClick={logout} className="menu__item">
+              <span onClick={logoutBtn} className="menu__item">
                 Sign out
               </span>
             </Link>
@@ -46,8 +54,5 @@ const Header = ({ isAuthenticated, logout }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
 
-export default connect(mapStateToProps, { logout })(Header);
+export default Header;

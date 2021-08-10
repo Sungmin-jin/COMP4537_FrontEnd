@@ -11,12 +11,13 @@ import {
   Switch,
 } from '@chakra-ui/react';
 
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { editPost } from '../../redux/action/post';
 import { AiFillCamera } from 'react-icons/ai';
 import './EditPost.css';
 
-const EditPost = ({ onClose, editPost, post }) => {
+const EditPost = ({ onClose, post }) => {
+  const dispatch = useDispatch();
   const [src, setSrc] = useState(post.img);
   const [formData, setFormData] = useState({
     text: post.text,
@@ -53,7 +54,7 @@ const EditPost = ({ onClose, editPost, post }) => {
     e.preventDefault();
     console.log(formData);
     console.log(file);
-    editPost(formData, post.postId, file);
+    dispatch(editPost(formData, post.postId, file));
     onClose();
   };
 
@@ -155,4 +156,4 @@ const EditPost = ({ onClose, editPost, post }) => {
   );
 };
 
-export default connect(null, { editPost })(EditPost);
+export default EditPost;

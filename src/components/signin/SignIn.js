@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { login } from '../../redux/action/auth';
 import {
@@ -14,7 +13,9 @@ import {
 
 import './authentication.css';
 
-const SignIn = ({ login, isAuthenticated }) => {
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const [formData, setFormData] = useState({
@@ -24,7 +25,7 @@ const SignIn = ({ login, isAuthenticated }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    login(formData);
+    dispatch(login(formData));
   };
 
   const onChange = (e) => {
@@ -118,12 +119,6 @@ const SignIn = ({ login, isAuthenticated }) => {
   );
 };
 
-SignIn.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
 
-export default connect(mapStateToProps, { login })(SignIn);
+
+export default (SignIn);

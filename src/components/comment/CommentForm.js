@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { uploadComment } from "../../redux/action/comment";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 import "./Comment.css";
-const CommentForm = ({ id, uploadComment }) => {
+const CommentForm = ({ id }) => {
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     text: "",
     postId: id,
@@ -13,7 +14,7 @@ const CommentForm = ({ id, uploadComment }) => {
     e.preventDefault();
     const date = new Date(Date.now());
     formData.date = date;
-    uploadComment(formData);
+    dispatch(uploadComment(formData));
     setFormData({ ...formData, text: "" });
   };
 
@@ -46,8 +47,4 @@ const CommentForm = ({ id, uploadComment }) => {
   );
 };
 
-CommentForm.propTypes = {
-  uploadComment: PropTypes.func.isRequired,
-};
-
-export default connect(null, { uploadComment })(CommentForm);
+export default CommentForm;

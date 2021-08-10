@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import {useSelector } from 'react-redux';
 
-const AuthRoute = ({ component: Component, auth, ...rest }) => {
+const AuthRoute = ({ component: Component, ...rest }) => {
+  const auth = useSelector(state => state.auth);
   return (
     <Route
       {...rest}
@@ -18,12 +18,4 @@ const AuthRoute = ({ component: Component, auth, ...rest }) => {
   );
 };
 
-AuthRoute.propTypes = {
-  auth: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  auth: state.auth,
-});
-
-export default connect(mapStateToProps)(AuthRoute);
+export default AuthRoute;

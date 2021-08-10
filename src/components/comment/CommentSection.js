@@ -4,8 +4,7 @@ import {
   deleteComment,
   editComment,
 } from "../../redux/action/comment";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 import "./Comment.css";
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import moment from "moment";
@@ -18,18 +17,16 @@ import {
   Input,
 } from "@chakra-ui/react";
 
-const CommentSection = ({
-  id,
-  comments,
-  getComments,
-  deleteComment,
-  editComment,
-  user,
-}) => {
+const CommentSection = ({ id }) => {
   useEffect(() => {
-    getComments(id);
+    dispatch(getComments(id));
   }, []);
 
+  const dispatch = useDispatch();
+  
+  const comments = useSelector(state => state.comments.comments);
+  const user = useSelector(state => state.auth.user);
+  
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [commentId, setCommentId] = useState();
@@ -51,13 +48,13 @@ const CommentSection = ({
   };
 
   const onDeleteClick = () => {
-    deleteComment(commentId);
+    dispatch(deleteComment(commentId));
     onCloseDelete();
   };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    editComment(formData, id);
+    dispatch(editComment(formData, id));
     onCloseEdit();
   };
 
@@ -161,19 +158,4 @@ const CommentSection = ({
   );
 };
 
-CommentSection.propTypes = {
-  getComments: PropTypes.func.isRequired,
-  deleteComment: PropTypes.func.isRequired,
-  editComment: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  comments: state.comments.comments,
-  user: state.auth.user,
-});
-
-export default connect(mapStateToProps, {
-  getComments,
-  deleteComment,
-  editComment,
-})(CommentSection);
+export default CommentSection;

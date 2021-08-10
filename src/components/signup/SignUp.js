@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/action/auth';
 import { Redirect, Link } from 'react-router-dom';
 import {
@@ -12,7 +11,10 @@ import {
   InputRightElement,
 } from '@chakra-ui/react';
 import '../signin/authentication.css';
-const SignUp = ({ register, isAuthenticated }) => {
+
+const SignUp = () => {
+  const dispatch = useDispatch();
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
   const [formData, setFormData] = useState({
@@ -22,7 +24,7 @@ const SignUp = ({ register, isAuthenticated }) => {
   });
   const onSubmit = (e) => {
     e.preventDefault();
-    register(formData);
+    dispatch(register(formData));
     <Redirect to="/signin" />;
   };
 
@@ -38,9 +40,7 @@ const SignUp = ({ register, isAuthenticated }) => {
         <form onSubmit={(e) => onSubmit(e)}>
           <div className="authentication-form-container">
             <div className="authentication-title">
-              {/* <Link as={ReachLink} to="/"> */}
               <span className="title-name">KREAMIN STUDIO</span>
-              {/* </Link> */}
               <br />
               <span className="title-description">Buy and sell your goods</span>
             </div>
@@ -131,12 +131,6 @@ const SignUp = ({ register, isAuthenticated }) => {
     </>
   );
 };
-SignUp.propTypes = {
-  register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-};
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-export default connect(mapStateToProps, { register })(SignUp);
-// mapstate, dispatch
+
+export default SignUp;
+
