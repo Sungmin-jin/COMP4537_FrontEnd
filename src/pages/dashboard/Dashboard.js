@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { logout } from "../../redux/action/auth";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./dashboard.css";
 
-const Dashboard = ({ logout }) => {
+const Dashboard = () => {
+  const dispatch = useDispatch();
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    logout();
+    dispatch(logout());
   };
 
   return (
@@ -49,8 +50,5 @@ const Dashboard = ({ logout }) => {
     </>
   );
 };
-Dashboard.propTypes = {
-  logout: PropTypes.func.isRequired,
-};
 
-export default connect(null, { logout })(Dashboard);
+export default Dashboard;

@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
-//components
 import "./landing.css";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-const Landing = ({ isAuthenticated }) => {
+const Landing = () => {
+  const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
   const history = useHistory();
   useEffect(() => {
     if (isAuthenticated === true) {
@@ -23,8 +23,4 @@ const Landing = ({ isAuthenticated }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, null)(Landing);
+export default Landing;

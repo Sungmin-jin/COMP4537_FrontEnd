@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { getPost } from '../../redux/action/post';
 import './Post.css';
 import moment from 'moment-timezone';
@@ -11,11 +10,17 @@ import axios from 'axios';
 import url from '../../config/defaultUrl.json';
 import { useHistory } from 'react-router-dom';
 
-const Post = ({ getPost, match, post, loading, user }) => {
+const Post = ({ match }) => {
+	const dispatch = useDispatch();
+
+	const post = useSelector(state => state.post.post);
+	const loading = useSelector(state => state.post.loading);
+	const user = useSelector(state => state.auth.user);
+
 	const [commonRoom, setCommonRoom] = useState(null);
 	const history = useHistory();
 	useEffect(() => {
-		getPost(match.params.id);
+		dispatch(getPost(match.params.id));
 	}, []);
 
 	useEffect(() => {
@@ -133,15 +138,4 @@ const Post = ({ getPost, match, post, loading, user }) => {
 	);
 };
 
-Post.propTypes = {
-	getPost: PropTypes.func.isRequired,
-	loading: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-	post: state.post.post,
-	loading: state.post.loading,
-	user: state.auth.user,
-});
-
-export default connect(mapStateToProps, { getPost })(Post);
+export default Post;

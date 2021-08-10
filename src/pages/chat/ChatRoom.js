@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { io } from "socket.io-client";
-import url from "../../config/defaultUrl.json";
+import { v4 as uuidv4 } from "uuid";
+import axios from "axios";
 import "./chatRoom.css";
 import Chat from "../../components/chat/Chat";
-import { connect } from "react-redux";
-import axios from "axios";
-import { v4 as uuidv4 } from "uuid";
+import url from "../../config/defaultUrl.json";
 
-const ChatRoom = ({ match, user }) => {
+const ChatRoom = ({ match }) => {
+  const user = useSelector(state => state.auth.user);
   const [chats, setChats] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [arrivalChat, setArrivalChat] = useState(null);
@@ -148,8 +149,4 @@ const ChatRoom = ({ match, user }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
-
-export default connect(mapStateToProps, null)(ChatRoom);
+export default ChatRoom;

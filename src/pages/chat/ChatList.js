@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import axios from "axios";
 import url from "../../config/defaultUrl.json";
 import moment from "moment-timezone";
 
-const ChatList = ({ user }) => {
+const ChatList = () => {
   const [chatList, setChatList] = useState([]);
   const history = useHistory();
-
+  const user = useSelector(state => state.auth.user);
   useEffect(() => {
     const getChatList = async () => {
       const res = await axios.get(`${url.url}/chatRoom`);
@@ -54,8 +54,5 @@ const ChatList = ({ user }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
 
-export default connect(mapStateToProps, null)(ChatList);
+export default ChatList;

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getMyPosts } from '../../redux/action/post';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { deletePost } from '../../redux/action/post';
 import '../post/Post.css';
@@ -9,7 +8,12 @@ import EditPost from '../../components/editPost/EditPost';
 
 import { Modal } from '@chakra-ui/react';
 import './User.css';
-const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
+
+const User = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user);
+  const {posts} = useSelector(state => state.post);
+  
   const [isOpen, setIsOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
 
@@ -17,7 +21,7 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
   const onOpen = () => setIsOpen(true);
 
   useEffect(() => {
-    getMyPosts();
+    dispatch(getMyPosts());
   }, []);
 
   return (
@@ -75,7 +79,7 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
                 </button>
                 <button
                   className="user-btn delete-btn"
-                  onClick={(e) => deletePost(post.postId, post.img)}
+                  onClick={(e) => dispatch(deletePost(post.postId, post.img))}
                 >
                   <span>Delete</span>
                 </button>
@@ -91,14 +95,4 @@ const User = ({ getMyPosts, user, post: { posts }, deletePost }) => {
   );
 };
 
-User.propTypes = {
-  getMyPosts: PropTypes.func.isRequired,
-  deletePost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  post: state.post,
-});
-export default connect(mapStateToProps, { getMyPosts, deletePost })(User);
+export default User;

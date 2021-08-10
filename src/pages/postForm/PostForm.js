@@ -11,11 +11,11 @@ import { useHistory } from "react-router-dom";
 import { FiFile } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import "./PostForm.css";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { uploadPost } from "../../redux/action/post";
 
-const PostForm = ({ uploadPost }) => {
+const PostForm = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const defaultBtn = useRef(null);
   const wrapperRef = useRef(null);
@@ -55,7 +55,7 @@ const PostForm = ({ uploadPost }) => {
     }
     const date = new Date(Date.now());
     formData.date = date;
-    uploadPost(formData);
+    dispatch(uploadPost(formData));
     history.push("/posts");
   };
 
@@ -142,8 +142,4 @@ const PostForm = ({ uploadPost }) => {
   );
 };
 
-PostForm.propTypes = {
-  uploadPost: PropTypes.func.isRequired,
-};
-
-export default connect(null, { uploadPost })(PostForm);
+export default PostForm;

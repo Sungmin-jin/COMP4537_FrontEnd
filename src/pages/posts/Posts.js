@@ -1,13 +1,15 @@
 import React, { useEffect } from 'react';
 import { getPosts } from '../../redux/action/post';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Spinner } from '@chakra-ui/react';
 import './Posts.css';
-const Posts = ({ getPosts, post: { posts, loading } }) => {
+
+const Posts = () => {
+  const dispatch = useDispatch();
+  const {posts, loading } = useSelector(state => state.post);
   useEffect(() => {
-    getPosts();
+    dispatch(getPosts());
   }, []);
   return loading ? (
     <div className="spinner-container">
@@ -45,13 +47,4 @@ const Posts = ({ getPosts, post: { posts, loading } }) => {
   );
 };
 
-Posts.propTypes = {
-  getPosts: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-  post: state.post,
-});
-
-export default connect(mapStateToProps, { getPosts })(Posts);
+export default Posts;
